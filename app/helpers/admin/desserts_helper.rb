@@ -1,0 +1,2 @@
+module Admin::DessertsHelper
+end

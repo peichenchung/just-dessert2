@@ -6,12 +6,12 @@
 
 <br>
 
-<%= link_to 'New Dessert', new_dessert_path %>
+<%= link_to '建立新的甜點集資', new_dessert_path %>
 
-<br>
+<hr>
 
 <% @desserts.each do |dessert| %>
   <%= image_tag dessert.image.url if dessert.image? %>
-  <%= dessert.name %>
+  <h4><%= dessert.name %></h4>
 <% end %>
 

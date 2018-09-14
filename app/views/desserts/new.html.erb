@@ -1,3 +1,12 @@
+<% if @dessert.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @dessert.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_for @dessert do |f| %>
   <%= f.label :name, 'Name' %>
   <%= f.text_field :name %>

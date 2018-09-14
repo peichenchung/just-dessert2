@@ -1,9 +1,17 @@
 <h1>前台首頁</h1>
+
+<br>
+
 <%= link_to "後台首頁", admin_root_path %>
+
+<br>
+
+<%= link_to 'New Dessert', new_dessert_path %>
+
+<br>
 
 <% @desserts.each do |dessert| %>
   <%= image_tag dessert.image.url if dessert.image? %>
   <%= dessert.name %>
 <% end %>
 
-<%= link_to 'New Dessert', new_dessert_path %>

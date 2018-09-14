@@ -1,0 +1,33 @@
+<%= form_for @dessert do |f| %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :price, 'Price' %>
+  <%= f.text_field :price %>
+  <br>
+  <%= f.label :amount, 'Amount' %>
+  <%= f.text_field :amount %>
+  <br>
+  <%= f.label :price, 'Price' %>
+  <%= f.text_field :price %>
+  <br>
+  <%= f.label :location, "Location" %>
+  <%= f.text_field :location %>
+  <br>
+  <%= f.label :description, 'Description' %>
+  <%= f.text_field :description %>
+  <br>
+  <%= f.label :production_time, 'Production time' %>
+  <%= f.date_select :production_time %>
+  <br>
+  <%= f.label :excess_time, 'Excess time' %>
+  <%= f.datetime_select :excess_time %>
+  <br>
+  <%= f.label :pick_time, 'Pick time' %>
+  <%= f.datetime_select :pick_time %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to '回到前台首頁', root_path %>
+

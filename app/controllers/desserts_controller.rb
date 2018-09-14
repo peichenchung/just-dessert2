@@ -4,4 +4,8 @@ class DessertsController < ApplicationController
     @desserts = Dessert.all
   end
 
+  def new
+    @dessert = Dessert.new
+  end
+
 end

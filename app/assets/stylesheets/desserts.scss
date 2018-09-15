@@ -1,3 +1,24 @@
 // Place all the styles related to the desserts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item{
+  width: 180px;
+  margin-bottom: 4px;
+  padding: 8px;
+  border-bottom:3px solid;
+  border-radius:5px;
+  background-color: #fff;
+}
+
+.item .image{
+  display: block;
+  width:100%;
+}
+
+.item .category {
+  margin:15px 9px 10px;
+  color: #aaa;
+  letter-spacing: 1px;
+  font-family: "Hiragino Kaku Gothic ProN"
+}

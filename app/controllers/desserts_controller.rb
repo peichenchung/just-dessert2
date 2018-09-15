@@ -1,5 +1,5 @@
 class DessertsController < ApplicationController
-  before_action :set_dessert, only: [:show, :edit, :update, :destroy]
+  before_action :set_dessert, only: [:show, :edit, :update, :destroy, :order_form]
 
   def index #前台首頁
     @desserts = Dessert.all

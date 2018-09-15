@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :name
   has_many :desserts, dependent: :destroy
   has_many :orders, dependent: :destroy
+  has_many :collect_orders, through: :orders
 
   mount_uploader :avatar, AvatarUploader
 

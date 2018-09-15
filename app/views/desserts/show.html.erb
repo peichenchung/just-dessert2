@@ -11,7 +11,7 @@
 
 <p>Price: $ <%= @dessert.price %> / each</p>
 
-<p>還有 <%= @dessert.amount %> 個集資成功      <%= link_to '立即贊助', new_order_path %></p>
+<p>還有 <%= @dessert.amount %> 個集資成功      <%= link_to '立即贊助', order_form_dessert_path(@dessert) %></p>
 
 <p>面交地點： <%= @dessert.location %></p>
 

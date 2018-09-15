@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  def show
+    @order = Order.find(params[:id])
+  end
+
   def new
     @dessert = Dessert.find(params[:dessert_id])
     @order = Order.new
@@ -10,7 +14,7 @@ class OrdersController < ApplicationController
     @order.dessert_id = @dessert.id
     @order.user = current_user
     @order.save!
-    redirect_to dessert_path(@dessert)
+    redirect_to order_path(@order)
   end
 
   private

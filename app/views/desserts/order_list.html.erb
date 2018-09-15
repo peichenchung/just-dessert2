@@ -3,7 +3,10 @@
 <hr>
 
 <% @orders.each do |order| %>
-  訂購人姓名：<%= order.name %>  |  
+  訂購人姓名：
+    <%= link_to user_path(order.user_id) do %>
+      <%= order.name %>
+    <% end %>  |  
   訂購人電話：<%= order.phone %>  |  
   訂購數量：<%= order.amount %>  
 <% end %>

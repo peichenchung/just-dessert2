@@ -2,6 +2,8 @@
 
 <h2>Order Form</h2>
 
+<%= image_tag @dessert.image.url if @dessert.image? %>
+
 <br>
 
 <%= form_for [@dessert, @order] do |f| %>

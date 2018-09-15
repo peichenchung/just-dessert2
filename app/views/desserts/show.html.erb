@@ -1,7 +1,8 @@
 <hr>
 
 <% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %>
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %>
 <% end %>
 
 <h3><%= @dessert.name %></h3>

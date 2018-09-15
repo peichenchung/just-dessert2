@@ -1,5 +1,5 @@
 class DessertsController < ApplicationController
-  before_action :set_dessert, only: [:show, :edit, :update]
+  before_action :set_dessert, only: [:show, :edit, :update, :destroy]
 
   def index #前台首頁
     @desserts = Dessert.all
@@ -35,6 +35,12 @@ class DessertsController < ApplicationController
       flash.now[:alert] = "更新失敗"
       render :edit
     end
+  end
+
+  def destroy
+    @dessert.destroy
+    redirect_to root_path
+    flash[:alert] = "刪除成功"
   end
 
   private

@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :desserts do
-    member do
-      get :order_form
-    end
+    resources :orders
   end
 
   resources :users, only: [:show, :edit, :update]

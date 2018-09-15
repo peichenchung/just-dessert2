@@ -1,5 +1,5 @@
 class DessertsController < ApplicationController
-  before_action :set_dessert, only: [:show, :edit, :update, :destroy, :order_form]
+  before_action :set_dessert, only: [:show, :edit, :update, :destroy]
 
   def index #前台首頁
     @desserts = Dessert.all
@@ -41,13 +41,6 @@ class DessertsController < ApplicationController
     @dessert.destroy
     redirect_to root_path
     flash[:alert] = "刪除成功"
-  end
-
-  def order_form
-    @order = Order.new
-    @order.buyer_id = current_user.id
-    @order.seller_id = @dessert.user_id
-    @order.dessert_id = @dessert.id
   end
 
   private

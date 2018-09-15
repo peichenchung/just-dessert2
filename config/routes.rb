@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :desserts
+  resources :users, only: [:show, :edit, :update]
   root "desserts#index"
 
   namespace :admin do

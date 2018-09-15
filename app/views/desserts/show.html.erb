@@ -1,5 +1,9 @@
 <hr>
 
+<% if current_user.id == @dessert.user_id %>
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %>
+<% end %>
+
 <h3><%= @dessert.name %></h3>
 
 <p><%= image_tag @dessert.image.url if @dessert.image? %></p>

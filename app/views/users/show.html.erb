@@ -13,18 +13,20 @@
 
 <br>
 
-<h5>給買家的話：</h5>
 <% if @user == current_user %>
+  <h5>給買家的話：</h5>
   <p><%= simple_format @user.contact_info %></p>
 <% end %>
 
 <hr>
 
-<h3>你發起的甜點集資</h3>
+<% if @user == current_user %>
+  <h3>你發起的甜點集資</h3>
 
-<% @desserts.each do |dessert| %>
-  <%= link_to dessert_path(dessert) do %>
-    <%= image_tag dessert.image.url if dessert.image? %>
-    <h4><%= dessert.name %></h4>
+  <% @desserts.each do |dessert| %>
+    <%= link_to dessert_path(dessert) do %>
+      <%= image_tag dessert.image.url if dessert.image? %>
+      <h4><%= dessert.name %></h4>
+    <% end %>
   <% end %>
 <% end %>

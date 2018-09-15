@@ -88,6 +88,32 @@ a:link, a:visited, a:hover, a:active {
   width: 40px;
   height: 40px;
 }
+
+.img-dessert{
+  margin-right: 5px;
+  width: 200px;
+  height: 200px;
+}
 .control-bar {
   border:1px solid #aaa;
+}
+
+.button {
+  background-color: transparent;
+  border: 0;
+  color: #fefbef;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  line-height: 1;
+  margin-top: 1.5rem;
+  width: 100%; /* Large, mobile-friendly touch target */
+
+  /* Media Queries */
+  @media (min-width: 37.5em) {
+    width: auto; /* Smaller buttons on larger screens */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }

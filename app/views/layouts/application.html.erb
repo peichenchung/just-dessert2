@@ -34,6 +34,7 @@
                   <% end %>
                   <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
                   <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+                  <li><%= link_to '建立新的甜點集資', new_dessert_path %></li>
                 <% end %>
               </ul>
             <% else %>
@@ -59,7 +60,8 @@
 
 
     <footer class ="footer text-center">
-      <h2>吃甜甜</h2>
+      <br>
+      <h5>吃甜甜</h5>
       <h5>Copyright © 2018 CSY cooperation</h5>
     </footer>
 

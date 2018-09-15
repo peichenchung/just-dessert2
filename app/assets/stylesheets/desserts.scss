@@ -22,3 +22,63 @@
   letter-spacing: 1px;
   font-family: "Hiragino Kaku Gothic ProN"
 }
+
+.panel-body {
+    padding: 30px 2px;
+    h1 {
+      margin: 0 0 20px 0;
+    }
+  }
+  .panel-footer {
+    padding: 30px 15px;
+    p {
+      margin: 0;
+    }
+
+.panel-heading {
+    padding: 0px;
+    img{
+      padding: 0px;
+      width: 100%;
+    }
+  }
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  margin:0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+.btn {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+ /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+ }
+
+
+.btn-1 {
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+}
+
+.btn-2 {
+  background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+}
+
+

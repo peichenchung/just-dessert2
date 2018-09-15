@@ -9,9 +9,9 @@
 
 <p><%= image_tag @dessert.image.url if @dessert.image? %></p>
 
-<p>Price: <%= @dessert.price %></p>
+<p>Price: $ <%= @dessert.price %> / each</p>
 
-<p>剩餘數量： <%= @dessert.amount %></p>
+<p>還有 <%= @dessert.amount %> 個集資成功      <%= link_to '立即贊助' %></p>
 
 <p>面交地點： <%= @dessert.location %></p>
 

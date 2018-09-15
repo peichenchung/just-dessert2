@@ -22,3 +22,24 @@
   letter-spacing: 1px;
   font-family: "Hiragino Kaku Gothic ProN"
 }
+
+.panel-body {
+    padding: 30px 2px;
+    h1 {
+      margin: 0 0 20px 0;
+    }
+  }
+  .panel-footer {
+    padding: 30px 15px;
+    p {
+      margin: 0;
+    }
+
+.panel-heading {
+    padding: 0px;
+    img{
+      padding: 0px;
+      width: 100%;
+    }
+  }
+

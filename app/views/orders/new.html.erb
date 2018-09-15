@@ -1,5 +1,14 @@
 <hr>
 
+<% if @order.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>Order Form</h2>
 
 <%= image_tag @dessert.image.url if @dessert.image? %>

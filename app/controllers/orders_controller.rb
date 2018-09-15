@@ -16,9 +16,17 @@ class OrdersController < ApplicationController
     @order.user = current_user
     @order.order_price = @dessert.price * @order.amount
     @order.pick_location = @dessert.location
-    @order.save!
+    
+    if @order.save
+      flash[:notice] = "訂單成立"
+      redirect_to order_path(@order)
+    else
+      flash.now[:alert] = "訂單失敗"
+      render :new
+    end
+    
     @dessert.amount = @dessert.amount - @order.amount
-    @dessert.save!
+    @dessert.save
   end
 
   private

@@ -1,5 +1,5 @@
 class DessertsController < ApplicationController
-  before_action :set_dessert, only: [:show, :edit, :update, :destroy]
+  before_action :set_dessert, only: [:show, :edit, :update, :destroy, :order_list]
 
   def index #前台首頁
     @desserts = Dessert.all
@@ -44,7 +44,7 @@ class DessertsController < ApplicationController
   end
 
   def order_list
-    
+    @orders = @dessert.orders
   end
 
   private

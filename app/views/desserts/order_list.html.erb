@@ -1,1 +1,7 @@
 <h1>Order List</h1>
+
+<% @orders.each do |order| %>
+  訂購人姓名：<%= order.name %>  |  
+  訂購人電話：<%= order.phone %>  |  
+  訂購數量：<%= order.amount %>  
+<% end %>

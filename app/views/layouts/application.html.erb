@@ -14,22 +14,49 @@
 
   <body>
     <header class ="header">
-     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid" id="top-bar">
 
-    <% if current_user %>
-      Hi, <%= current_user.email %>
-      <%= link_to('登出', destroy_user_session_path, method: :delete) %> |
-      <%= link_to('修改密碼', edit_user_registration_path) %>
-    <% else %>
-      <%= link_to('註冊', new_user_registration_path) %> |
-      <%= link_to('登入', new_user_session_path) %>
-    <% end %>
+        <%= link_to root_path do %>
+          <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
+        <% end %>
 
-    <%= yield %>
+
+          <div class="pull-right align-middle">
+            <% if current_user %>
+
+              <span class="glyphicon glyphicon-align-justify btn btn-lg dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              <ul class="dropdown-menu">
+                <% if current_user %>
+                  <% if current_user&.admin? %>
+                    <li><%= link_to '後台', admin_root_path %></li>
+                  <% end %>
+                  <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
+                  <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="navbar-brand"><%= link_to('註冊', new_user_registration_path) %></div>
+              <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
+            <% end %>
+          </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+
     </header>
     <div class ="main">
+     <%= yield %>
     </div>
+
+
     <footer class ="footer text-center">
       <h2>吃甜甜</h2>
       <h5>Copyright © 2018 CSY cooperation</h5>

@@ -43,6 +43,10 @@ class DessertsController < ApplicationController
     flash[:alert] = "刪除成功"
   end
 
+  def order_list
+    
+  end
+
   private
 
   def set_dessert

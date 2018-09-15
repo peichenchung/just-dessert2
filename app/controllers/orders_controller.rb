@@ -17,6 +17,8 @@ class OrdersController < ApplicationController
     @order.order_price = @dessert.price * @order.amount
     @order.pick_location = @dessert.location
     @order.save!
+    @dessert.amount = @dessert.amount - @order.amount
+    @dessert.save!
     redirect_to order_path(@order)
   end
 

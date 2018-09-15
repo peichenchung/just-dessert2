@@ -1,3 +1,7 @@
 <h2>您已贊助成功</h2>
 <p>以下是賣家給您的留言：</p>
 <%= simple_format @order.seller.contact_info %>
+<hr>
+<%= image_tag @order.dessert.image.url, width:'100px' if @order.dessert.image? %>
+<p>面交時間：<%= time_tag @order.dessert.pick_time %></p>
+<p>面交地點：<%= @order.pick_location %></p>

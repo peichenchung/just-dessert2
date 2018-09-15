@@ -1,4 +1,5 @@
 class DessertsController < ApplicationController
+  before_action :set_dessert, only: [:show, :edit, :update]
 
   def index #前台首頁
     @desserts = Dessert.all
@@ -21,10 +22,26 @@ class DessertsController < ApplicationController
   end
 
   def show
-    @dessert = Dessert.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    if @dessert.update(dessert_params)
+      flash[:notice] = "更新成功"
+      redirect_to dessert_path(@dessert)
+    else
+      flash.now[:alert] = "更新失敗"
+      render :edit
+    end
   end
 
   private
+
+  def set_dessert
+    @dessert = Dessert.find(params[:id])
+  end
 
   def dessert_params
     params.require(:dessert).permit(

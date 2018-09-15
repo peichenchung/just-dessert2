@@ -17,9 +17,9 @@
 
 <p>製作所需時間：<%= @dessert.production_time %></p>
 
-<p>集資截止時間： <%= @dessert.excess_time %></p>
+<p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
 
-<p>預定面交時間： <%= @dessert.pick_time %></p>
+<p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
 
 <p>介紹： <%= simple_format @dessert.description %></p>
 

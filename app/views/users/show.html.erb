@@ -1,3 +1,11 @@
+<hr>
+
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path %>
+<% end %>
+
+<br>
+
 <%= image_tag @user.avatar.url if @user.avatar? %>
 <h3><%= @user.name %></h3>
 <p><%= @user.email %></p>

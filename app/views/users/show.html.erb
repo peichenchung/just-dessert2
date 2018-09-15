@@ -11,6 +11,13 @@
 <p><%= @user.email %></p>
 <p><%= simple_format @user.intro %></p>
 
+<br>
+
+<h5>給買家的話：</h5>
+<% if @user == current_user %>
+  <p><%= simple_format @user.contact_info %></p>
+<% end %>
+
 <hr>
 
 <h3>你發起的甜點集資</h3>

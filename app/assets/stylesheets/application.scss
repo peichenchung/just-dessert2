@@ -14,3 +14,34 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+html{
+  font-size:62.5%
+}
+body{
+  color: #333;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+a:link, a:visited, a:hover, a:active {
+  color: #d03c56;
+  text-decoration: none;
+}
+
+
+.header{
+  width:100%;
+}
+.main{
+  width:970px;
+  margin:30px auto 40px;
+}
+.footer{
+  width:100%;
+}
+
+

@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @dessert = Dessert.find(params[:dessert_id])
     @order = @dessert.orders.build(order_params)
     @order.dessert_id = @dessert.id
+    @order.seller_id = @dessert.user_id
     @order.user = current_user
     @order.save!
     redirect_to order_path(@order)
@@ -20,6 +21,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:amount, :name, :phone, :user_id, :dessert_id)
+    params.require(:order).permit(:amount, :name, :phone, :user_id, :dessert_id, :seller_id)
   end
 end

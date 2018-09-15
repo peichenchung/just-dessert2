@@ -19,7 +19,6 @@ class OrdersController < ApplicationController
     @order.save!
     @dessert.amount = @dessert.amount - @order.amount
     @dessert.save!
-    redirect_to order_path(@order)
   end
 
   private

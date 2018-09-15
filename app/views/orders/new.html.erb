@@ -9,7 +9,7 @@
 
 <%= form_for [@dessert, @order] do |f| %>
   <%= f.label :amount, '訂購數量' %>
-  <%= f.text_field :amount %>
+  <%= f.select :amount, [1,2,3,4,5] %>
   <br>
   <%= f.label :name, '訂購人姓名' %>
   <%= f.text_field :name %>

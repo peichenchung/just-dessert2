@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_104956) do
+ActiveRecord::Schema.define(version: 2018_09_15_141236) do
 
   create_table "desserts", force: :cascade do |t|
     t.string "name"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_09_15_104956) do
     t.integer "amount"
     t.integer "order_price"
     t.string "pick_location"
-    t.string "shipping_status"
+    t.string "shipping_status", default: "未完成"
     t.string "payment_status"
     t.integer "sn"
     t.datetime "created_at", null: false

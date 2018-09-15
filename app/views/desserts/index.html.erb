@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="control-bar">
   <h3>控制列</h3>
 </div>
@@ -12,4 +13,24 @@
   </section>
 </div>
 
+=======
+<h1>前台首頁</h1>
+
+<br>
+
+<%= link_to "後台首頁", admin_root_path %>
+
+<br>
+
+<%= link_to '建立新的甜點集資', new_dessert_path %>
+
+<hr>
+
+<% @desserts.each do |dessert| %>
+  <%= link_to dessert_path(dessert) do %>
+    <%= image_tag dessert.image.url if dessert.image? %>
+    <h4><%= dessert.name %></h4>
+  <% end %>
+<% end %>
+>>>>>>> 0c626e90751ce02476eeb5f7c0e7f36070bf86ab
 

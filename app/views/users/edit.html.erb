@@ -1,0 +1,13 @@
+<%= form_for @user do |f| %>
+  <%= f.label :name, "Name" %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :avatar, "大頭照" %>
+  <%= f.file_field :avatar %>
+  <br>
+  <%= f.label :intro, "自我介紹" %>
+  <%= f.text_area :intro %>
+  <br>
+  <%= f.submit %>
+  <%= link_to "Cancel", user_path(@user) %>
+<% end %>

@@ -1,0 +1,27 @@
+<hr>
+
+<% if current_user.id == @dessert.user_id %>
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %>
+<% end %>
+
+<h3><%= @dessert.name %></h3>
+
+<p><%= image_tag @dessert.image.url if @dessert.image? %></p>
+
+<p>Price: $ <%= @dessert.price %> / each</p>
+
+<p>還有 <%= @dessert.amount %> 個集資成功      <%= link_to '立即贊助', new_order_path %></p>
+
+<p>面交地點： <%= @dessert.location %></p>
+
+<p>製作所需時間：<%= @dessert.production_time %></p>
+
+<p>集資截止時間： <%= @dessert.excess_time %></p>
+
+<p>預定面交時間： <%= @dessert.pick_time %></p>
+
+<p>介紹： <%= simple_format @dessert.description %></p>
+
+
+<%= link_to '回到前台首頁', root_path %>

@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :name
+  has_many :desserts, dependent: :destroy
+  has_many :orders, dependent: :destroy
+
+  mount_uploader :avatar, AvatarUploader
 
   def admin?
     self.role == "admin"

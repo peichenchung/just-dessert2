@@ -11,7 +11,9 @@
 <hr>
 
 <% @desserts.each do |dessert| %>
-  <%= image_tag dessert.image.url if dessert.image? %>
-  <h4><%= dessert.name %></h4>
+  <%= link_to dessert_path(dessert) do %>
+    <%= image_tag dessert.image.url if dessert.image? %>
+    <h4><%= dessert.name %></h4>
+  <% end %>
 <% end %>
 

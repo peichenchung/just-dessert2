@@ -20,6 +20,10 @@ class DessertsController < ApplicationController
     end
   end
 
+  def show
+    @dessert = Dessert.find(params[:id])
+  end
+
   private
 
   def dessert_params

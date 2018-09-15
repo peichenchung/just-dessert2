@@ -18,9 +18,6 @@
       </div>
 
       <div class="panel-body">
-        <a href="#">
-        <%= image_tag "d1.png",class: "img-dessert " %>
-        </a>
         <% @desserts.each do |dessert| %>
         <%= link_to dessert_path(dessert) do %>
         <%= image_tag dessert.image.url if dessert.image? %>

@@ -8,6 +8,10 @@
   <%= f.label :intro, "自我介紹" %>
   <%= f.text_area :intro %>
   <br>
+  <%= f.label :contact_info, "賣家提醒＆聯絡資訊" %>
+  *注意：發起集資的賣家必填，這裡的資訊只有自己和買家看得到*
+  <%= f.text_area :contact_info%>
+  <br>
   <%= f.submit %>
   <%= link_to "Cancel", user_path(@user) %>
 <% end %>

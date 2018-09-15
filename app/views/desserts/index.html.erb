@@ -11,28 +11,29 @@
 
 
     <div class="box panel col-md-3 panel-default">
-      <div class="panel-heading text-center">
-      <h5>倒數5:00，再兩個集資成功</h5>
-      <h5>80%</h5>
+      <% @desserts.each do |dessert| %>
+      
+        <div class="panel-heading text-center">
+          <h5>倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %></h5>
+          <h5>再 <%= dessert.amount %> 個集資成功</h5>
+        </div>
 
-      </div>
+        <div class="panel-body">
+          <%= link_to dessert_path(dessert) do %>
+            <%= image_tag dessert.image.url if dessert.image? %>
+            <h4><%= dessert.name %></h4>
+          <% end %>
+        </div>
+      
+        <div class="panel-body-nav">
+        </div>
 
-      <div class="panel-body">
-        <% @desserts.each do |dessert| %>
-        <%= link_to dessert_path(dessert) do %>
-        <%= image_tag dessert.image.url if dessert.image? %>
-        <h4><%= dessert.name %></h4>
-        <% end %>
-      </div>
-      <div class="panel-body-nav">
-      </div>
+        <div class="panel-footer">
+        </div>
 
-      <div class="panel-footer">
-      </div>
+      <% end %>
+    </div>
 
-  </div>
-
- <% end %>
   </section>
 
 </div>

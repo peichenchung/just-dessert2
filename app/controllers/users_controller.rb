@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @desserts = current_user.desserts
+    @orders = current_user.orders
   end
 
   def edit

@@ -29,4 +29,17 @@
       <h4><%= dessert.name %></h4>
     <% end %>
   <% end %>
+
+  <hr>
+
+  <h3>你贊助的甜點集資</h3>
+
+  <% @orders.each do |order| %>
+    <%= link_to order_path(order) do %>
+      <%= image_tag order.dessert.image.url if order.dessert.image? %>
+      <h4><%= order.dessert.name %></h4>
+    <% end %>
+  <% end %>
+
+
 <% end %>

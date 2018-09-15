@@ -5,9 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :name
-  has_many :desserts, dependent: :destroy
-  has_many :orders, dependent: :destroy
-  has_many :collect_orders, through: :orders
+  has_many :desserts, dependent: :destroy #user建立的甜點
+  has_many :orders, dependent: :destroy #user購買的訂單
 
   mount_uploader :avatar, AvatarUploader
 

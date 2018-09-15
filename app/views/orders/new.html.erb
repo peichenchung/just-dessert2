@@ -2,11 +2,9 @@
 
 <h2>Order Form</h2>
 
-<%= image_tag @dessert.image.url if @dessert.image? %>
-
 <br>
 
-<%= form_for @order do |f| %>
+<%= form_for [@dessert, @order] do |f| %>
   <%= f.label :amount, '訂購數量' %><!-- 改下拉選單 -->
   <%= f.text_field :amount %>
   <br>

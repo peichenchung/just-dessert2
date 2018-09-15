@@ -4,3 +4,17 @@
 
 <%= image_tag @dessert.image.url if @dessert.image? %>
 
+<br>
+
+<%= form_for @order do |f| %>
+  <%= f.label :amount, '訂購數量' %><!-- 改下拉選單 -->
+  <%= f.text_field :amount %>
+  <br>
+  <%= f.label :name, '訂購人姓名' %>
+  <%= f.text_field :name %>
+  <br>
+  <%= f.label :phone, '訂購人電話' %>
+  <%= f.text_field :phone %>
+  <br>
+  <%= f.submit %>
+<% end %>

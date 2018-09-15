@@ -44,7 +44,10 @@ class DessertsController < ApplicationController
   end
 
   def order_form
-    
+    @order = Order.new
+    @order.buyer_id = current_user.id
+    @order.seller_id = @dessert.user_id
+    @order.dessert_id = @dessert.id
   end
 
   private

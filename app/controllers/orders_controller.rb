@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
     @order.dessert_id = @dessert.id
     @order.seller_id = @dessert.user_id
     @order.user = current_user
+    @order.order_price = @dessert.price * @order.amount
+    @order.pick_location = @dessert.location
     @order.save!
     redirect_to order_path(@order)
   end

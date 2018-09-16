@@ -10,9 +10,9 @@ class OrdersController < ApplicationController
 
   def create
     @dessert = Dessert.find(params[:dessert_id])
+    @order = @dessert.orders.build(order_params)
 
-    if @dessert.amount != 0
-      @order = @dessert.orders.build(order_params)
+    if @dessert.amount != 0 && @dessert.amount >= @order.amount
       @order.dessert_id = @dessert.id
       @order.seller_id = @dessert.user_id
       @order.user = current_user
@@ -29,9 +29,10 @@ class OrdersController < ApplicationController
       
       @dessert.amount = @dessert.amount - @order.amount
       @dessert.save
+
     else
-      flash[:alert] = "很抱歉售完了喔！"
-      redirect_to dessert_path(@dessert)
+      flash.now[:alert] = "很抱歉數量不足喔!"
+      render :new
     end
   end
 

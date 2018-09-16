@@ -1,8 +1,8 @@
 <hr>
 
 <% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
-  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> | 
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
+  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
   <%= link_to '訂單狀況', order_list_dessert_path(@dessert) %>
 <% end %>
 
@@ -12,7 +12,7 @@
 
 <p>創作者：
   <%= link_to user_path(@dessert.user) do %>
-    <%= @dessert.user.name %>    
+    <%= @dessert.user.name %>
   <% end %>
 </p>
 
@@ -20,8 +20,8 @@
 
 <p>
   還有 <%= @dessert.amount %> 個集資成功
-  <% if @dessert.amount != 0 %> 
-    <% if current_user.id != @dessert.user_id %>      
+  <% if @dessert.amount != 0 %>
+    <% if current_user.id != @dessert.user_id %>
       <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
     <% end %>
   <% end %>
@@ -37,5 +37,18 @@
 
 <p>介紹： <%= simple_format @dessert.description %></p>
 
+<div class="container">
+  <div class="row">
+    <%= form_for [@dessert, @comment] do |f| %>
+       <div class="form-group">
+         <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
+       </div>
+       <div class="form-group">
+         <%= f.submit class: "btn btn-primary" %>
+         <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+       </div>
+    <% end %>
+  </div>
+</div>
 
 <%= link_to '回到前台首頁', root_path %>

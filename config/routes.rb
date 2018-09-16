@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :desserts do
     resources :orders
-    resources :comment, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
     member do
       get :order_list
     end

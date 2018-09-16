@@ -22,6 +22,7 @@ class DessertsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def edit
@@ -55,9 +56,8 @@ class DessertsController < ApplicationController
 
   def dessert_params
     params.require(:dessert).permit(
-      :name, :price, :amount, :image, :description, :location, 
+      :name, :price, :amount, :image, :description, :location,
       :production_time, :excess_time, :pick_time, :user_id
     )
   end
-
 end

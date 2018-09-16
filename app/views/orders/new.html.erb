@@ -12,6 +12,7 @@
 <h2>Order Form</h2>
 
 <%= image_tag @dessert.image.url if @dessert.image? %>
+<p>Price: $ <%= @dessert.price %> / each</p>
 <p>還有 <%= @dessert.amount %> 個集資成功</p>
 
 <br>

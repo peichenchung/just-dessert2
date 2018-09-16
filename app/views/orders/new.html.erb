@@ -31,5 +31,5 @@
   <%= f.text_area :message %>
   <br>
   <%= f.submit '確認訂單' %>
-  <%= f.button 'Cancel', type: :reset %>
+  <%= link_to 'Cancel', dessert_path(@dessert) %>
 <% end %>

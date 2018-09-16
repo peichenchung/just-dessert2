@@ -19,7 +19,7 @@
 
 <%= form_for [@dessert, @order] do |f| %>
   <%= f.label :amount, '訂購數量' %>
-  <%= f.select :amount, [1,2] %> *必填
+  <%= f.text_field :amount %> *必填
   <br>
   <%= f.label :name, '訂購人姓名' %>
   <%= f.text_field :name %> *必填

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :desserts do
-    resources :orders, only: [:new, :create, :destroy]
+    resources :orders
     
     member do
       get :order_list

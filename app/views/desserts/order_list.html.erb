@@ -11,5 +11,9 @@
   訂購數量：<%= order.amount %>  |  
   總金額：<%= order.order_price %>  |  
   買家留言：<%= order.message %>  |  
-  狀態：<%= order.shipping_status %>
+  訂單狀態：
+  <%= form_for [:dessert, order] do |f| %>
+    <%= f.select :shipping_status, [ '未完成', '已完成' ] %>
+    <%= f.submit %>
+  <% end %>
 <% end %>

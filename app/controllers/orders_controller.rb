@@ -29,9 +29,16 @@ class OrdersController < ApplicationController
     @dessert.save
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    flash[:notice] = "訂單狀態更新成功"
+    redirect_to order_list_dessert_path(@order)
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(:amount, :name, :phone, :user_id, :dessert_id, :seller_id, :message)
+    params.require(:order).permit(:amount, :name, :phone, :user_id, :dessert_id, :seller_id, :message, :shipping_status)
   end
 end

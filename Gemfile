@@ -31,7 +31,8 @@ gem 'devise'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
-
+gem 'kaminari'
+gem 'ffaker'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

@@ -14,8 +14,10 @@
 
 <p>
   還有 <%= @dessert.amount %> 個集資成功
-  <% if current_user.id != @dessert.user_id %>      
-    <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
+  <% if @dessert.amount != 0 %> 
+    <% if current_user.id != @dessert.user_id %>      
+      <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
+    <% end %>
   <% end %>
 </p>
 

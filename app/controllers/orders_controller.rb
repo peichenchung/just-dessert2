@@ -10,23 +10,29 @@ class OrdersController < ApplicationController
 
   def create
     @dessert = Dessert.find(params[:dessert_id])
-    @order = @dessert.orders.build(order_params)
-    @order.dessert_id = @dessert.id
-    @order.seller_id = @dessert.user_id
-    @order.user = current_user
-    @order.order_price = @dessert.price * @order.amount
-    @order.pick_location = @dessert.location
-    
-    if @order.save
-      flash[:notice] = "訂單成立"
-      redirect_to order_path(@order)
+
+    if @dessert.amount != 0
+      @order = @dessert.orders.build(order_params)
+      @order.dessert_id = @dessert.id
+      @order.seller_id = @dessert.user_id
+      @order.user = current_user
+      @order.order_price = @dessert.price * @order.amount
+      @order.pick_location = @dessert.location
+      
+      if @order.save
+        flash[:notice] = "訂單成立"
+        redirect_to order_path(@order)
+      else
+        flash.now[:alert] = "訂單失敗"
+        render :new
+      end
+      
+      @dessert.amount = @dessert.amount - @order.amount
+      @dessert.save
     else
-      flash.now[:alert] = "訂單失敗"
-      render :new
+      flash[:alert] = "很抱歉售完了喔！"
+      redirect_to dessert_path(@dessert)
     end
-    
-    @dessert.amount = @dessert.amount - @order.amount
-    @dessert.save
   end
 
   def update

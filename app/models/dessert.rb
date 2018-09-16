@@ -1,6 +1,6 @@
 class Dessert < ApplicationRecord
   mount_uploader :image, ImageUploader
-  validates_presence_of :name, :image #設為必填
+  validates_presence_of :name, :image, :price, :amount, :location #設為必填
   belongs_to :user
   has_many :orders, dependent: :destroy
 end

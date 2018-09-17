@@ -22,14 +22,18 @@
 
 <% if @user == current_user %>
   <h3>你發起的甜點集資</h3>
+<% else %>
+  <h3><%= @user.name %>發起的甜點集資</h3>
+<% end %>
 
-  <% @desserts.each do |dessert| %>
-    <%= link_to dessert_path(dessert) do %>
-      <%= image_tag dessert.image.url if dessert.image? %>
-      <h4><%= dessert.name %></h4>
-    <% end %>
+<% @desserts.each do |dessert| %>
+  <%= link_to dessert_path(dessert) do %>
+    <%= image_tag dessert.image.url if dessert.image? %>
+    <h4><%= dessert.name %></h4>
   <% end %>
+<% end %>
 
+<% if @user == current_user %>
   <hr>
 
   <h3>你贊助的甜點集資</h3>
@@ -40,6 +44,4 @@
       <h4><%= order.dessert.name %></h4>
     <% end %>
   <% end %>
-
-
 <% end %>

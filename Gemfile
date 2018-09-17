@@ -34,6 +34,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'ffaker'
 gem 'instagram'
+gem 'omniauth-instagram'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

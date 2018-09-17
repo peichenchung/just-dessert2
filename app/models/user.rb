@@ -15,4 +15,17 @@ class User < ApplicationRecord
     self.role == "admin"
   end
 
+  def self.find_for_oauth(auth)
+    User.find_or_create_by(uid: auth.uid, provider: auth.provider) do |user|
+      user.email    = User.tmp_email(auth)
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
+
+  private
+
+  def self.tmp_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
+  end
+
 end

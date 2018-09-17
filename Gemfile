@@ -33,6 +33,8 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'ffaker'
+gem 'instagram'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 

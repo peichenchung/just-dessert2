@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'omniauth_callbacks' #=> 追加
+  }
 
   resources :desserts do
     resources :orders

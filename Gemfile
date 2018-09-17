@@ -35,6 +35,7 @@ gem 'kaminari'
 gem 'ffaker'
 gem 'instagram'
 gem 'omniauth-instagram'
+gem 'figaro'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

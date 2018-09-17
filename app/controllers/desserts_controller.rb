@@ -22,7 +22,9 @@ class DessertsController < ApplicationController
   end
 
   def show
+    
     @comment = Comment.new
+    @reply = Reply.new
   end
 
   def edit

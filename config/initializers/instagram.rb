@@ -1,5 +1,5 @@
-require "instagram"
+#require "instagram"
 Instagram.configure do |config|
-  config.client_id = "YOUR CLIENT ID"
-  config.access_token = "YOUR ACCESS TOKEN"
+  config.client_id = ENV['CLIENT_ID']
+  config.client_secret = ENV['CLIENT_SECRET']
 end

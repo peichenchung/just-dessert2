@@ -1,4 +1,9 @@
 class OrdersController < ApplicationController
+  def index
+    @dessert = Dessert.find(params[:dessert_id])
+    @orders = @dessert.orders
+  end
+
   def show
     @order = Order.find(params[:id])
   end
@@ -37,10 +42,11 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @dessert = Dessert.find(params[:dessert_id])
     @order = Order.find(params[:id])
     @order.update(order_params)
     flash[:notice] = "訂單狀態更新成功"
-    redirect_to order_list_dessert_path(@order)
+    redirect_to dessert_orders_path(@dessert)
   end
 
   private

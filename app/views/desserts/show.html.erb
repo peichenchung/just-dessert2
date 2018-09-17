@@ -3,7 +3,7 @@
 <% if current_user.id == @dessert.user_id %>
   <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
   <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-  <%= link_to '訂單狀況', order_list_dessert_path(@dessert) %>
+  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
 <% end %>
 
 <h3><%= @dessert.name %></h3>

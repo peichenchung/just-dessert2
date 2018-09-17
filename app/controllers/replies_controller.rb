@@ -9,6 +9,17 @@ class RepliesController < ApplicationController
     end
   end
 
+  def destroy
+    @dessert = Dessert.find(params[:dessert_id])
+    @comment = Comment.find(params[:comment_id])
+    @reply = Reply.find(params[:id])
+
+    if current_user.admin?
+      @reply.destroy
+      redirect_to dessert_path(@dessert)
+    end
+  end
+
   private
 
   def reply_params

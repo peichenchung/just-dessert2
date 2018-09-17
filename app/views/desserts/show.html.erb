@@ -61,6 +61,11 @@
         <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
       </p>
     </div>
+    <div>
+      <% if current_user.admin? %>
+        <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
+      <% end %>
+    </div>
   <% end %>
 
   <% if current_user.id == @dessert.user_id %>

@@ -19,11 +19,13 @@
 <p>Price: $ <%= @dessert.price %> / each</p>
 
 <p>
-  還有 <%= @dessert.amount %> 個集資成功
   <% if @dessert.amount != 0 %>
+    還有 <%= @dessert.amount %> 個集資成功
     <% if current_user.id != @dessert.user_id %>
       <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
     <% end %>
+  <% else %>
+    <strong><h3>集資結束</h3></strong>
   <% end %>
 </p>
 

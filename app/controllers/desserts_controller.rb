@@ -22,7 +22,11 @@ class DessertsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    if current_user.id == @dessert.user_id
+      @reply = Reply.new
+    else
+      @comment = Comment.new
+    end
   end
 
   def edit

@@ -49,9 +49,20 @@
   </div>
   <div>
     <% if current_user.admin? %>
-      <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete %>
+      <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
     <% end %>
   </div>
+
+  <% comment.replies.each do |reply| %>
+    <div>
+      <h4><strong><%= @dessert.user.name %></strong></h4>
+      <p><%= simple_format reply.content %></p>
+      <p class="text-muted">
+        <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
+      </p>
+    </div>
+  <% end %>
+
   <% if current_user.id == @dessert.user_id %>
     <div class="container">
       <div class="row">

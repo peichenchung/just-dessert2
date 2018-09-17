@@ -33,8 +33,11 @@
 
 <p>製作所需時間：<%= @dessert.production_time %></p>
 
-<p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
-
+<% if Time.now < @dessert.excess_time %>
+  <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
+<% else %>
+  <p>集資截止時間： <strong><h3>已截止</h3></strong>
+<% end %>
 <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
 
 <p>介紹： <%= simple_format @dessert.description %></p>

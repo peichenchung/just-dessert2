@@ -14,8 +14,8 @@
       <% @desserts.each do |dessert| %>
 
         <div class="panel-heading text-center">
-          <h5>倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %></h5>
-          <% if dessert.amount != 0 %>
+          <% if Time.now < dessert.excess_time && dessert.amount != 0 %>
+            <h5>倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time ) %></h5>
             <h5>再 <%= dessert.amount %> 個集資成功</h5>
           <% else %>
             <h5>集資結束</h5>

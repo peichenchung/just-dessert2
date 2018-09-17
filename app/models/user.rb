@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :name
   has_many :desserts, dependent: :destroy #user建立的甜點
   has_many :orders, dependent: :destroy #user購買的訂單
-  has_many :comments, dependent: :destroy 
+  has_many :comments, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 

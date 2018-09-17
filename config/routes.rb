@@ -7,9 +7,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy] do
       resources :replies, only: [:create, :destroy]
     end
-    member do
-      get :order_list
-    end
   end
 
   resources :users, only: [:show, :edit, :update]

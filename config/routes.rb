@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    root "desserts#index"
+    root "users#index"
   end
 
 end

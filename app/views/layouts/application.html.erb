@@ -48,6 +48,7 @@
             <% else %>
               <div class="navbar-brand"><%= link_to('註冊', new_user_registration_path) %></div>
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
+              <div class="navbar-brand"><%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path %></div>
             <% end %>
           </div>
       </div>

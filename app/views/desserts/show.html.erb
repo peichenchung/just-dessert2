@@ -19,7 +19,7 @@
 <p>Price: $ <%= @dessert.price %> / each</p>
 
 <p>
-  <% if @dessert.amount != 0 %>
+  <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
     還有 <%= @dessert.amount %> 個集資成功
     <% if current_user.id != @dessert.user_id %>
       <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
@@ -33,7 +33,7 @@
 
 <p>製作所需時間：<%= @dessert.production_time %></p>
 
-<% if Time.now < @dessert.excess_time %>
+<% if Time.now < @dessert.excess_time && @dessert.amount > 0%>
   <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
 <% else %>
   <p>集資截止時間： <strong><h3>已截止</h3></strong>

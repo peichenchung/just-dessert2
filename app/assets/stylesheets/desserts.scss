@@ -2,32 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.item{
-  width: 180px;
-  margin-bottom: 4px;
-  padding: 8px;
-  border-bottom:3px solid;
-  border-radius:5px;
-  background-color: #fff;
-}
-
-.item .image{
-  display: block;
-  width:100%;
-}
-
-.item .category {
-  margin:15px 9px 10px;
-  color: #aaa;
-  letter-spacing: 1px;
-  font-family: "Hiragino Kaku Gothic ProN"
-}
 
 .panel-body {
     padding: 30px 2px;
-    h1 {
-      margin: 0 0 20px 0;
-    }
+    float: left;
+    width: 200px;
+    height: 100px;
+    margin: 1em;
   }
   .panel-footer {
     padding: 30px 15px;
@@ -46,6 +27,12 @@
 body{
   font-family: 'Montserrat', sans-serif;
   margin:0;
+}
+
+.img-dessert{
+  margin-right: 5px;
+  width: 200px;
+  height: 200px;
 }
 
 .container {
@@ -81,4 +68,14 @@ body{
   background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
 }
 
+.box2 {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin: 1em;
+}
+
+.item-box {
+  height: 900px;
+}
 

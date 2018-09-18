@@ -30,10 +30,10 @@
   <%= f.text_field :production_time %>
   <br>
   <%= f.label :excess_time, 'Excess time' %>
-  <%= f.datetime_select :excess_time %>
+  <%= f.datetime_select :excess_time, default: Time.now %>
   <br>
   <%= f.label :pick_time, 'Pick time' %>
-  <%= f.datetime_select :pick_time %>
+  <%= f.datetime_select :pick_time, default: Time.now %>
   <br>
   <%= f.submit %>
 <% end %>

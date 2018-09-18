@@ -38,10 +38,16 @@ class User < ApplicationRecord
     user = User.new
     user.ig_uid = auth.uid
     user.ig_token = auth.credentials.token
-    user.email = auth.info.email
+    user.email = User.tmp_email(auth)
     user.name = auth.info.name
     user.password = Devise.friendly_token[0,20]
     user.save!
     return user
+  end
+
+  private
+
+  def self.tmp_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 end

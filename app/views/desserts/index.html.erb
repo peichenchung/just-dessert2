@@ -12,19 +12,18 @@
 
     <div class="box panel col-md-3 panel-default">
       <div class="panel-heading text-center">
-      <h5>倒數5:00，再兩個集資成功</h5>
-      <h5>80%</h5>
 
       </div>
 
       <div class="panel-body">
         <a href="#">
-        <%= image_tag "d1.png",class: "img-dessert " %>
-        </a>
         <% @desserts.each do |dessert| %>
         <%= link_to dessert_path(dessert) do %>
-        <%= image_tag dessert.image.url if dessert.image? %>
+        <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
         <h4><%= dessert.name %></h4>
+
+
+
         <% end %>
       </div>
       <div class="panel-body-nav">

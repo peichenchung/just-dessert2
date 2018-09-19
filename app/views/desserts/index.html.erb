@@ -5,39 +5,26 @@
   <a class="btn btn-2">距離</a>
   </div>
 </div>
-<div class="inline-box">
-  <h3>甜點盒子</h3>
-  <section class="item">
 
 
-    <div class="box panel col-md-3 panel-default">
+     <div class="item-box col-md-12 " style= height=900px;>
       <% @desserts.each do |dessert| %>
-
-        <div class="panel-heading text-center">
-          <% if Time.now < dessert.excess_time && dessert.amount != 0 %>
-            <h5>倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time ) %></h5>
-            <h5>再 <%= dessert.amount %> 個集資成功</h5>
-          <% else %>
-            <h5>集資結束</h5>
-          <% end %>
-        </div>
-
-        <div class="panel-body">
-          <%= link_to dessert_path(dessert) do %>
-            <%= image_tag dessert.image.url if dessert.image? %>
-            <h4><%= dessert.name %></h4>
-          <% end %>
-        </div>
-
-        <div class="panel-body-nav">
-        </div>
-
-        <div class="panel-footer">
-        </div>
-
+      <div class ="box2 col-md-4">
+        <%= link_to dessert_path(dessert) do %>
+        <%= dessert.name %>
+        <br>
+        <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
       <% end %>
-    </div>
 
-  </section>
+      </div>
+      <% end %>
 
-</div>
+
+
+
+
+
+
+
+
+

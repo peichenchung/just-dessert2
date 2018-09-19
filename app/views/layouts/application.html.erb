@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,14 +25,12 @@
         <% end %>
 
         <!-- notice & alert 要放在navbar上 勿放進下拉選單 -->
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        
-        <% if current_user %>
-          <p>Hi, <%= current_user.name %></p><!-- 跟登入的使用者打招呼 -->
-        <% end %>
+
+
+
 
           <div class="pull-right align-middle">
+
             <% if current_user %>
 
               <span class="glyphicon glyphicon-align-justify btn btn-lg dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
@@ -55,6 +55,12 @@
     </nav>
 
 
+    <% if current_user %>
+          <p>Hi, <%= current_user.name %></p><!-- 跟登入的使用者打招呼 -->
+        <% end %>
+
+          <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
 
 
@@ -64,9 +70,10 @@
 
     </header>
     <div class ="main">
-     <%= yield %>
-    </div>
 
+     <%= yield %>
+
+    </div>
 
     <footer class ="footer text-center">
       <br>
@@ -76,5 +83,10 @@
 
 
 
+
+
+
   </body>
+
 </html>
+

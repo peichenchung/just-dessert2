@@ -295,11 +295,8 @@ DEPENDENCIES
   omniauth-instagram
   puma (~> 3.11)
   rails (~> 5.2.1)
-<<<<<<< HEAD
   rest-client
-=======
   rmagick (~> 2.15)
->>>>>>> d644052717804c05d02e6accd45dee0024a9d305
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

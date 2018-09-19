@@ -1,15 +1,12 @@
-
 <h1>All users</h1>
 <ul>
   <% @users.each do |user| %>
   <li>
-    <%= user.avatar %>
-    <%= user.name %>
-    <%= user.email %>
-    <%= user.intro %>
-    <%= user.contact_info %>
-    <%= user.role %>
+    <%= image_tag user.avatar.url if user.avatar? %><br>
+    Name: <%= user.name %><br>
+    Email: <%= user.email %><br>
+    Intro: <%= user.intro %><br>
+    Role: <%= user.role %>
   </li>
   <% end %>
 </ul>
-<%= link_to "後台首頁", admin_root_path %>

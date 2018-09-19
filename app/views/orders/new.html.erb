@@ -1,0 +1,35 @@
+<hr>
+
+<% if @order.errors.any? %>
+  <h2>We have some errors here !</h2>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Order Form</h2>
+
+<%= image_tag @dessert.image.url if @dessert.image? %>
+<p>Price: $ <%= @dessert.price %> / each</p>
+<p>還有 <%= @dessert.amount %> 個集資成功</p>
+
+<br>
+
+<%= form_for [@dessert, @order] do |f| %>
+  <%= f.label :amount, '訂購數量' %>
+  <%= f.text_field :amount %> *必填
+  <br>
+  <%= f.label :name, '訂購人姓名' %>
+  <%= f.text_field :name %> *必填
+  <br>
+  <%= f.label :phone, '訂購人電話' %>
+  <%= f.text_field :phone %> *必填
+  <br>
+  <%= f.label :message, '留言給賣家' %>
+  <%= f.text_area :message %>
+  <br>
+  <%= f.submit '確認訂單' %>
+  <%= link_to 'Cancel', dessert_path(@dessert) %>
+<% end %>

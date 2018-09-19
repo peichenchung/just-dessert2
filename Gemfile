@@ -31,6 +31,11 @@ gem 'devise'
 gem 'carrierwave'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'kaminari'
+gem 'ffaker'
+gem 'instagram'
+gem 'omniauth-instagram'
+gem 'figaro'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

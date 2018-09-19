@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_052716) do
+ActiveRecord::Schema.define(version: 2018_09_18_123053) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "dessert_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "desserts", force: :cascade do |t|
     t.string "name"
@@ -25,20 +33,30 @@ ActiveRecord::Schema.define(version: 2018_09_15_052716) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sold_amount"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "dessert_id"
     t.integer "seller_id"
-    t.integer "buyer_id"
+    t.integer "user_id"
     t.string "name"
     t.string "phone"
     t.integer "amount"
     t.integer "order_price"
     t.string "pick_location"
-    t.string "shipping_status"
+    t.string "shipping_status", default: "未完成"
     t.string "payment_status"
     t.integer "sn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "message"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text "content"
+    t.integer "dessert_id"
+    t.integer "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,6 +74,9 @@ ActiveRecord::Schema.define(version: 2018_09_15_052716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "contact_info"
+    t.string "ig_uid"
+    t.string "provider"
+    t.string "ig_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

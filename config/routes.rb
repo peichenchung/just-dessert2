@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :desserts do
-    member do
-      get :order_form
+    resources :orders
+    resources :comments, only: [:create, :destroy] do
+      resources :replies, only: [:create, :destroy]
     end
   end
 
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    root "desserts#index"
+    root "users#index"
   end
 
 end

@@ -1,20 +1,29 @@
+
+<div class="col-md-12 ">
 <hr>
 
 <% if current_user.id == @dessert.user_id %>
   <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
+
   <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
   <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-<% end %>
 
+<% end %>
+<div class="col-md-5 ">
 <h3><%= @dessert.name %></h3>
 
-<p><%= image_tag @dessert.image.url if @dessert.image? %></p>
+
+<p><%= image_tag @dessert.image_url(:thumb) if @dessert.image? %></p>
+</div>
+<div class="col-md-5 ">
+
 
 <p>創作者：
   <%= link_to user_path(@dessert.user) do %>
     <%= @dessert.user.name %>
   <% end %>
 </p>
+
 
 <p>Price: $ <%= @dessert.price %> / each</p>
 
@@ -107,3 +116,6 @@
   </div>
 <% end %>
 <%= link_to '回到前台首頁', root_path %>
+</div>
+
+</div>

@@ -1,93 +1,102 @@
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
+</script>
 
-<div class="col-md-12 ">
-<hr>
-
-<% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-
-  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-
-<% end %>
-<div class="col-md-5 ">
-<h3><%= @dessert.name %></h3>
-
-
-<p><%= image_tag @dessert.image_url(:thumb) if @dessert.image? %></p>
-</div>
-<div class="col-md-5 ">
-
-
-<p>創作者：
-  <%= link_to user_path(@dessert.user) do %>
-    <%= @dessert.user.name %>
+<div class="col-md-12">
+  <hr>
+  <% if current_user.id == @dessert.user_id %>
+    <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
+    <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
+    <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
   <% end %>
-</p>
 
+  <div class="col-md-5">
+    <h3><%= @dessert.name %></h3>
+    <p><%= image_tag @dessert.image_url(:thumb) if @dessert.image? %></p>
+  </div>
 
-<p>Price: $ <%= @dessert.price %> / each</p>
-
-<p>
-  <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
-    還有 <%= @dessert.amount %> 個集資成功
-    <% if current_user.id != @dessert.user_id %>
-      <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
-    <% end %>
-  <% else %>
-    <strong><h3>集資結束</h3></strong>
-  <% end %>
-</p>
-
-<p>面交地點： <%= @dessert.location %></p>
-
-<p>製作所需時間：<%= @dessert.production_time %></p>
-
-<% if Time.now < @dessert.excess_time && @dessert.amount > 0%>
-  <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
-<% else %>
-  <p>集資截止時間： <strong><h3>已截止</h3></strong>
-<% end %>
-<p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
-
-<p>介紹： <%= simple_format @dessert.description %></p>
-
-<hr>
-
-<% @dessert.comments.each do |comment| %>
-  <div>
-    <h4><strong><%= comment.user.name %></strong></h4>
-    <p><%= simple_format comment.content %></p>
-    <p class="text-muted">
-      <em><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
+  <div class="col-md-5">
+    <p>創作者：
+      <%= link_to user_path(@dessert.user) do %>
+        <%= @dessert.user.name %>
+      <% end %>
     </p>
-  </div>
-  <div>
-    <% if current_user.admin? %>
-      <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
+    <p>Price: $ <%= @dessert.price %> / each</p>
+    <p>
+      <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
+        還有 <%= @dessert.amount %> 個集資成功
+        <% if current_user.id != @dessert.user_id %>
+          <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
+        <% end %>
+      <% else %>
+        <strong><h3>集資結束</h3></strong>
+      <% end %>
+    </p>
+    <p>面交地點： <%= @dessert.location %></p>
+    <p>製作所需時間：<%= @dessert.production_time %></p>
+    <% if Time.now < @dessert.excess_time && @dessert.amount > 0 %>
+      <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
+    <% else %>
+      <p>集資截止時間： <strong><h3>已截止</h3></strong>
     <% end %>
+    <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
+    <p>介紹： <%= simple_format @dessert.description %></p>
   </div>
+  <hr>
 
-  <% comment.replies.each do |reply| %>
+  <% @dessert.comments.each do |comment| %>
     <div>
-      <h4><strong><%= @dessert.user.name %></strong></h4>
-      <p><%= simple_format reply.content %></p>
+      <h4><strong><%= comment.user.name %></strong></h4>
+      <p><%= simple_format comment.content %></p>
       <p class="text-muted">
-        <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
+        <em><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
       </p>
     </div>
     <div>
       <% if current_user.admin? %>
-        <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
+        <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
       <% end %>
     </div>
+
+    <% comment.replies.each do |reply| %>
+      <div>
+        <h4><strong><%= @dessert.user.name %></strong></h4>
+        <p><%= simple_format reply.content %></p>
+        <p class="text-muted">
+          <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
+        </p>
+      </div>
+      <div>
+        <% if current_user.admin? %>
+          <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if current_user.id == @dessert.user_id %>
+      <div class="container">
+        <div class="row">
+          <%= form_for [@dessert, comment, @reply] do |f| %>
+            <div class="form-group">
+              <%= f.text_area :content, placeholder: "回覆", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.submit class: "btn btn-primary" %>
+              <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <hr>
   <% end %>
 
-  <% if current_user.id == @dessert.user_id %>
+  <% if current_user.id != @dessert.user_id %>
     <div class="container">
       <div class="row">
-        <%= form_for [@dessert, comment, @reply] do |f| %>
+        <%= form_for [@dessert, @comment] do |f| %>
           <div class="form-group">
-            <%= f.text_area :content, placeholder: "回覆", class: "form-control" %>
+            <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
           </div>
           <div class="form-group">
             <%= f.submit class: "btn btn-primary" %>
@@ -97,25 +106,46 @@
       </div>
     </div>
   <% end %>
+  <%= link_to '回到前台首頁', root_path %>
   <hr>
-<% end %>
-
-<% if current_user.id != @dessert.user_id %>
-  <div class="container">
-    <div class="row">
-      <%= form_for [@dessert, @comment] do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit class: "btn btn-primary" %>
-          <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-        </div>
-      <% end %>
-    </div>
+  <div class='class="col-md-12'>
+    <div id="map" style='width: 900px; height: 600px;'></div>
   </div>
-<% end %>
-<%= link_to '回到前台首頁', root_path %>
-</div>
 
+  <script type="text/javascript">
+    function initMap() {
+      var address = "<%= @dessert.location %>";
+      var loaction;
+      var geocoder = new google.maps.Geocoder();
+
+
+      var icon = {
+        url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
+        scaledSize: new google.maps.Size(50, 50) // scaled size
+
+      };
+
+      //geocoder主程式
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.BOUNCE,
+            position: results[0].geometry.location,
+            icon: icon
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+          center: address,
+          zoom: 15
+      });
+    }
+  </script>
+
+  <hr>
 </div>

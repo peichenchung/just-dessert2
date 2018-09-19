@@ -1,4 +1,6 @@
 
+
+
 <div class="control-bar">
   <div class="container">
   <a class="btn btn-1">熱門</a>
@@ -10,11 +12,20 @@
      <div class="item-box col-md-12 " style= height=900px;>
       <% @desserts.each do |dessert| %>
       <div class ="box2 col-md-4">
-        <%= link_to dessert_path(dessert) do %>
+
+          <%= link_to dessert_path(dessert) do %>
         <%= dessert.name %>
         <br>
+        <div class="circle">
+        <div class="inner">
         <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
-      <% end %>
+        </div>
+        </div>
+        <% end %>
+
+
+
+
 
       </div>
       <% end %>

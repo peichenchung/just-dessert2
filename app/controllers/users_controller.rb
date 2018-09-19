@@ -4,6 +4,13 @@ class UsersController < ApplicationController
   def show
     @desserts = @user.desserts
     @orders = current_user.orders
+
+    # 測試! IG username
+    url = "https://api.instagram.com/v1/users/self/?access_token=#{@current_user.ig_token}"
+    response = RestClient.get(url)
+    data = JSON.parse(response.body)
+    data2 = data["data"]
+    @username = data2["username"]
   end
 
   def edit

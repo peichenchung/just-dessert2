@@ -2,12 +2,39 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
 </script>
 
-<div class="col-md-12">
-  <hr>
-  <% if current_user.id == @dessert.user_id %>
-    <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-    <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-    <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
+<div class="col-md-12 ">
+<hr>
+
+<% if current_user.id == @dessert.user_id %>
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
+  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
+
+<% end %>
+<div class="col-md-4 ">
+<div class="view view-first">
+     <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+     <div class="mask">
+     <h2><%= @dessert.name %></h2>
+     <p>創作者：
+  <%= link_to user_path(@dessert.user) do %>
+    <%= @dessert.user.name %>
+  <% end %></p>
+         <p>Price: $ <%= @dessert.price %> / each</p>
+     </div>
+      </div>
+
+</div>
+<div class="col-md-4 ">
+
+<p>
+  <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
+    還有 <%= @dessert.amount %> 個集資成功
+    <% if current_user.id != @dessert.user_id %>
+      <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
+    <% end %>
+  <% else %>
+    <strong><h3>集資結束</h3></strong>
   <% end %>
 
   <div class="col-md-5">

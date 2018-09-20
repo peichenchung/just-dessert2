@@ -14,6 +14,12 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "desserts";
+@import "users";
+@import "comments";
+@import "orders";
+@import "replies";
+@import "css/style1.css";
 
 
 html{
@@ -36,8 +42,8 @@ a:link, a:visited, a:hover, a:active {
 
 
 .main{
-  width:970px;
-  margin:30px auto 40px;
+  width:990px;
+  margin: 0px auto;
 }
 
 #Header{

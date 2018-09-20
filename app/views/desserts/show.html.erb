@@ -1,4 +1,7 @@
 
+
+
+
 <div class="col-md-12 ">
 <hr>
 
@@ -9,23 +12,26 @@
   <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
 
 <% end %>
-<div class="col-md-5 ">
-<h3><%= @dessert.name %></h3>
-
-
-<p><%= image_tag @dessert.image_url(:thumb) if @dessert.image? %></p>
-</div>
-<div class="col-md-5 ">
-
-
-<p>創作者：
+<div class="col-md-4 ">
+<div class="view view-first">
+     <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+     <div class="mask">
+     <h2><%= @dessert.name %></h2>
+     <p>創作者：
   <%= link_to user_path(@dessert.user) do %>
     <%= @dessert.user.name %>
-  <% end %>
-</p>
+  <% end %></p>
+         <p>Price: $ <%= @dessert.price %> / each</p>
+     </div>
+      </div>
+
+</div>
+<div class="col-md-4 ">
 
 
-<p>Price: $ <%= @dessert.price %> / each</p>
+
+
+
 
 <p>
   <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>

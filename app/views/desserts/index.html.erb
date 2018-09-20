@@ -1,34 +1,118 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS hover effects: Fade In Background opacity</title>
+<style>
+.wrapper{
+font-family:sans-serif;
+width: 280px;
+
+position:relative;
+margin: 1.5em ;
+float: left;
+}
+img{
+opacity: 1;
+display: block;
+width:280px;
+height: 280px;
+transition: .5s ease;
+}
+.content{
+position: absolute;
+top:45%;
+left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+text-transform: uppercase;
+font-size: 30px;
+color:#black;
+white-space: nowrap;
+overflow: hidden
+}
+.content a{
+font-size: 18px;
+display: block;
+background-color: #black;
+text-align: center;
+padding: 10px;
+cursor: pointer
+}
+.overlay{
+opacity: 0
+}
+.wrapper:hover img{
+opacity: .5
+}
+.wrapper:hover .overlay{
+opacity: 1
+}
 
 
-<div class="control-bar">
-  <div class="container">
+</style>
+</head>
+
+<body>
+
+
+<div class="nav-bar">
+
   <a class="btn btn-1">熱門</a>
   <a class="btn btn-2">距離</a>
-  </div>
+
 </div>
+<div class="item-box col-md-12 " style= height=900px;>
+  <% @desserts.each do |dessert| %>
+    <div class="wrapper col-md-4">
+      <%= link_to dessert_path(dessert) do %>
+      <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
+        <% end %>
+        <div class="overlay">
+          <div class="content">
+            <a><%= dessert.name %><a>
+              <a><%= dessert.excess_time %><a>
+
+          </div>
+        </div>
+
+    </div>
+  <% end %>
+
+</div>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+<!--
+
 
 
      <div class="item-box col-md-12 " style= height=900px;>
       <% @desserts.each do |dessert| %>
       <div class ="box2 col-md-4">
 
-          <%= link_to dessert_path(dessert) do %>
+           <%= link_to dessert_path(dessert) do %>
         <%= dessert.name %>
         <br>
-        <div class="circle">
-        <div class="inner">
+
         <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
-        </div>
-        </div>
+
+
         <% end %>
-
-
-
-
 
       </div>
       <% end %>
+      </div>
+
 
 
 

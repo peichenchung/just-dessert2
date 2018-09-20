@@ -108,9 +108,30 @@
   <% end %>
   <%= link_to '回到前台首頁', root_path %>
   <hr>
+
   <div class='class="col-md-12'>
     <div id="map" style='width: 900px; height: 600px;'></div>
   </div>
+
+<% end %>
+</div>
+<% if current_user.id != @dessert.user_id %>
+  <div class="container">
+    <div class="row">
+      <%= form_for [@dessert, @comment] do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit class: "btn btn-primary" %>
+          <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<%= link_to '回到前台首頁', root_path %>
+
 
   <script type="text/javascript">
     function initMap() {

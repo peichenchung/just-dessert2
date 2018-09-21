@@ -60,6 +60,50 @@
       <% end %>
     </div>
     <%= render partial: "shared/dessert_list" %>
+
+    <hr>
+    <div class='class="col-md-12'>
+      <div id="map" style='width: 900px; height: 600px;'></div>
+    </div>
+
+    <script type="text/javascript">
+      function initMap() {
+        var loaction;
+        var geocoder = new google.maps.Geocoder();
+        var initmap = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 25.047781, lng: 121.517031},// 初始地圖以臺北火車站為中心
+          zoom: 12.5
+        });
+
+
+        var icon = {
+          url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
+          scaledSize: new google.maps.Size(50, 50) // scaled size
+
+        };
+
+        //geocoder主程式
+        "<% @desserts.each do |dessert| %>"
+          geocoder.geocode( { 'address': "<%= dessert.location %>"}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              var marker = new google.maps.Marker({
+                map: initmap,
+                animation: google.maps.Animation.BOUNCE,
+                position: results[0].geometry.location,
+                icon: icon,
+                title: "<%= dessert.location %>"
+              });
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+        "<% end %>"
+      }
+    </script>
+    <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
+    </script>
+    <hr>
   </body>
 </html>
 

@@ -1,20 +1,27 @@
 <div class="item-box col-md-12 " style= height=900px;>
   <% @desserts.each do |dessert| %>
     <div class="wrapper col-md-4">
-      <%= link_to dessert_path(dessert) do %>
-      <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
-        <% end %>
-        <div class="overlay">
-          <div class="content">
-            <a><%= dessert.name %><a>
 
+      <%= link_to dessert_path(dessert) do %>
+        <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
+      <% end %>
+
+      <div class="overlay">
+        <div class="content">
+          <%= link_to dessert_path(dessert) do %>
+
+            <%= dessert.name %><br>
+            
             <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-              <a>集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %><a>
+              集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
             <% else %>
               <strong><h4>集資已結束</h4></strong>
             <% end %>
-          </div>
-        </div>
-    </div>
+
+          <% end %><!-- link_to dessert_path -->
+        </div><!-- content -->
+      </div><!-- overlay -->
+
+    </div><!-- wrapper -->
   <% end %>
 </div>

@@ -1,4 +1,10 @@
 
+<style>
+.navbar-more{
+  background-color: #fff;
+  height:20px;
+}
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -47,15 +53,19 @@
             <% end %>
           </div>
       </div>
-    </nav>
-
+    <nav class="navbar-more navbar-default">
 
     <% if current_user %>
           <p>Hi, <%= current_user.name %></p><!-- 跟登入的使用者打招呼 -->
         <% end %>
 
-          <p class="notice"><%= notice %></p>
+    <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    </nav>
+
+
+
+    </nav>
 
     <!-- notice & alert 勿放進下拉選單 -->
     <p class="notice"><%= notice %></p>
@@ -72,7 +82,10 @@
 
     </div>
 
-    <footer class ="footer text-center">
+
+
+  <hr>
+  <footer class ="footer text-center">
       <br>
       <h5>吃甜甜</h5>
       <h5>Copyright © 2018 CSY cooperation</h5>
@@ -80,10 +93,8 @@
 
 
 
-
-
-
   </body>
+
 
 </html>
 

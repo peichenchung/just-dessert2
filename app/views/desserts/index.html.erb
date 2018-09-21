@@ -59,7 +59,10 @@ opacity: 1
 <div class="nav-bar">
 
   <a class="btn btn-1">熱門</a>
-  <a class="btn btn-2">距離</a>
+  <a><%= link_to "全部甜點", root_path, class: "btn btn-2" %></a>
+  <% @categories.each do |category| %>
+    <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
+  <% end %>
 
 </div>
 <div class="item-box col-md-12 " style= height=900px;>
@@ -112,14 +115,3 @@ opacity: 1
       </div>
       <% end %>
       </div>
-
-
-
-
-
-
-
-
-
-
-

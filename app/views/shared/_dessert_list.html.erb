@@ -1,0 +1,15 @@
+<div class="item-box col-md-12 " style= height=900px;>
+  <% @desserts.each do |dessert| %>
+    <div class="wrapper col-md-4">
+      <%= link_to dessert_path(dessert) do %>
+      <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
+        <% end %>
+        <div class="overlay">
+          <div class="content">
+            <a><%= dessert.name %><a>
+              <a><%= dessert.excess_time %><a>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>

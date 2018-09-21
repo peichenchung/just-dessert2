@@ -49,6 +49,7 @@
         <strong><h3>集資結束</h3></strong>
       <% end %>
     </p>
+    <p>分類區域： <%= @dessert.category.area %></p>
     <p>面交地點： <%= @dessert.location %></p>
     <p>製作所需時間：<%= @dessert.production_time %></p>
     <% if Time.now < @dessert.excess_time && @dessert.amount > 0 %>

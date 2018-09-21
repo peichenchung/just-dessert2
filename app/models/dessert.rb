@@ -5,4 +5,5 @@ class Dessert < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :replies, dependent: :destroy
+  belongs_to :category
 end

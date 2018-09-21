@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_151458) do
+ActiveRecord::Schema.define(version: 2018_09_21_023047) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "area"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
@@ -35,11 +41,11 @@ ActiveRecord::Schema.define(version: 2018_09_20_151458) do
     t.datetime "updated_at", null: false
     t.integer "sold_amount"
     t.string "ig_image_url"
+    t.integer "category_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "dessert_id"
-    t.integer "seller_id"
     t.integer "user_id"
     t.string "name"
     t.string "phone"
@@ -51,6 +57,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_151458) do
     t.integer "sn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "seller_id"
     t.text "message"
   end
 

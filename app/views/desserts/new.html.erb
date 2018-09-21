@@ -20,6 +20,9 @@
   <%= f.label :amount, 'Amount' %>
   <%= f.text_field :amount %>
   <br>
+  <%= f.label :category, "Area" %>
+  <%= f.collection_select :category_id, Category.all, :id, :area, {}, {} %>
+  <br>
   <%= f.label :location, "Location" %>
   <%= f.text_field :location %>
   <br>

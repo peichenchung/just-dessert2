@@ -41,10 +41,13 @@
         <% if current_user.id != @dessert.user_id %>
           <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
         <% end %>
+      <% elsif Time.now < @dessert.excess_time && @dessert.amount == 0 %>
+        <strong><h3>募資成功！</h3></strong>
       <% else %>
         <strong><h3>集資結束</h3></strong>
       <% end %>
     </p>
+
     <p>分類區域： <%= @dessert.category.area %></p>
     <p>面交地點： <%= @dessert.location %></p>
     <p>製作所需時間：<%= @dessert.production_time %></p>

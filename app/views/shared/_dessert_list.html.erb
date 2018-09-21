@@ -7,7 +7,12 @@
         <div class="overlay">
           <div class="content">
             <a><%= dessert.name %><a>
-              <a><%= dessert.excess_time %><a>
+
+            <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+              <a>集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %><a>
+            <% else %>
+              <strong><h4>集資已結束</h4></strong>
+            <% end %>
           </div>
         </div>
     </div>

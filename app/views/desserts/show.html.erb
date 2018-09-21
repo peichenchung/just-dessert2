@@ -35,30 +35,25 @@
       <% end %>
     </p>
     <p>Price: $ <%= @dessert.price %> / each</p>
-    <p>
-      <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
-        還有 <%= @dessert.amount %> 個集資成功
-        <% if current_user.id != @dessert.user_id %>
-          <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
-        <% end %>
-      <% elsif Time.now < @dessert.excess_time && @dessert.amount == 0 %>
-        <strong><h3>募資成功！</h3></strong>
-      <% else %>
-        <strong><h3>集資結束</h3></strong>
-      <% end %>
-    </p>
-
     <p>分類區域： <%= @dessert.category.area %></p>
     <p>面交地點： <%= @dessert.location %></p>
     <p>製作所需時間：<%= @dessert.production_time %></p>
-    <% if Time.now < @dessert.excess_time && @dessert.amount > 0 %>
-      <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
-    <% else %>
-      <p>集資截止時間： <strong><h3>已截止</h3></strong>
-    <% end %>
+    <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
     <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
     <p>介紹： <%= simple_format @dessert.description %></p>
+
+    <p>
+      <% if @dessert.time_up? && @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% else %>
+        <strong><h3>集資已結束</h3></strong>
+      <% end %>
+    </p>
+
   </div>
+
   <hr>
 
   <% @dessert.comments.each do |comment| %>

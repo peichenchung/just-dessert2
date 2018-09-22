@@ -53,6 +53,28 @@ body{
   margin: 0 auto;
   min-height: 100vh;
 }
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 80vw;
+  margin: 0 auto;
+  min-height: 50vh;
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 50vw;
+  margin: 0 auto;
+  min-height: 50vh;
+}
 .btn {
   flex: 1 1 auto;
   margin: 10px;

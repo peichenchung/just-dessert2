@@ -16,7 +16,48 @@ border-radius: 5px; }
 </style>
 
 <div class="container2">
+<div class="box">
+    <!-- 純 JavaScript 版本-->
 
+<!-- HTML part -->
+<%= form_for @dessert do |f| %>
+<%= f.label :image, "Image   " %>
+<form action="/somewhere/to/upload" enctype="multipart/form-data">
+
+   <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/ >
+
+   <img id="preview_progressbarTW_img" src="#" />
+
+</form>
+
+<!-- JavaScript part -->
+
+<script>
+
+function readURL(input){
+
+  if(input.files && input.files[0]){
+
+    var imageTagID = input.getAttribute("targetID");
+
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+
+       var img = document.getElementById(imageTagID);
+
+       img.setAttribute("src", e.target.result)
+
+    }
+
+    reader.readAsDataURL(input.files[0]);
+
+  }
+
+}
+
+</script>
+</box>
 
 <% if @dessert.errors.any? %>
   <h2>We have some errors here !</h2>
@@ -27,15 +68,13 @@ border-radius: 5px; }
   </ul>
 <% end %>
 
-<%= form_for @dessert do |f| %>
+
   <%= f.label :name, 'Name   ' %>
   <br>
   <%= f.text_field :name %>
+
   <br>
-  <%= f.label :image, "Image   " %>
-  <br>
-  <%= f.file_field :image %>
-  <br>
+
   <%= f.label :price, 'Price   ' %>
   <br>
   <%= f.text_field :price %>

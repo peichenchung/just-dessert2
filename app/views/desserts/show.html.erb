@@ -2,16 +2,9 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
 </script>
 
-<div class="col-md-12 ">
-<hr>
-
-<% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-
-<% end %>
-<div class="col-md-4 ">
+<div class="container ">
+<div class="upperbox">
+<div class="box3 ">
 <div class="view view-first">
      <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
      <div class="mask">
@@ -21,14 +14,32 @@
     <%= @dessert.user.name %>
   <% end %></p>
          <p>Price: $ <%= @dessert.price %> / each</p>
+         <p>
+      <% if @dessert.time_up? && @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% else %>
+        <strong><h3>集資已結束</h3></strong>
+      <% end %>
+    </p>
      </div>
       </div>
 
 </div>
 
 
-  <div class="col-md-4">
-    <br>
+  <div class="box-comment ">
+
+    <% if current_user.id == @dessert.user_id %>
+  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
+  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
+  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %> |
+  <%= link_to '回到前台首頁', root_path %>
+
+
+<% end %>
+    <p></p>
     <p>創作者：
       <%= link_to user_path(@dessert.user) do %>
         <%= @dessert.user.name %>
@@ -42,20 +53,9 @@
     <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
     <p>介紹： <%= simple_format @dessert.description %></p>
 
-    <p>
-      <% if @dessert.time_up? && @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% else %>
-        <strong><h3>集資已結束</h3></strong>
-      <% end %>
-    </p>
+    <hr>
 
-  </div>
-
-  <hr>
-
+    <section class="hero">
   <% @dessert.comments.each do |comment| %>
     <div>
       <h4><strong><%= comment.user.name %></strong></h4>
@@ -104,7 +104,7 @@
   <% end %>
 
   <% if current_user.id != @dessert.user_id %>
-    <div class="level">
+    <div class="">
       <div class="row">
         <%= form_for [@dessert, @comment] do |f| %>
           <div class="form-group">
@@ -118,19 +118,20 @@
       </div>
     </div>
   <% end %>
-  <%= link_to '回到前台首頁', root_path %>
-  <hr>
+   </section>
 
+
+
+  </div>
+</div>
+<a class= "box4"></a>
 
 
 
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
-        <h2 class="subtitle">
-        取貨位置
-        </h2>
+
         <div id="map" style='width: 900px; height: 600px;'>
       </h1>
 

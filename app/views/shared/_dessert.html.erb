@@ -1,0 +1,27 @@
+<div class="item-box col-md-12 " style= height=900px;>
+
+    <div class="wrapper col-md-4">
+
+
+        <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+
+
+      <div class="overlay">
+        <div class="content">
+
+
+            <%= @dessert.name %><br>
+
+            <% if @dessert.amount != 0 && Time.now < @dessert.excess_time %>
+              集資倒數 <%= distance_of_time_in_words(Time.now, @dessert.excess_time) %>
+            <% else %>
+              <strong><h4>集資已結束</h4></strong>
+  <% end %>
+
+          <!-- link_to dessert_path -->
+        </div><!-- content -->
+      </div><!-- overlay -->
+
+    </div><!-- wrapper -->
+
+</div>

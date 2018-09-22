@@ -33,24 +33,27 @@
 
 
     <header class ="header">
-    <nav class="navbar role="navigation" aria-label="main navigation"">
-      <div class="navbrand" >
+    <nav class="navbar margin:10px is-fixed-top role="navigation" aria-label="main navigation"">
+      <div class="navbar-brand" >
 
         <%= link_to root_path do %>
           <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
         <% end %>
-        </div>
-        <div class="column is-10 center">
+
+
         <% if current_user %>
           <a class="button  is-info is-outlined is-large ">
   Hi, <%= current_user.name %></a>
           <!-- 跟登入的使用者打招呼 -->
         <% end %>
-        </div>
-        <div class="column is-1 left">
+
+</div>
+
+
     <!-- navbar start, navbar end -->
-
-
+            <div class="navbar-menu pull-right text-align-right">
+            <a class="navbar-divider"></a>
+            <div class="navbar-end">
             <% if current_user %>
 
               <span class="glyphicon glyphicon-align-justify btn btn-lg pull-right dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
@@ -72,8 +75,7 @@
             <% end %>
 
 </div>
-
-
+</div>
 
 
     </nav>

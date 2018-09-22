@@ -104,7 +104,7 @@
   <% end %>
 
   <% if current_user.id != @dessert.user_id %>
-    <div class="container">
+    <div class="level">
       <div class="row">
         <%= form_for [@dessert, @comment] do |f| %>
           <div class="form-group">
@@ -128,21 +128,16 @@
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Hero title
+        <h2 class="subtitle">
+        取貨位置
+        </h2>
+        <div id="map" style='width: 900px; height: 600px;'>
       </h1>
-      <h2 class="subtitle">
-        Hero subtitle
-      </h2>
+
     </div>
   </div>
 </section>
 
-
-
-
-  <div class='class="col-md-12'>
-    <div id="map" style='width: 900px; height: 600px;'></div>
-  </div>
 
   <script type="text/javascript">
     function initMap() {

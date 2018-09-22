@@ -9,21 +9,21 @@
   <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
   <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
   <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-
 <% end %>
-<div class="col-md-4 ">
-<div class="view view-first">
-     <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
-     <div class="mask">
-     <h2><%= @dessert.name %></h2>
-     <p>創作者：
-  <%= link_to user_path(@dessert.user) do %>
-    <%= @dessert.user.name %>
-  <% end %></p>
-         <p>Price: $ <%= @dessert.price %> / each</p>
-     </div>
-      </div>
 
+<div class="col-md-4 ">
+  <div class="view view-first">
+    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+    <div class="mask">
+      <h2><%= @dessert.name %></h2>
+      <p>創作者：
+        <%= link_to user_path(@dessert.user) do %>
+          <%= @dessert.user.name %>
+        <% end %>
+      </p>
+      <p>Price: $ <%= @dessert.price %> / each</p>
+    </div>
+  </div>
 </div>
 
 

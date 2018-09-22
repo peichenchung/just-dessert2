@@ -2,9 +2,17 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
 </script>
 
+
+
 <div class="container ">
-<div class="upperbox">
-<div class="box3 ">
+
+
+
+<!-- Main container -->
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="box3 ">
 <div class="view view-first">
      <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
      <div class="mask">
@@ -27,9 +35,11 @@
       </div>
 
 </div>
+  </div>
 
-
-  <div class="box-comment ">
+  <!-- Right side -->
+  <div class="level-right">
+   <div class="box-comment ">
 
     <% if current_user.id == @dessert.user_id %>
   <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
@@ -66,7 +76,7 @@
       <% end %>
     </p>
 
-  </div>
+
 
   <hr>
 
@@ -135,12 +145,15 @@
     </div>
   <% end %>
    </section>
+</div>
+  </div>
+</nav>
+
+
 
 
 
   </div>
-</div>
-<a class= "box4"></a>
 
 
 
@@ -148,7 +161,7 @@
   <div class="hero-body">
     <div class="container">
 
-        <div id="map" style='width: 900px; height: 600px;'>
+        <div id="map" style='width: 600px; height: 300px;'>
       </h1>
 
     </div>

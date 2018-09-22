@@ -23,7 +23,13 @@
 @import "bulma/sass/utilities/_all.sass";
 @import "bulma/sass/elements/button.sass";
 @import "bulma/sass/grid/columns.sass";
-@import "style/debug.css";
+@import "style/helpers.css";
+@import "bulma/sass/components/navbar.sass";
+@import "bulma/sass/components/level.sass";
+@import "bulma/sass/elements/_all.sass";
+@import "bulma/sass/elements/progress.sass";
+@import "bulma/sass/elements/form.sass";
+@import "bulma/sass/elements/container.sass";
 
 
 
@@ -46,11 +52,6 @@ a:link, a:visited, a:hover, a:active {
 }
 
 
-
-.main{
-  width:990px;
-  margin: 0px auto;
-}
 
 #Header{
 　width:360px;
@@ -83,19 +84,19 @@ a:link, a:visited, a:hover, a:active {
 
 
 .header,.main,.footer {
-  border:1px solid #aaa;
+  border-width:3px;border-style:dashed;border-color:#FFAC55;padding:2px;
 }
 .header,.footer {
-  height: 100px;
+  height: 80px;
 }
 .main {
  height: 1200px;
 }
 
 .img-circle-navbar{
-  margin-right: 5px;
-  width: 60px;
-  height: 60px;
+
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border:5px solid #fff;
 

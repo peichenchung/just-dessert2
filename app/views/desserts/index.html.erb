@@ -55,15 +55,53 @@
   </head>
 
   <body>
-    <div class="nav-bar">
-      <a class="btn btn-1">熱門</a>
-      <a><%= link_to "全部甜點", root_path, class: "btn btn-2" %></a>
-      <% @categories.each do |category| %>
+    <div class="main-dessert">
+
+
+        <!-- Main container -->
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+
+    <div class="level-item">
+      <div class="field has-addons">
+        <p class="control">
+          <input class="input" type="text" placeholder="Find a post">
+        </p>
+        <p class="control">
+          <button class="button">
+            Search
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right side -->
+  <div class="level-right">
+    <a class="btn btn-1">熱門</a>
+    <a><%= link_to "全部甜點", root_path, class: "btn btn-2" %></a>
+    <% @categories.each do |category| %>
         <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
       <% end %>
-    </div>
-    
+    <p class="btn btn-1"><a>New</a></p>
+  </div>
+</nav>
+   <div class= "container">
+   <div class="column is-narrow width: 200px;">
+   </div>
+   <div class="column ">
+    <HR>
     <%= render partial: "shared/dessert_list" %>
+    </div>
+
+    <div class="column is-narrow width: 200px;">
+   </div>
+    </div>
+
+
+    </div>
+
   </body>
 
 </html>

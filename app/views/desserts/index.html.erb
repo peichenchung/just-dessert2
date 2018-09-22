@@ -84,7 +84,7 @@
     <% @categories.each do |category| %>
         <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
       <% end %>
-    <a class="btn btn-1">新募資</a>
+    <a><%= link_to "新募資", new_dessert_path, class: "btn btn-1" %></a>
   </div>
 </nav>
    <div class= "container">

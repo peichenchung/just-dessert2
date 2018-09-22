@@ -36,7 +36,6 @@ gem 'omniauth-instagram'
 gem 'figaro'
 gem 'rest-client'
 gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能
-gem 'kaminari'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -13,6 +13,7 @@ class DessertsController < ApplicationController
   def create
     @dessert = Dessert.new(dessert_params)
     @dessert.user_id = current_user.id
+
     if @dessert.save
       flash[:notice] = "成功開始一筆甜點集資"
       redirect_to root_path
@@ -23,9 +24,15 @@ class DessertsController < ApplicationController
   end
 
   def show
-
     @comment = Comment.new
     @reply = Reply.new
+
+
+    if @dessert.ig_image_url?
+      l = @dessert.ig_image_url
+      s = l.split('/')
+      @n = s[4]
+    end
   end
 
   def edit
@@ -57,7 +64,7 @@ class DessertsController < ApplicationController
     params.require(:dessert).permit(
       :name, :price, :amount, :image, :description, :location,
       :production_time, :excess_time, :pick_time, :user_id,
-      :category_id
+      :category_id, :ig_image_url
     )
   end
 end

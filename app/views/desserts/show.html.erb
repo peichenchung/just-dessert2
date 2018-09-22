@@ -2,10 +2,14 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
 </script>
 
+<<<<<<< HEAD
 <div class="container1 ">
 <a class="button is-danger is-rounded is-large ">立即贊助</a>
 <progress class="progress is-danger" value="90" max="100">90%</progress>
 
+=======
+<div class="container ">
+>>>>>>> 86fe4154d6d858b370958a25f0356a1fbd5646f7
 
 <!-- Main container -->
 <nav class="level">
@@ -13,7 +17,11 @@
   <div class="level-left">
     <div class="box3 ">
 <div class="view view-first">
-     <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+
+    <% if @n.present? %>
+      <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
+    <% end %>
      <div class="mask">
      <h2><%= @dessert.name %></h2>
      <p>創作者：
@@ -26,13 +34,36 @@
         <strong><h3>募資成功！已結束</h3></strong>
       <% elsif @dessert.sold_out? %>
         <strong><h3>募資成功！已結束</h3></strong>
-      <% else %>
+      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
         <strong><h3>集資已結束</h3></strong>
+      <% else %>
+        <!-- show nothing -->
       <% end %>
     </p>
      </div>
       </div>
 
+<div class="col-md-4 ">
+  <div class="view view-first">
+
+    <!--
+    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+    
+    <% if @n.present? %>
+      <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
+    <% end %>
+    -->
+    
+    <div class="mask">
+      <h2><%= @dessert.name %></h2>
+      <p>創作者：
+        <%= link_to user_path(@dessert.user) do %>
+          <%= @dessert.user.name %>
+        <% end %>
+      </p>
+      <p>Price: $ <%= @dessert.price %> / each</p>
+    </div>
+  </div>
 </div>
   </div>
 
@@ -41,13 +72,11 @@
    <div class="box-comment ">
 
     <% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %> |
-  <%= link_to '回到前台首頁', root_path %>
+      <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+      <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> | 
+      <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
+    <% end %>
 
-
-<% end %>
     <p></p>
     <p>創作者：
       <%= link_to user_path(@dessert.user) do %>
@@ -173,7 +202,9 @@
       var address = "<%= @dessert.location %>";
       var loaction;
       var geocoder = new google.maps.Geocoder();
-
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15
+      });
 
       var icon = {
         url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
@@ -195,14 +226,11 @@
           alert("Geocode was not successful for the following reason: " + status);
         }
       });
-
-      var map = new google.maps.Map(document.getElementById('map'), {
-          center: address,
-          zoom: 15
-      });
     }
   </script>
-
+  <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
+  </script>
   <hr>
 </div>
 </div>

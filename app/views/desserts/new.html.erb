@@ -77,11 +77,16 @@ function readURL(input){
 
   <%= f.label :price, 'Price   ' %>
   <br>
-  <%= f.text_field :price %>
+
+  或在此貼上你甜點照片的ig網址
+  <%= f.text_field :ig_image_url %>
   <br>
-  <%= f.label :amount, 'Amount   ' %>
+  <%= f.label :price, 'Price' %>
+  <%= f.number_field :price %>
   <br>
-  <%= f.text_field :amount %>
+  <%= f.label :amount, 'Amount' %>
+  <%= f.number_field :amount %>
+
   <br>
   <%= f.label :category, "Area   " %>
   <br>

@@ -20,10 +20,16 @@
 @import "orders";
 @import "replies";
 @import "css/style1.css";
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "style/debug.css";
+
+
 
 
 html{
-  font-size:62.5%
+  font-size:62.5%;
 }
 body{
   color: #333;

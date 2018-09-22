@@ -34,11 +34,6 @@
           <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
         <% end %>
 
-        <!-- notice & alert 要放在navbar上 勿放進下拉選單 -->
-
-
-
-
           <div class="pull-right align-middle">
 
             <% if current_user %>
@@ -76,7 +71,9 @@
 
     </nav>
 
-
+    <!-- notice & alert 勿放進下拉選單 -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
 
 

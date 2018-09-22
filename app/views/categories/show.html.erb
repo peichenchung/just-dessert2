@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html>
-
   <head>
     <title>CSS hover effects: Fade In Background opacity</title>
     <style>
@@ -50,8 +49,6 @@
       opacity: 1
       }
     </style>
-
-
   </head>
 
   <body>
@@ -62,8 +59,27 @@
         <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
       <% end %>
     </div>
-    
     <%= render partial: "shared/dessert_list" %>
   </body>
-
 </html>
+
+<!--
+
+
+
+     <div class="item-box col-md-12 " style= height=900px;>
+      <% @desserts.each do |dessert| %>
+      <div class ="box2 col-md-4">
+
+           <%= link_to dessert_path(dessert) do %>
+        <%= dessert.name %>
+        <br>
+
+        <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
+
+
+        <% end %>
+
+      </div>
+      <% end %>
+      </div>

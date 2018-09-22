@@ -19,13 +19,13 @@
 
 <%= form_for [@dessert, @order] do |f| %>
   <%= f.label :amount, '訂購數量' %>
-  <%= f.text_field :amount %> *必填
+  <%= f.number_field :amount, options = {max: @dessert.amount, min: 1} %> *必填
   <br>
   <%= f.label :name, '訂購人姓名' %>
   <%= f.text_field :name %> *必填
   <br>
   <%= f.label :phone, '訂購人電話' %>
-  <%= f.text_field :phone %> *必填
+  <%= f.number_field :phone %> *必填
   <br>
   <%= f.label :message, '留言給賣家' %>
   <%= f.text_area :message %>

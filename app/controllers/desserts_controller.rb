@@ -14,13 +14,6 @@ class DessertsController < ApplicationController
     @dessert = Dessert.new(dessert_params)
     @dessert.user_id = current_user.id
 
-    #if @dessert.ig_image_url?
-      #l = @dessert.ig_image_url
-      #s = l.split('/')
-      #n = s[4]
-      #@dessert.image = "https://instagram.com/p/#{n}/media/?size=m"
-    #end
-
     if @dessert.save
       flash[:notice] = "成功開始一筆甜點集資"
       redirect_to root_path

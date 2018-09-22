@@ -11,14 +11,11 @@
   <%= f.label :name, 'Name' %>
   <%= f.text_field :name %>
   <br>
-  <% if @dessert.image %>
-    <%= f.label :image, "Image" %>
-    <%= f.file_field :image %>
-  <% end %>
+  <%= f.label :image, "Image" %>
+  <%= f.file_field :image %>
   <br>
-  <% if @dessert.ig_image_url %>
-    <%= f.text_field :ig_image_url %>
-  <% end %>
+  或在此貼上你甜點照片的ig網址
+  <%= f.text_field :ig_image_url %>
   <br>
   <%= f.label :description, 'Description' %>
   <%= f.text_area :description %>

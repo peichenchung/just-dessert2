@@ -4,6 +4,9 @@
   background-color: #fff;
   height:20px;
 }
+
+
+
 </style>
 
 <!DOCTYPE html>
@@ -12,6 +15,7 @@
 
     <link rel ="stylesheet" href="css/reset.css">
     <link rel ="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/helpers.css">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -26,20 +30,31 @@
 
   <body>
 
+
+
     <header class ="header">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid" id="top-bar">
+    <nav class="navbar role="navigation" aria-label="main navigation"">
+      <div class="navbrand" >
 
         <%= link_to root_path do %>
           <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
         <% end %>
+        </div>
+        <div class="column is-10 center">
+        <% if current_user %>
+          <a class="button  is-info is-outlined is-large ">
+  Hi, <%= current_user.name %></a>
+          <!-- 跟登入的使用者打招呼 -->
+        <% end %>
+        </div>
+        <div class="column is-1 left">
+    <!-- navbar start, navbar end -->
 
-          <div class="pull-right align-middle">
 
             <% if current_user %>
 
-              <span class="glyphicon glyphicon-align-justify btn btn-lg dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
-              <ul class="dropdown-menu">
+              <span class="glyphicon glyphicon-align-justify btn btn-lg pull-right dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              <ul class="dropdown-menu pull-right">
                 <% if current_user %>
                   <% if current_user&.admin? %>
                     <li><%= link_to '後台', admin_root_path %></li>
@@ -55,31 +70,19 @@
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
               <div class="navbar-brand"><%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path %></div>
             <% end %>
-          </div>
-      </div>
-    <nav class="navbar-more navbar-default">
 
-    <% if current_user %>
-          <p>Hi, <%= current_user.name %></p><!-- 跟登入的使用者打招呼 -->
-        <% end %>
+</div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    </nav>
 
 
 
     </nav>
 
     <!-- notice & alert 勿放進下拉選單 -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-
-
-
 
     </header>
+
+    <hr>
     <div class ="main">
 
      <%= yield %>

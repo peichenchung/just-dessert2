@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_09_21_023047) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "dessert_id"
+    t.integer "seller_id"
     t.integer "user_id"
     t.string "name"
     t.string "phone"
@@ -57,7 +58,6 @@ ActiveRecord::Schema.define(version: 2018_09_21_023047) do
     t.integer "sn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seller_id"
     t.text "message"
   end
 

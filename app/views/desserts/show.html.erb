@@ -2,22 +2,50 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
 </script>
 
-<div class="col-md-12 ">
-<hr>
+<div class="container ">
 
-<% if current_user.id == @dessert.user_id %>
-  <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-  <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
-  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-<% end %>
+<!-- Main container -->
+<nav class="level">
+  <!-- Left side -->
+  <div class="level-left">
+    <div class="box3 ">
+<div class="view view-first">
+    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+
+    <% if @n.present? %>
+      <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
+    <% end %>
+     <div class="mask">
+     <h2><%= @dessert.name %></h2>
+     <p>創作者：
+  <%= link_to user_path(@dessert.user) do %>
+    <%= @dessert.user.name %>
+  <% end %></p>
+         <p>Price: $ <%= @dessert.price %> / each</p>
+         <p>
+      <% if @dessert.time_up? && @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
+        <strong><h3>集資已結束</h3></strong>
+      <% else %>
+        <!-- show nothing -->
+      <% end %>
+    </p>
+     </div>
+      </div>
 
 <div class="col-md-4 ">
   <div class="view view-first">
+
+    <!--
     <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
     
     <% if @n.present? %>
       <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
     <% end %>
+    -->
     
     <div class="mask">
       <h2><%= @dessert.name %></h2>
@@ -30,10 +58,20 @@
     </div>
   </div>
 </div>
+  </div>
 
+  <!-- Right side -->
+  <div class="level-right">
+   <div class="box-comment ">
 
-  <div class="col-md-4">
-    <br>
+    <% if current_user.id == @dessert.user_id %>
+      <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+      <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> | 
+      <%= link_to '訂單狀況', dessert_orders_path(@dessert) %> | 
+      <%= link_to '回到前台首頁', root_path %>
+    <% end %>
+
+    <p></p>
     <p>創作者：
       <%= link_to user_path(@dessert.user) do %>
         <%= @dessert.user.name %>
@@ -47,6 +85,7 @@
     <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
     <p>介紹： <%= simple_format @dessert.description %></p>
 
+
     <p>
       <% if @dessert.time_up? && @dessert.sold_out? %>
         <strong><h3>募資成功！已結束</h3></strong>
@@ -59,10 +98,12 @@
       <% end %>
     </p>
 
-  </div>
+
 
   <hr>
 
+
+    <section class="hero">
   <% @dessert.comments.each do |comment| %>
     <div>
       <h4><strong><%= comment.user.name %></strong></h4>
@@ -111,7 +152,7 @@
   <% end %>
 
   <% if current_user.id != @dessert.user_id %>
-    <div class="container">
+    <div class="">
       <div class="row">
         <%= form_for [@dessert, @comment] do |f| %>
           <div class="form-group">
@@ -125,31 +166,30 @@
       </div>
     </div>
   <% end %>
-  <%= link_to '回到前台首頁', root_path %>
-  <hr>
+   </section>
+</div>
+  </div>
+</nav>
 
+
+
+
+
+  </div>
 
 
 
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">
-        Hero title
+
+        <div id="map" style='width: 600px; height: 300px;'>
       </h1>
-      <h2 class="subtitle">
-        Hero subtitle
-      </h2>
+
     </div>
   </div>
 </section>
 
-
-
-
-  <div class='class="col-md-12'>
-    <div id="map" style='width: 900px; height: 600px;'></div>
-  </div>
 
   <script type="text/javascript">
     function initMap() {
@@ -188,4 +228,50 @@
 
   <hr>
 </div>
+</div>
+
+<div class="tile is-ancestor">
+  <div class="tile is-vertical is-8">
+    <div class="tile">
+      <div class="tile is-parent is-vertical">
+        <article class="tile is-child notification is-primary">
+          <p class="title">Vertical...</p>
+          <p class="subtitle">Top tile</p>
+        </article>
+        <article class="tile is-child notification is-warning">
+          <p class="title">...tiles</p>
+          <p class="subtitle">Bottom tile</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-info">
+          <p class="title">Middle tile</p>
+          <p class="subtitle">With an image</p>
+          <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/640x480.png">
+          </figure>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-danger">
+        <p class="title">Wide tile</p>
+        <p class="subtitle">Aligned with the right tile</p>
+        <div class="content">
+          <!-- Content -->
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <article class="tile is-child notification is-success">
+      <div class="content">
+        <p class="title">Tall tile</p>
+        <p class="subtitle">With even more content</p>
+        <div class="content">
+          <!-- Content -->
+        </div>
+      </div>
+    </article>
+  </div>
 </div>

@@ -12,11 +12,14 @@
 
     <link rel ="stylesheet" href="css/reset.css">
     <link rel ="stylesheet" href="css/style.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JustDessert2</title>
   </head>
 
@@ -29,6 +32,9 @@
         <%= link_to root_path do %>
           <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
         <% end %>
+        <a class="button is-primary">
+          Button
+        </a>
 
         <!-- notice & alert 要放在navbar上 勿放進下拉選單 -->
 

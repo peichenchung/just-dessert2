@@ -2,7 +2,7 @@ class DessertsController < ApplicationController
   before_action :set_dessert, only: [:show, :edit, :update, :destroy, :order_list]
 
   def index #前台首頁
-    @desserts = Dessert.all
+    @desserts = Dessert.page(params[:page]).per(9)
     @categories = Category.all
   end
 

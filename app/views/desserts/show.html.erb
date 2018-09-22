@@ -53,7 +53,23 @@
     <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
     <p>介紹： <%= simple_format @dessert.description %></p>
 
-    <hr>
+
+    <p>
+      <% if @dessert.time_up? && @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif !@dessert.time_up? && @dessert.sold_out? %>
+        <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
+        <strong><h3>募資已結束</h3></strong>
+      <% else %>
+        <!-- show nothing -->
+      <% end %>
+    </p>
+
+  </div>
+
+  <hr>
+
 
     <section class="hero">
   <% @dessert.comments.each do |comment| %>

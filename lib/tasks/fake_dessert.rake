@@ -20,6 +20,7 @@ namespace :dev do
         amount: rand(1..10),
         location: location.sample,
         price: 500,
+        category_id: Category.all.sample.id,
         description: FFaker::Lorem.paragraph,
         user_id: User.all.sample.id,
         image: file,

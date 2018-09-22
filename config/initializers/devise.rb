@@ -294,5 +294,5 @@ Devise.setup do |config|
   #config.omniauth :instagram, ig_config["app_id"], ig_config["secret"], scope: "basic public_content", info_fields: "basic public_content", callback_url: "http://localhost:3000/users/auth/instagram/callback"
 
   #for heroku
-  config.omniauth :instagram, ig_config["cfb891e783034bb98d7a36f1dc1e4136"], ig_config["29b9dba0025e4071953672ba0d0f9890"], scope: "basic public_content", info_fields: "basic public_content", callback_url: "https://just-dessert2.herokuapp.com/users/auth/instagram/callback"
+  config.omniauth :instagram, "cfb891e783034bb98d7a36f1dc1e4136", "29b9dba0025e4071953672ba0d0f9890", scope: "basic public_content", info_fields: "basic public_content", callback_url: "https://just-dessert2.herokuapp.com/users/auth/instagram/callback"
 end

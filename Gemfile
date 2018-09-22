@@ -35,6 +35,8 @@ gem 'instagram'
 gem 'omniauth-instagram'
 gem 'figaro'
 gem 'rest-client'
+gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能
+gem 'kaminari'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -75,5 +77,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能

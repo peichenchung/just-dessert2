@@ -45,10 +45,12 @@
     <p>
       <% if @dessert.time_up? && @dessert.sold_out? %>
         <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif @dessert.sold_out? %>
+      <% elsif !@dessert.time_up? && @dessert.sold_out? %>
         <strong><h3>募資成功！已結束</h3></strong>
+      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
+        <strong><h3>募資已結束</h3></strong>
       <% else %>
-        <strong><h3>集資已結束</h3></strong>
+        <!-- show nothing -->
       <% end %>
     </p>
 

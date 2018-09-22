@@ -3,7 +3,7 @@ namespace :dev do
   task fake_dessert: :environment do
     Dessert.destroy_all
 
-    15.times do |i|
+    25.times do |i|
       file = File.open("#{Rails.root}/public/desserts_image/dessert#{i+1}.jpg")
       location = ["臺北火車站",
         "臺中火車站",
@@ -19,7 +19,8 @@ namespace :dev do
       Dessert.create!(name: FFaker::Name.first_name + "的手工甜點",
         amount: rand(1..10),
         location: location.sample,
-        price: 500,
+        price: 150,
+        category_id: Category.all.sample.id,
         description: FFaker::Lorem.paragraph,
         user_id: User.all.sample.id,
         image: file,

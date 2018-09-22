@@ -1,4 +1,13 @@
 
+<style>
+.navbar-more{
+  background-color: #fff;
+  height:20px;
+}
+
+
+
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -6,30 +15,49 @@
 
     <link rel ="stylesheet" href="css/reset.css">
     <link rel ="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="styles/helpers.css">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JustDessert2</title>
+    <!--<link rel="stylesheet" href="styles/debug.css">-->
   </head>
 
   <body>
 
+
+
     <header class ="header">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid" id="top-bar">
+    <nav class="navbar margin:10px is-fixed-top role="navigation" aria-label="main navigation"">
+      <div class="navbar-brand" >
 
         <%= link_to root_path do %>
           <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
         <% end %>
 
-          <div class="pull-right align-middle">
 
+        <% if current_user %>
+          <a class="button  is-info is-outlined is-large ">
+  Hi, <%= current_user.name %></a>
+          <!-- 跟登入的使用者打招呼 -->
+        <% end %>
+
+</div>
+
+
+    <!-- navbar start, navbar end -->
+            <div class="navbar-menu pull-right text-align-right">
+            <a class="navbar-divider"></a>
+            <div class="navbar-end">
             <% if current_user %>
 
-              <span class="glyphicon glyphicon-align-justify btn btn-lg dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
-              <ul class="dropdown-menu">
+              <span class="glyphicon glyphicon-align-justify btn btn-lg pull-right dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              <ul class="dropdown-menu pull-right">
                 <% if current_user %>
                   <% if current_user&.admin? %>
                     <li><%= link_to '後台', admin_root_path %></li>
@@ -45,34 +73,28 @@
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
               <div class="navbar-brand"><%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path %></div>
             <% end %>
-          </div>
-      </div>
+
+</div>
+</div>
+
+
     </nav>
 
-
-    <% if current_user %>
-          <p>Hi, <%= current_user.name %></p><!-- 跟登入的使用者打招呼 -->
-        <% end %>
-
-          <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <!-- notice & alert 勿放進下拉選單 -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-
-
-
 
     </header>
+
+    <hr>
     <div class ="main">
 
      <%= yield %>
 
     </div>
 
-    <footer class ="footer text-center">
+
+
+  <hr>
+  <footer class ="footer text-center">
       <br>
       <h5>吃甜甜</h5>
       <h5>Copyright © 2018 CSY cooperation</h5>
@@ -80,10 +102,8 @@
 
 
 
-
-
-
   </body>
+
 
 </html>
 

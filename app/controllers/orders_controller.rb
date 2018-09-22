@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
       @order.user = current_user
       @order.order_price = @dessert.price * @order.amount
       @order.pick_location = @dessert.location
-      
+
       if @order.save
         flash[:notice] = "訂單成立"
         redirect_to order_path(@order)
@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
         flash.now[:alert] = "訂單失敗"
         render :new
       end
-      
+
       @dessert.amount = @dessert.amount - @order.amount
       @dessert.save
 

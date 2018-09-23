@@ -1,3 +1,13 @@
+<script>
+const button = document.querySelector('.btn')
+const form   = document.querySelector('.form')
+
+button.addEventListener('click', function() {
+   form.classList.add('form--no')
+});
+</script>
+
+
 <style>
 
 $font-family:   "Roboto";
@@ -17,7 +27,7 @@ body {
     background-size: 200% 100% !important;
     animation: move 10s ease infinite;
     transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    background: linear-gradient(45deg, #f7cae6 10%, #A2C7E5 90%);
     height: 100vh
 }
 
@@ -80,11 +90,11 @@ body {
     outline: 0;
     border: 0;
     color: white;
-    background: $color-primary;
+    background: $color-danger;
     transition: 0.3s;
 
     &:hover {
-        background: darken($color-primary, 5%);
+        background: darken($color-danger, 5%);
     }
 }
 
@@ -136,9 +146,48 @@ body {
     <header class="user__header">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
         <h1 class="user__title">Sign-up</h1>
+        <br>
+        <br>
     </header>
 
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
     <form class="form">
+  <div class="field">
+    <div class= "control">
+    <%= f.text_field :name, placeholder: 'Username', class: "input is-info", autofocus: true %>
+  </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+    <%= f.email_field :email, placeholder: 'Email', class: "input is-info",autocomplete: "email" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, placeholder: 'Password', class: "input is-info",autocomplete: "new-password" %>
+  </div>
+   </div>
+  <div class="field">
+    <div class="control">
+    <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: "input is-info",autocomplete: "new-password" %>
+  </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up",class: "button is-primary" %>
+  </div>
+
+</form>
+<% end %>
+<%= render "devise/shared/links" %>
+
+<!--
         <div class="form__group">
             <input type="text" placeholder="Username" class="form__input" />
         </div>
@@ -151,44 +200,10 @@ body {
             <input type="password" placeholder="Password" class="form__input" />
         </div>
 
-        <button class="btn" type="button">Register</button>
+        <button class="button is-primary" type="button">Register</button>
     </form>
 </div>
 
-<!-->test<-->
+-->
 
 
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

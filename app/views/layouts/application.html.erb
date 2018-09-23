@@ -1,13 +1,10 @@
-
 <style>
-.navbar-more{
-  background-color: #fff;
-  height:20px;
-}
-
-
-
+  .navbar-more{
+    background-color: #fff;
+    height:20px;
+  }
 </style>
+
 
 <!DOCTYPE html>
 <html>
@@ -30,33 +27,34 @@
 
   <body>
 
-
-
     <header class ="header">
-    <nav class="navbar margin:10px is-fixed-top role="navigation" aria-label="main navigation"">
-      <div class="navbar-brand" >
+      <nav class="navbar margin:10px is-fixed-top role="navigation" aria-label="main navigation"">
+        <div class="navbar-brand" >
 
-        <%= link_to root_path do %>
-          <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
-        <% end %>
-
-
-        <% if current_user %>
-          <a class="button  is-info is-outlined is-large ">
-  Hi, <%= current_user.name %></a>
-          <!-- 跟登入的使用者打招呼 -->
-        <% end %>
-
-</div>
+          <%= link_to root_path do %>
+            <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
+          <% end %>
 
 
-    <!-- navbar start, navbar end -->
-            <div class="navbar-menu pull-right text-align-right">
-            <a class="navbar-divider"></a>
-            <div class="navbar-end">
+          <% if current_user %>
+            <a class="button  is-info is-outlined is-large ">
+              Hi, <%= current_user.name %>
+            </a>
+          <% end %>
+
+          <!-- notice & alert 勿刪!!!!!! -->
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+
+        </div><!-- navbar-brand -->
+
+        <!-- navbar start, navbar end -->
+        <div class="navbar-menu pull-right text-align-right">
+          <a class="navbar-divider"></a>
+          <div class="navbar-end">
             <% if current_user %>
-
               <span class="glyphicon glyphicon-align-justify btn btn-lg pull-right dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              
               <ul class="dropdown-menu pull-right">
                 <% if current_user %>
                   <% if current_user&.admin? %>
@@ -73,37 +71,22 @@
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
               <div class="navbar-brand"><%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path %></div>
             <% end %>
-
-</div>
-</div>
-
-
-    </nav>
-
-    <!-- notice & alert 勿放進下拉選單 -->
-
+          </div><!-- navbar-end -->
+        </div><!-- navbar-menu -->
+      </nav>
     </header>
 
-    <hr>
     <div class ="main">
-
-     <%= yield %>
-
+      <%= yield %>
     </div>
-
-
-
-  <hr>
-  <footer class ="footer text-center">
+  
+    <footer class ="footer text-center">
       <br>
       <h5>吃甜甜</h5>
       <h5>Copyright © 2018 CSY cooperation</h5>
     </footer>
 
-
-
   </body>
-
 
 </html>
 

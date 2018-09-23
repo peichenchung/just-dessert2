@@ -15,106 +15,79 @@ border-radius: 5px; }
 }
 </style>
 
-<div class="container2">
-<div class="box">
-    <!-- 純 JavaScript 版本-->
 
-<!-- HTML part -->
-<%= form_for @dessert do |f| %>
-<%= f.label :image, "Image   " %>
-<form action="/somewhere/to/upload" enctype="multipart/form-data">
+<div class="container">
 
-   <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/ >
+  <!-- 錯誤訊息 -->
+  <% if @dessert.errors.any? %>
+    <h2>We have some errors here !</h2>
+    <ul>
+      <% @dessert.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-   <img id="preview_progressbarTW_img" src="#" />
+  <!-- Create New Dessert Form -->
+  <%= form_for @dessert do |f| %>
 
-</form>
+    <p><%= f.label :name, '甜點名稱' %></p>
+    <p><%= f.text_field :name %></p>
 
-<!-- JavaScript part -->
+    <br>
 
-<script>
+    <p><%= f.label :image, "甜點照片" %></p>
+    <p><%= f.file_field :image %></p>
+    
+    <p>或在此貼上甜點照片的ig網址</p>
+    <p><%= f.text_field :ig_image_url %></p>
 
-function readURL(input){
+    <br>
 
-  if(input.files && input.files[0]){
+    <p><%= f.label :price, '單價' %></p>
+    <p><%= f.number_field :price %></p>
 
-    var imageTagID = input.getAttribute("targetID");
+    <br>
 
-    var reader = new FileReader();
+    <p><%= f.label :amount, '販售數量' %></p>
+    <p><%= f.number_field :amount %></p>
 
-    reader.onload = function (e) {
+    <br>
 
-       var img = document.getElementById(imageTagID);
+    <p><%= f.label :category, "地區" %></p>
+    <p><%= f.collection_select :category_id, Category.all, :id, :area, {}, {} %></p>
 
-       img.setAttribute("src", e.target.result)
+    <br>
 
-    }
+    <p><%= f.label :location, "面交地點" %></p>
+    <p><%= f.text_field :location %></p>
 
-    reader.readAsDataURL(input.files[0]);
+    <br>
+    
+    <p><%= f.label :description, '甜點介紹' %></p>
+    <p><%= f.text_area :description %></p>
 
-  }
+    <br>
 
-}
+    <p><%= f.label :production_time, '製作所需時間' %></p>
+    <p><%= f.text_field :production_time %></p>
 
-</script>
-</box>
+    <br>
 
-<% if @dessert.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @dessert.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+    <p><%= f.label :excess_time, '募資截止時間' %></p>
+    <p><%= f.datetime_select :excess_time, default: Time.now %></p>
 
+    <br>
 
-  <%= f.label :name, 'Name   ' %>
-  <br>
-  <%= f.text_field :name %>
+    <p><%= f.label :pick_time, '面交日期時間' %></p>
+    <p><%= f.datetime_select :pick_time, default: Time.now %></p>
 
-  <br>
+    <br>
 
-  <%= f.label :price, 'Price   ' %>
-  <br>
-  或在此貼上你甜點照片的ig網址
-  <%= f.text_field :ig_image_url %>
-  <br>
-  <%= f.label :price, 'Price' %>
-  <%= f.number_field :price %>
-  <br>
-  <%= f.label :amount, 'Amount' %>
-  <%= f.number_field :amount %>
-  <br>
-  <%= f.label :category, "Area   " %>
-  <br>
-  <%= f.collection_select :category_id, Category.all, :id, :area, {}, {} %>
-  <br>
-  <%= f.label :location, "Location   " %>
-  <br>
-  <%= f.text_field :location %>
-  <br>
-  <%= f.label :description, 'Description   ' %>
-  <br>
-  <%= f.text_area :description %>
-  <br>
-  <%= f.label :production_time, 'Production time   ' %>
-  <br>
-  <%= f.text_field :production_time %>
-  <br>
-  <%= f.label :excess_time, 'Excess time   ' %>
-  <br>
-  <%= f.datetime_select :excess_time, default: Time.now %>
-  <br>
-  <%= f.label :pick_time, 'Pick time   ' %>
-  <br>
-  <%= f.datetime_select :pick_time, default: Time.now %>
-  <br>
-  <br>
-  <%= f.submit %>
-  <%= link_to '取消', desserts_path, class: "btn btn-default" %>
+    <%= f.submit %>
+    <%= link_to '取消', desserts_path, class: "btn btn-default" %>
+
+  <% end %>
 
 </div>
-<% end %>
-
 

@@ -1,233 +1,223 @@
-<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
-</script>
+<div class="container1">
+  <!-- 待加入功能
+  <a class="button is-danger is-rounded is-large ">立即贊助</a>
+  <progress class="progress is-danger" value="90" max="100">90%</progress>
+  -->
 
-<div class="container1 ">
-<a class="button is-danger is-rounded is-large ">立即贊助</a>
-<progress class="progress is-danger" value="90" max="100">90%</progress>
+<!-- ------------------------------------ Main container ------------------------------------ -->
+  <nav class="level">
 
-<!-- Main container -->
-<nav class="level">
-  <!-- Left side -->
-  <div class="level-left">
-    <div class="box3 ">
-<div class="view view-first">
-    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+<!-- ------------------------------------ Left side ------------------------------------ -->
+    <div class="level-left">
+      <div class="box3">
+        <div class="view view-first">
+          <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
 
-    <% if @n.present? %>
-      <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
-    <% end %>
-     <div class="mask">
-     <h2><%= @dessert.name %></h2>
-     <p>創作者：
-  <%= link_to user_path(@dessert.user) do %>
-    <%= @dessert.user.name %>
-  <% end %></p>
-         <p>Price: $ <%= @dessert.price %> / each</p>
-         <p>
-      <% if @dessert.time_up? && @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
-        <strong><h3>集資已結束</h3></strong>
-      <% else %>
-        <!-- show nothing -->
-      <% end %>
-    </p>
-     </div>
-      </div>
-
-<div class="col-md-4 ">
-  <div class="view view-first">
-
-    <!--
-    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
-    
-    <% if @n.present? %>
-      <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
-    <% end %>
-    -->
-    
-    <div class="mask">
-      <h2><%= @dessert.name %></h2>
-      <p>創作者：
-        <%= link_to user_path(@dessert.user) do %>
-          <%= @dessert.user.name %>
-        <% end %>
-      </p>
-      <p>Price: $ <%= @dessert.price %> / each</p>
-    </div>
-  </div>
-</div>
-  </div>
-
-  <!-- Right side -->
-  <div class="level-right">
-   <div class="box-comment ">
-
-    <% if current_user.id == @dessert.user_id %>
-      <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
-      <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> | 
-      <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-    <% end %>
-
-    <p></p>
-    <p>創作者：
-      <%= link_to user_path(@dessert.user) do %>
-        <%= @dessert.user.name %>
-      <% end %>
-    </p>
-    <p>Price: $ <%= @dessert.price %> / each</p>
-    <p>分類區域： <%= @dessert.category.area %></p>
-    <p>面交地點： <%= @dessert.location %></p>
-    <p>製作所需時間：<%= @dessert.production_time %></p>
-    <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
-    <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
-    <p>介紹： <%= simple_format @dessert.description %></p>
-
-
-    <p>
-      <% if @dessert.time_up? && @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif !@dessert.time_up? && @dessert.sold_out? %>
-        <strong><h3>募資成功！已結束</h3></strong>
-      <% elsif @dessert.time_up? && !@dessert.sold_out? %>
-        <strong><h3>募資已結束</h3></strong>
-      <% else %>
-        <!-- show nothing -->
-      <% end %>
-    </p>
-
-
-
-  <hr>
-
-
-    <section class="hero">
-  <% @dessert.comments.each do |comment| %>
-    <div>
-      <h4><strong><%= comment.user.name %></strong></h4>
-      <p><%= simple_format comment.content %></p>
-      <p class="text-muted">
-        <em><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
-      </p>
-    </div>
-    <div>
-      <% if current_user.admin? %>
-        <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
-      <% end %>
-    </div>
-
-    <% comment.replies.each do |reply| %>
-      <div>
-        <h4><strong><%= @dessert.user.name %></strong></h4>
-        <p><%= simple_format reply.content %></p>
-        <p class="text-muted">
-          <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
-        </p>
-      </div>
-      <div>
-        <% if current_user.admin? %>
-          <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
-        <% end %>
-      </div>
-    <% end %>
-
-    <% if current_user.id == @dessert.user_id %>
-      <div class="container">
-        <div class="row">
-          <%= form_for [@dessert, comment, @reply] do |f| %>
-            <div class="form-group">
-              <%= f.text_area :content, placeholder: "回覆", class: "form-control" %>
-            </div>
-            <div class="form-group">
-              <%= f.submit class: "btn btn-primary" %>
-              <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-            </div>
+          <!-- IG 照片 (如果賣家有貼網址) -->
+          <% if @n.present? %>
+            <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
           <% end %>
-        </div>
-      </div>
-    <% end %>
-    <hr>
-  <% end %>
 
-  <% if current_user.id != @dessert.user_id %>
-    <div class="">
-      <div class="row">
-        <%= form_for [@dessert, @comment] do |f| %>
-          <div class="form-group">
-            <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit class: "btn btn-primary" %>
-            <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
-          </div>
+          <div class="mask">
+            <h2><%= @dessert.name %></h2>
+
+            <p>創作者：
+              <%= link_to user_path(@dessert.user) do %>
+                <%= @dessert.user.name %>
+              <% end %>
+            </p>
+
+            <p>Price: $ <%= @dessert.price %> / each</p>
+          </div><!-- mask -->
+
+        </div><!-- view view-first -->
+
+        <div class="col-md-4 ">
+        <div class="view view-first">
+      
+          <div class="mask">
+            <h2><%= @dessert.name %></h2>
+            <p>創作者：
+              <%= link_to user_path(@dessert.user) do %>
+                <%= @dessert.user.name %>
+              <% end %>
+            </p>
+            <p>Price: $ <%= @dessert.price %> / each</p>
+          </div><!-- mask -->
+        </div><!-- view view-first -->
+        </div><!-- col-md-4 -->
+
+      </div><!-- box3 -->
+    </div><!-- level-left -->
+
+<!-- ------------------------------------ Right side ------------------------------------ -->
+  <!-- Right side -->
+    <div class="level-right">
+      <div class="box-comment ">
+
+        <% if current_user.id == @dessert.user.id %>
+          <%= link_to 'Edit', edit_dessert_path(@dessert) %> | 
+          <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> | 
+          <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
         <% end %>
-      </div>
-    </div>
-  <% end %>
-   </section>
-</div>
-  </div>
-</nav>
 
+        <p>創作者：
+          <%= link_to user_path(@dessert.user) do %>
+            <%= @dessert.user.name %>
+          <% end %>
+        </p>
 
+        <p>單價： $ <%= @dessert.price %> / each</p>
+        <p>分類區域： <%= @dessert.category.area %></p>
+        <p>面交地點： <%= @dessert.location %></p>
+        <p>製作所需時間：<%= @dessert.production_time %></p>
+        <p>集資截止時間： <%= time_tag @dessert.excess_time %></p>
+        <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
+        <p>甜點介紹： <%= simple_format @dessert.description %></p>
 
+        <p>
+          <% if @dessert.time_up? && @dessert.sold_out? %>
+            <strong><h3>募資成功！已結束</h3></strong>
+          <% elsif !@dessert.time_up? && @dessert.sold_out? %>
+            <strong><h3>募資成功！已結束</h3></strong>
+          <% elsif @dessert.time_up? && !@dessert.sold_out? %>
+            <strong><h3>募資已結束</h3></strong>
+          <% else %>
+            <!-- show nothing -->
+          <% end %>
+        </p>
 
+        <hr>
 
-  </div>
+        <section class="hero">
+          <% @dessert.comments.each do |comment| %>
+            <div>
+              <h4><strong><%= comment.user.name %></strong></h4>
+              <p><%= simple_format comment.content %></p>
+              <p class="text-muted">
+                <em><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
+              </p>
+            </div>
+            
+            <div>
+              <% if current_user.admin? %>
+                <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
+              <% end %>
+            </div>
 
+            <% comment.replies.each do |reply| %>
+              <div>
+                <h4><strong><%= @dessert.user.name %></strong></h4>
+                <p><%= simple_format reply.content %></p>
+                <p class="text-muted">
+                  <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
+                </p>
+              </div>
+            
+              <div>
+                <% if current_user.admin? %>
+                  <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
+                <% end %>
+              </div>
+            <% end %>
 
+            <% if current_user.id == @dessert.user.id %>
+              <div class="container">
+                <div class="row">
+                  <%= form_for [@dessert, comment, @reply] do |f| %>
+                    
+                    <div class="form-group">
+                      <%= f.text_area :content, placeholder: "回覆", class: "form-control" %>
+                    </div>
+                    
+                    <div class="form-group">
+                      <%= f.submit class: "btn btn-primary" %>
+                      <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+                    </div>
+                  
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <hr>
+          <% end %><!-- @dessert.comments.each -->
+
+          <% if current_user.id != @dessert.user.id %>
+            <div class="reply">
+              <div class="row">
+                
+                <%= form_for [@dessert, @comment] do |f| %> 
+                  <div class="form-group">
+                    <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
+                  </div>     
+                  <div class="form-group">
+                    <%= f.submit class: "btn btn-primary" %>
+                    <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+                  </div>
+                <% end %>
+              
+              </div><!-- row -->
+            </div><!-- reply -->
+          <% end %><!-- if -->
+       
+        </section>
+
+      </div><!-- box-comment -->
+    </div><!-- level-right -->
+  </nav><!-- level -->
+</div><!-- container1 -->
+
+<!-- ------------------------------------ Google maps ------------------------------------ -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-
-        <div id="map" style='width: 600px; height: 300px;'>
-      </h1>
-
+      <div id="map" style='width: 600px; height: 300px;'>
     </div>
   </div>
 </section>
 
+<script type="text/javascript">
+  function initMap() {
+    var address = "<%= @dessert.location %>";
+    var loaction;
+    var geocoder = new google.maps.Geocoder();
 
-  <script type="text/javascript">
-    function initMap() {
-      var address = "<%= @dessert.location %>";
-      var loaction;
-      var geocoder = new google.maps.Geocoder();
-      var map = new google.maps.Map(document.getElementById('map'), {
+
+    var icon = {
+      url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
+      scaledSize: new google.maps.Size(50, 50) // scaled size
+
+    };
+
+    //geocoder主程式
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          animation: google.maps.Animation.BOUNCE,
+          position: results[0].geometry.location,
+          icon: icon
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: address,
         zoom: 15
-      });
+    });
+  }
+</script>
 
-      var icon = {
-        url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
-        scaledSize: new google.maps.Size(50, 50) // scaled size
-
-      };
-
-      //geocoder主程式
-      geocoder.geocode( { 'address': address}, function(results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-          map.setCenter(results[0].geometry.location);
-          var marker = new google.maps.Marker({
-            map: map,
-            animation: google.maps.Animation.BOUNCE,
-            position: results[0].geometry.location,
-            icon: icon
-          });
-        } else {
-          alert("Geocode was not successful for the following reason: " + status);
-        }
-      });
-    }
-  </script>
-  <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
-  </script>
-  <hr>
-</div>
-</div>
-
-
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
+</script>

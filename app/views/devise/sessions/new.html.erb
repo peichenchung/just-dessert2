@@ -27,7 +27,7 @@ body {
     background-size: 200% 100% !important;
     animation: move 10s ease infinite;
     transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #f7cae6 10%, #A2C7E5 90%);
+    background: linear-gradient(45deg, #f7cae6 10%, #f28376 90%);
     height: 100vh
 }
 
@@ -144,18 +144,25 @@ body {
 
 <div class= "user">
 
+<header class="user__header">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
+        <h1 class="user__title">Log in</h1>
+        <br>
+        <br>
+    </header>
 
-<h3>Log in</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+ <form class= "form">
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" , class: "input is-info"%>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "input is-info" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -166,9 +173,11 @@ body {
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in",class: "button is-primary" %>
   </div>
+</form>
 <% end %>
+
 
 <%= render "devise/shared/links" %>
 </div>

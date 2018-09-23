@@ -65,6 +65,7 @@
                   <li><%= link_to('Profile', user_path(current_user)) %></li>
                   <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
                   <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+                  <li><%= link_to '新募資', new_dessert_path %></li>
                 <% end %>
               </ul>
             <% else %>

@@ -58,7 +58,7 @@ Please follow below 2 steps:
 
 目前設定可由本地端localhost:3000登入
 
-限定帳號：
+限定IG帳號：
 
 帳號: justdessert1013
 密碼: alphacamp2018
@@ -74,5 +74,18 @@ Please follow below 2 steps:
 另外可再填入一張IG商品照的網址
 
 進入該甜點集資畫面時可以看到該IG商品照
+
+---
+
+## 第三方API
+
+1. Instagram
+2. Google maps
+
+---
+
+專案管理看板連結
+
+https://trello.com/b/mqsCSioi/
 
 

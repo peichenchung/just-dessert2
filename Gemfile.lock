@@ -294,7 +294,7 @@ DEPENDENCIES
   kaminari
   listen (>= 3.0.5, < 3.2)
   omniauth-instagram
-  pg (~> 0.20)
+  pg (~> 0.18)
   puma (~> 3.11)
   rails (~> 5.2.1)
   rest-client

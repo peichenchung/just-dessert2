@@ -36,3 +36,43 @@ Just Dessert 2.0 is a simple solution for matching "individual" pastry chef and 
 
 `rails db:seed`
 
+---
+
+## 疑難排解
+
+If you get error messages showing:
+
+`File to import not found or unreadable: bulma/sass/utilities/_all.sass.`
+
+Please follow below 2 steps:
+
+`brew install yarn`
+
+`yarn add bulma`
+
+---
+
+## IG登入
+
+由於還是 Sandbox Mode
+
+目前設定可由本地端localhost:3000登入
+
+限定帳號：
+
+帳號: justdessert1013
+密碼: alphacamp2018
+
+---
+
+## IG照片
+
+目前甜點個人賣家建立新的甜點集資時
+
+可上傳一張圖片
+
+另外可再填入一張IG商品照的網址
+
+進入該甜點集資畫面時可以看到該IG商品照
+
+

@@ -53,17 +53,14 @@
     </style>
   </head>
 
-<<<<<<< HEAD
-  <body>
 
-=======
+
 <!-- ------------------------------------- Body ------------------------------------- -->
 
-  <body>    
+  <body>
     <div class="main-dessert">
     <!-- ----------------------------- Main container ----------------------------- -->
       <nav class="level">
->>>>>>> 126bd5f3d7a9fe347cbf363a4b0ceff2039e1d3c
 
         <!-- Left side 待新增功能 -->
           <div class="level-left">
@@ -95,45 +92,22 @@
           <a><%= link_to '新募資', new_dessert_path, class: "btn btn-1" %></a>
         </div>
 
-<<<<<<< HEAD
-  <!-- Right side -->
-  <div class="level-right">
-    <a class="btn btn-1">熱門</a>
-    <a><%= link_to "全部甜點", root_path, class: "btn btn-2" %></a>
-    <% @categories.each do |category| %>
-        <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
-      <% end %>
-    <a><%= link_to "新募資", new_dessert_path, class: "btn btn-1" %></a>
-  </div>
-</nav>
-   <div class= "container">
-   <div class="column is-narrow width: 200px;">
-   </div>
-   <div class="column ">
-    <HR>
-    <%= render partial: "shared/dessert_list" %>
-    </div>
-=======
       </nav><!-- level -->
->>>>>>> 126bd5f3d7a9fe347cbf363a4b0ceff2039e1d3c
 
 
       <div class= "container">
         <div class="column is-narrow width: 200px;"></div>
-         
+
         <div class="column ">
           <hr>
           <%= render partial: "shared/dessert_list" %>
         </div>
 
-<<<<<<< HEAD
-
-=======
         <div class="column is-narrow width: 200px;"></div>
       </div>
-  
+
     </div><!-- main-dessert -->
->>>>>>> 126bd5f3d7a9fe347cbf363a4b0ceff2039e1d3c
+
 
   </body>
 

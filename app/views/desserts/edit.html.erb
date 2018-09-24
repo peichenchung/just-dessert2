@@ -1,24 +1,4 @@
 
-<style>
-    input[type="submit"]{padding:5px 15px; background:#ccc; border:0 none;
-cursor:pointer;
--webkit-border-radius: 5px;
-border-radius: 5px; }
-
-    input[type="text"]{padding:5px 15px; border:2px black solid;
-cursor:pointer;
--webkit-border-radius: 5px;
-border-radius: 5px; }
-
-.demo .container2{
-    padding-top: 50px;
-    text-align: center
-}
-</style>
-
-<div class="container2">
-<div class="box">
-
 <% if @dessert.errors.any? %>
   <h2>We have some errors here !</h2>
   <ul>
@@ -32,47 +12,8 @@ border-radius: 5px; }
   <%= f.label :name, 'Name' %>
   <%= f.text_field :name %>
   <br>
-
-   <!-- 純 JavaScript 版本-->
-
-<!-- HTML part -->
-<%= form_for @dessert do |f| %>
-<%= f.label :image, "Image   " %>
-<form action="/somewhere/to/upload" enctype="multipart/form-data">
-
-   <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png"/ >
-
-   <img id="preview_progressbarTW_img" src="#" />
-
-</form>
-
-<!-- JavaScript part -->
-
-<script>
-
-function readURL(input){
-
-  if(input.files && input.files[0]){
-
-    var imageTagID = input.getAttribute("targetID");
-
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-
-       var img = document.getElementById(imageTagID);
-
-       img.setAttribute("src", e.target.result)
-
-    }
-
-    reader.readAsDataURL(input.files[0]);
-
-  }
-
-}
-
-</script>
+  <%= f.label :image, "Image" %>
+  <%= f.file_field :image %>
   <br>
   或在此貼上你甜點照片的ig網址
   <%= f.text_field :ig_image_url %>
@@ -86,8 +27,4 @@ function readURL(input){
   <%= f.submit %>
 <% end %>
 
-<%= link_to '取消', dessert_path(@dessert), class: "btn btn-default" %>
-
-</div>
-</div>
-<% end %>
+<%= link_to '取消', dessert_path(@dessert) %>

@@ -79,7 +79,13 @@
         <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
         <p>甜點介紹： <%= simple_format @dessert.description %></p>
 
+<<<<<<< HEAD
 
+=======
+        <%= link_to @dessert_order_path do %>
+            <a class="button is-danger is-rounded is-large ">立即贊助</a>
+          <% end %>
+>>>>>>> ce83db831c8a6d84e3ecbdba534a27e63bcca8e7
 
         <p>
           <% if @dessert.time_up? && @dessert.sold_out? %>

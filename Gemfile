@@ -37,6 +37,7 @@ gem 'figaro'
 gem 'rest-client'
 gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能
 
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -47,7 +48,7 @@ gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :production do
-  gem 'pg', '~> 0.20'
+  gem 'pg', '~> 0.21.0'
 end
 
 group :development, :test do

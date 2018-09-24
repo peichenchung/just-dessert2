@@ -79,7 +79,7 @@
         <p>預定面交時間： <%= time_tag @dessert.pick_time %></p>
         <p>甜點介紹： <%= simple_format @dessert.description %></p>
 
-        <%= link_to '立即贊助', new_dessert_order_path(@dessert), class:"button is-danger is-rounded is-large" %>
+
 
         <p>
           <% if @dessert.time_up? && @dessert.sold_out? %>
@@ -128,8 +128,10 @@
             <% end %>
 
             <% if current_user.id == @dessert.user.id %>
-              <div class="container">
+              <div class="container2">
+
                 <div class="row">
+                  <%= link_to '立即贊助', new_dessert_order_path(@dessert), class:"button is-danger is-rounded is-large" %>
                   <%= form_for [@dessert, comment, @reply] do |f| %>
 
                     <div class="form-group">

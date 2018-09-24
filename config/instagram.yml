@@ -1,6 +1,6 @@
 development:
-  app_id: cfb891e783034bb98d7a36f1dc1e4136 #for heroku
-  secret: 29b9dba0025e4071953672ba0d0f9890 #for heroku
+  #app_id: cfb891e783034bb98d7a36f1dc1e4136 #for heroku
+  #secret: 29b9dba0025e4071953672ba0d0f9890 #for heroku
 
-  #app_id: 0d8f1fa3a5084e6ab626831e41323859 #for localhost
-  #secret: 7fcd668a2dcd4e7b89b3729a02252edd #for localhost
+  app_id: 0d8f1fa3a5084e6ab626831e41323859 #for localhost
+  secret: 7fcd668a2dcd4e7b89b3729a02252edd #for localhost

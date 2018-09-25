@@ -55,8 +55,8 @@
 
       <!-- Left side 待新增功能
       <div class="level-left">
-        
-        
+
+
         <div class="level-item">
           <div class="field has-addons">
             <p class="control">
@@ -85,7 +85,7 @@
         <a><%= link_to "新募資", new_dessert_path, class: "btn btn-1" %></a>
       </div>
     </nav>
-   
+
     <div class= "container">
     <div class="column is-narrow width: 200px;">
     </div>
@@ -112,10 +112,23 @@
       function initMap() {
         var loaction;
         var geocoder = new google.maps.Geocoder();
-        var initmap = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 25.047781, lng: 121.517031},// 初始地圖以臺北火車站為中心
-          zoom: 12.5
-        });
+        "<% if @category.area == "北部" %>"
+          var initmap = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 25.047781, lng: 121.517031},// 初始地圖以臺北火車站為中心
+            zoom: 13
+          });
+        "<% elsif @category.area == "南部" %>"
+          var initmap = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 22.639761, lng: 120.302107},// 初始地圖以高雄火車站為中心
+            zoom: 13
+          });
+        "<% elsif @category.area == "中部" %>"
+          var initmap = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 24.137295, lng: 120.686764},// 初始地圖以臺中火車站為中心
+            zoom: 13
+          });
+        "<% end %>"
+
 
 
         var icon = {

@@ -21,10 +21,6 @@ Just Dessert 2.0 is a simple solution for matching "individual" pastry chef and 
 
 * 以甜點集資的方式，讓賣家能自行設定集到多少數量（且不能超賣）才製作
 
-備註：這樣設定的原因，是因為我們的賣家為個人賣家，
-因此若沒有募到一定數量，製作不划算；
-反之，若賣超過一定數量，個人做不來。
-
 * 取貨方式以面交為主，解決個人賣家較難準備包裝及寄送的問題
 
 ---
@@ -63,11 +59,11 @@ or
 
 ## IG登入
 
+目前已部署上Heroku `https://just-dessert2.herokuapp.com/`
+
 由於還是 Sandbox Mode
 
-目前設定可由本地端localhost:3000登入
-
-限定IG帳號：
+限定登入IG帳號：
 
 帳號: justdessert1013
 密碼: alphacamp2018

@@ -14,9 +14,11 @@
       <div class="box3">
 
         <div class="view view-first">
-          <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+          <% if @dessert.image? %>
+            <%= image_tag @dessert.image_url(:thumb) %>
+          <% end %>
 
-          <!-- IG 照片 (如果賣家有貼網址) -->
+          <!-- IG 照片 -->
           <% if @n.present? %>
             <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
           <% end %>

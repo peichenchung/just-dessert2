@@ -12,7 +12,7 @@
 
         <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
 
-        <% if dessert.ig_image_url? %>
+        <% if !dessert.image? && dessert.ig_image_url? %>
           <% n = dessert.ig_image_url.split('/')[4] %>
           <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
         <% end %>

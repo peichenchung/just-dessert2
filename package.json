@@ -3,7 +3,9 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.7.1",
-    "modernizr": "3.6.0"
+    "modernizr": "3.6.0",
+    "browserify": "^14.0.0",
+    "browserify-incremental": "^3.1.0"
   },
   "description": "ALPHA Camp Demo Day 2 Project",
   "version": "1.0.0",
@@ -21,9 +23,13 @@
     "url": "git+https://github.com/revichung/just-dessert2.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "ISC MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
   "bugs": {
     "url": "https://github.com/revichung/just-dessert2/issues"
   },
-  "homepage": "https://github.com/revichung/just-dessert2#readme"
+  "homepage": "https://github.com/revichung/just-dessert2#readme",
+  "keywords": []
 }

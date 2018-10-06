@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_074831) do
+ActiveRecord::Schema.define(version: 2018_10_06_084115) do
 
   create_table "categories", force: :cascade do |t|
     t.string "area"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_074831) do
     t.integer "origin_amount"
     t.string "ig_image_url"
     t.integer "category_id"
+    t.string "intro_image"
   end
 
   create_table "orders", force: :cascade do |t|

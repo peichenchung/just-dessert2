@@ -8,12 +8,14 @@
   <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
 <% end %>
 
+<p>
+  <% if current_user.id == @dessert.user.id %>
+    <%= link_to '編輯', edit_dessert_path(@dessert) %> |
+    <%= link_to '刪除', dessert_path(@dessert), method: :delete, data: {confirm:"確定要刪除嗎?"} %> |
+    <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
+  <% end %>
+</p>
 
-<% if current_user.id == @dessert.user.id %>
-  <%= link_to '編輯', edit_dessert_path(@dessert) %> |
-  <%= link_to '刪除', dessert_path(@dessert), method: :delete, data: {confirm:"確定要刪除嗎?"} %> |
-  <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
-<% end %>
 
 <p>
   已募資：

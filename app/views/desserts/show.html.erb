@@ -32,7 +32,7 @@
               <% end %>
             </p>
 
-            <p>Price: $ <%= @dessert.price %> / each</p>
+            <p>單價: $ <%= @dessert.price %></p>
           </div><!-- mask -->
 
         </div><!-- view view-first -->
@@ -47,7 +47,7 @@
                 <%= @dessert.user.name %>
               <% end %>
             </p>
-            <p>Price: $ <%= @dessert.price %> / each</p>
+            <p>單價: $ <%= @dessert.price %></p>
           </div><!-- mask -->
 
         </div><!-- view view-first -->
@@ -62,8 +62,8 @@
       <div class="box-comment ">
 
         <% if current_user.id == @dessert.user.id %>
-          <%= link_to 'Edit', edit_dessert_path(@dessert) %> |
-          <%= link_to 'Delete', dessert_path(@dessert), method: :delete, data: {confirm:"Are you sure?"} %> |
+          <%= link_to '編輯', edit_dessert_path(@dessert) %> |
+          <%= link_to '刪除', dessert_path(@dessert), method: :delete, data: {confirm:"確定要刪除嗎?"} %> |
           <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
         <% end %>
 
@@ -73,7 +73,7 @@
           <% end %>
         </p>
 
-        <p>單價： $ <%= @dessert.price %> / each</p>
+        <p>單價： $ <%= @dessert.price %></p>
         <p>分類區域： <%= @dessert.category.area %></p>
         <p>面交地點： <%= @dessert.location %></p>
         <p>製作所需時間：<%= @dessert.production_time %></p>
@@ -128,7 +128,7 @@
 
               <div>
                 <% if current_user.admin? %>
-                  <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"Are you sure?"} %>
+                  <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"確定要刪除嗎?"} %>
                 <% end %>
               </div>
             <% end %>
@@ -165,8 +165,8 @@
                     <%= f.text_area :content, placeholder: "留個言吧", class: "form-control" %>
                   </div>
                   <div class="form-group">
-                    <%= f.submit class: "btn btn-primary" %>
-                    <%= f.button "Cancel", type: :reset, class: "btn btn-default" %>
+                    <%= f.submit '留言', class: "btn btn-primary" %>
+                    <%= f.button '取消', type: :reset, class: "btn btn-default" %>
                   </div>
                 <% end %>
 

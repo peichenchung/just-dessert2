@@ -1,12 +1,12 @@
-<h1>All users</h1>
+<h1>全站使用者</h1>
 <ul>
   <% @users.each do |user| %>
   <li>
     <%= image_tag user.avatar.url(:thumb) if user.avatar? %><br>
-    Name: <%= user.name %><br>
+    暱稱: <%= user.name %><br>
     Email: <%= user.email %><br>
-    Intro: <%= user.intro %><br>
-    Role: <%= user.role %>
+    介紹: <%= user.intro %><br>
+    權限: <%= user.role %>
   </li>
   <% end %>
 </ul>

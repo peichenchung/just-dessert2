@@ -69,7 +69,7 @@
                   <% if current_user&.admin? %>
                     <li><%= link_to '後台', admin_root_path %></li>
                   <% end %>
-                  <li><%= link_to('Profile', user_path(current_user)) %></li>
+                  <li><%= link_to('關於我', user_path(current_user)) %></li>
                   <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
                   <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
                   <li><%= link_to '新募資', new_dessert_path %></li>
@@ -78,7 +78,7 @@
             <% else %>
               <div class="navbar-brand"><%= link_to('註冊', new_user_registration_path) %></div>
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
-              <div class="navbar-brand"><%= link_to "Sign in with Instagram", user_instagram_omniauth_authorize_path %></div>
+              <div class="navbar-brand"><%= link_to "用IG登入", user_instagram_omniauth_authorize_path %></div>
             <% end %>
           </div><!-- navbar-end -->
         </div><!-- navbar-menu -->

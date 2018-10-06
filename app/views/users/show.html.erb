@@ -6,7 +6,7 @@
           <p class="title"></p>
             <p class="subtitle">
               <% if @user == current_user %>
-                <%= link_to 'Edit', edit_user_path %>
+                <%= link_to '編輯', edit_user_path %>
               <% end %>
             </p>
           <%= image_tag @user.avatar.url(:thumb) if @user.avatar? %>

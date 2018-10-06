@@ -9,14 +9,16 @@
       <% end %>
     <% end %>
 
+    <br>
+
     <%= link_to dessert_path(dessert) do %>
       <%= dessert.name %><br>
+    <% end %>
 
-      <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-        集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
-      <% else %>
-        <strong><h4>集資已結束</h4></strong>
-      <% end %>
+    <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+      集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
+    <% else %>
+      <strong><h4>集資已結束</h4></strong>
     <% end %>
 
 <% end %>

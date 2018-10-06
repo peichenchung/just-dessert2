@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-
-
   resources :desserts do
     resources :orders
     resources :comments, only: [:create, :destroy] do
@@ -18,6 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :categories
     root "users#index"
   end
 

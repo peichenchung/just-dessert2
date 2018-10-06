@@ -67,7 +67,7 @@ class DessertsController < ApplicationController
     params.require(:dessert).permit(
       :name, :price, :amount, :image, :description, :location,
       :excess_time, :pick_time, :user_id, :origin_amount,
-      :category_id, :ig_image_url
+      :category_id, :ig_image_url, :intro_image
     )
   end
 end

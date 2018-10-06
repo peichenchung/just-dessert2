@@ -8,19 +8,34 @@
 <% end %>
 
 <%= form_for @dessert do |f| %>
-  <%= f.label :name, 'Name' %>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :image, "Image" %>
-  <%= f.file_field :image %>
-  <br>
-  或在此貼上你甜點照片的ig網址
-  <%= f.text_field :ig_image_url %>
-  <br>
-  <%= f.label :description, 'Description' %>
-   <textarea class="textarea" placeholder="Textarea"></textarea>
-  <br>
+  
+  <p>
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :image, "Image" %>
+    <%= f.file_field :image %>
+  </p>
+  
+  <p>
+    或在此貼上你甜點照片的ig網址
+    <%= f.text_field :ig_image_url %>
+  </p>
+  
+  <p>
+    <%= f.label :description, 'Description' %>
+    <textarea class="textarea" placeholder="Textarea"></textarea>
+  </p>
+
+  <p>
+    <%= f.label :intro_image, "甜點介紹圖片" %>
+    <%= f.file_field :intro_image %>
+  </p>
+  
   <%= f.submit %>
+
 <% end %>
 
 <%= link_to '取消', dessert_path(@dessert) %>

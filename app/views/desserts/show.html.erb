@@ -1,12 +1,3 @@
-<% if @dessert.image? %>
-  <%= image_tag @dessert.image_url(:thumb) %>
-<% end %>
-
-<!-- IG 照片 -->
-<% if @n.present? %>
-  <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
-<% end %>
-
 <p>
   <% if current_user.id == @dessert.user.id %>
     <%= link_to '編輯', edit_dessert_path(@dessert) %> |
@@ -15,6 +6,14 @@
   <% end %>
 </p>
 
+<% if @dessert.image? %>
+  <%= image_tag @dessert.image_url, width: '250px' %>
+<% end %>
+
+<!-- IG 照片 -->
+<% if @n.present? %>
+  <%= image_tag image_url("https://instagram.com/p/#{@n}/media/?size=m"), width: '250px' %>
+<% end %>
 
 <p>
   已募資：
@@ -58,6 +57,10 @@
     <!-- show nothing -->
   <% end %>
 </p>
+
+<% if @dessert.intro_image? %>
+  <%= image_tag @dessert.intro_image_url %>
+<% end %>
 
 <hr>
 

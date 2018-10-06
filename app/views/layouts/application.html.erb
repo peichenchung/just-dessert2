@@ -1,106 +1,82 @@
-<style>
-  .navbar-more{
-    background-color: #fff;
-    height:20px;
-  }
-</style>
-
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
-
-    <link rel ="stylesheet" href="css/reset.css">
-    <link rel ="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="styles/helpers.css">
-
+    <title>Just Dessert</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JustDessert2</title>
-    <!--<link rel="stylesheet" href="styles/debug.css">-->
   </head>
 
   <body>
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
 
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Just Dessert</a>
+        </div>
 
-    <header class ="header">
-      <nav class="navbar margin:10px is-fixed-top role="navigation" aria-label="main navigation"">
-        <div class="navbar-brand" >
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="pull-left text-left nav navbar-nav">
+            <li><%= link_to '新募資', new_dessert_path %></li>
+          </ul>
 
-          <%= link_to root_path do %>
-            <%= image_tag "logo.png",class: "img-circle-navbar pull-left" %>
-          <% end %>
-
-
-
-        <% if current_user %>
-
-          <a class="button  is-info is-outlined is-large ">
-
-            Hi, <%= current_user.name %>
-            </a>
-
-
-          <!-- 跟登入的使用者打招呼 -->
-        <% end %>
-
-          <!-- notice & alert 勿刪!!!!!! -->
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-
-        </div><!-- navbar-brand -->
-
-        <!-- navbar start, navbar end -->
-        <div class="navbar-menu pull-right text-align-right">
-          <a class="navbar-divider"></a>
-          <div class="navbar-end">
+          <ul class="pull-right text-right nav navbar-nav">
             <% if current_user %>
-              <span class="glyphicon glyphicon-align-justify btn btn-lg pull-right dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              <li>
+                <p class="navbar-text">
+                  Hi, <%= current_user.name %>
+                </p>
+              </li>
 
-              <ul class="dropdown-menu pull-right">
-                <% if current_user %>
-                  <% if current_user&.admin? %>
-                    <li><%= link_to '後台', admin_root_path %></li>
-                  <% end %>
-                  <li><%= link_to('關於我', user_path(current_user)) %></li>
-                  <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
-                  <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
-                  <li><%= link_to '新募資', new_dessert_path %></li>
-                <% end %>
-              </ul>
+              <% if current_user&.admin? %>
+                <li><%= link_to '後台管理', admin_root_path %></li>
+              <% end %>
+
+              <li><%= link_to('關於我', user_path(current_user)) %></li>
+              
+              <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
+              
+              <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
             <% else %>
               <div class="navbar-brand"><%= link_to('註冊', new_user_registration_path) %></div>
               <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
               <div class="navbar-brand"><%= link_to "用IG登入", user_instagram_omniauth_authorize_path %></div>
             <% end %>
-          </div><!-- navbar-end -->
-        </div><!-- navbar-menu -->
-      </nav>
-    </header>
+          </ul>
 
-    <div class ="main">
+        </div><!-- collapse -->
 
-      <div class ="main-dessert">
-     <%= yield %>
+      </div><!-- container-fluid -->
+    </nav>
+
+    <!-- notice & alert -->
+    <% if flash[:notice] %>
+      <div class="container">
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong><%= notice %></strong>
+        </div>
       </div>
+    <% end %>
 
+    <% if flash[:alert] %>
+      <div class="container">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong><%= alert %></strong>
+        </div>
+      </div>
+    <% end %>
 
-    </div>
-
-    <footer class ="footer text-center">
-      <br>
-      <h5>吃甜甜</h5>
-      <h5>Copyright © 2018 CSY cooperation</h5>
-    </footer>
-
+    <%= yield %>
   </body>
-
 </html>
 

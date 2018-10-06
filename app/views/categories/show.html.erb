@@ -1,163 +1,61 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>CSS hover effects: Fade In Background opacity</title>
-    <style>
-      .wrapper{
-      font-family:sans-serif;
-      width: 280px;
+<%= link_to "全部甜點", root_path %>
+<% @categories.each do |category| %>
+  <%= link_to category.area, category_path(category) %>
+<% end %>
+<%= link_to "新募資", new_dessert_path %>
 
-      position:relative;
-      margin: 1.5em ;
-      float: left;
-      }
-      img{
-      opacity: 1;
-      display: block;
-      width:280px;
-      height: 280px;
-      transition: .5s ease;
-      }
-      .content{
-      position: absolute;
-      top:45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      text-transform: uppercase;
-      font-size: 30px;
-      color:#black;
-      white-space: nowrap;
-      overflow: hidden
-      }
-      .content a{
-      font-size: 18px;
-      display: block;
-      background-color: #black;
-      text-align: center;
-      padding: 10px;
-      cursor: pointer
-      }
-      .overlay{
-      opacity: 0
-      }
-      .wrapper:hover img{
-      opacity: .5
-      }
-      .wrapper:hover .overlay{
-      opacity: 1
-      }
-    </style>
-  </head>
+<%= render partial: "shared/dessert" %>
 
-  <body>
-    <nav class="level">
+<hr>
 
-      <!-- Left side 待新增功能
-      <div class="level-left">
+<script type="text/javascript">
+  function initMap() {
+    var loaction;
+    var geocoder = new google.maps.Geocoder();
+    "<% if @category.area == "北部" %>"
+      var initmap = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 25.047781, lng: 121.517031},// 初始地圖以臺北火車站為中心
+        zoom: 13
+      });
+    "<% elsif @category.area == "南部" %>"
+      var initmap = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 22.639761, lng: 120.302107},// 初始地圖以高雄火車站為中心
+        zoom: 13
+      });
+    "<% elsif @category.area == "中部" %>"
+      var initmap = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 24.137295, lng: 120.686764},// 初始地圖以臺中火車站為中心
+        zoom: 13
+      });
+    "<% end %>"
 
 
-        <div class="level-item">
-          <div class="field has-addons">
-            <p class="control">
-              <input class="input" type="text" placeholder="Find a post">
-            </p>
-            <p class="control">
-              <button class="button">
-                Search
-              </button>
-            </p>
-          </div>
-        </div>
 
-      </div>
-      Left side 待新增功能 -->
+    var icon = {
+      url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
+      scaledSize: new google.maps.Size(50, 50) // scaled size
 
-      <!-- Right side -->
-      <div class="level-right">
-        <!--
-        <a class="btn btn-1">熱門</a>
-        -->
-        <a><%= link_to "全部甜點", root_path, class: "btn btn-2" %></a>
-        <% @categories.each do |category| %>
-          <a><%= link_to category.area, category_path(category), class: "btn btn-2" %></a>
-        <% end %>
-        <a><%= link_to "新募資", new_dessert_path, class: "btn btn-1" %></a>
-      </div>
-    </nav>
+    };
 
-    <div class= "container">
-    <div class="column is-narrow width: 200px;">
-    </div>
-    <div class="column ">
-    <HR>
-    <%= render partial: "shared/dessert" %>
-    </div>
-
-    <div class="column is-narrow width: 200px;">
-    </div>
-    <section class="hero">
-    <div class="hero-body">
-
-    <div id="map" style='width: 600px; height: 300px;'>
-    </h1>
-
-    </div>
-    </section>
-    </div>
-
-    <hr>
-
-    <script type="text/javascript">
-      function initMap() {
-        var loaction;
-        var geocoder = new google.maps.Geocoder();
-        "<% if @category.area == "北部" %>"
-          var initmap = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 25.047781, lng: 121.517031},// 初始地圖以臺北火車站為中心
-            zoom: 13
+    //geocoder主程式
+    "<% @desserts.each do |dessert| %>"
+      geocoder.geocode( { 'address': "<%= dessert.location %>"}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          var marker = new google.maps.Marker({
+            map: initmap,
+            animation: google.maps.Animation.BOUNCE,
+            position: results[0].geometry.location,
+            icon: icon,
+            title: "<%= dessert.location %>"
           });
-        "<% elsif @category.area == "南部" %>"
-          var initmap = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 22.639761, lng: 120.302107},// 初始地圖以高雄火車站為中心
-            zoom: 13
-          });
-        "<% elsif @category.area == "中部" %>"
-          var initmap = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 24.137295, lng: 120.686764},// 初始地圖以臺中火車站為中心
-            zoom: 13
-          });
-        "<% end %>"
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    "<% end %>"
+  }
+</script>
 
-
-
-        var icon = {
-          url: 'https://image.flaticon.com/icons/svg/135/135578.svg', // url
-          scaledSize: new google.maps.Size(50, 50) // scaled size
-
-        };
-
-        //geocoder主程式
-        "<% @desserts.each do |dessert| %>"
-          geocoder.geocode( { 'address': "<%= dessert.location %>"}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              var marker = new google.maps.Marker({
-                map: initmap,
-                animation: google.maps.Animation.BOUNCE,
-                position: results[0].geometry.location,
-                icon: icon,
-                title: "<%= dessert.location %>"
-              });
-            } else {
-              alert("Geocode was not successful for the following reason: " + status);
-            }
-          });
-        "<% end %>"
-      }
-    </script>
-    <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
-    </script>
-    <hr>
-  </body>
-</html>
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg1YAvzj1UR6oFWo_xjOgr2xp56OPSdJo&callback=initMap">
+</script>

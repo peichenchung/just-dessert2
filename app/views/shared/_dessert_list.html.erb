@@ -21,6 +21,11 @@
       <strong><h4>集資已結束</h4></strong>
     <% end %>
 
+    <br>
+    
+    已募資：
+    <%= dessert.origin_amount - dessert.amount %> / <%= dessert.origin_amount %> 份
+
 <% end %>
 
 <%= paginate @desserts %>

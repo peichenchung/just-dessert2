@@ -15,6 +15,11 @@
   <%= link_to '訂單狀況', dessert_orders_path(@dessert) %>
 <% end %>
 
+<p>
+  已募資：
+  <%= @dessert.origin_amount - @dessert.amount %> / <%= @dessert.origin_amount %> 份
+</p>
+
 <p>創作者：
   <%= link_to user_path(@dessert.user) do %>
     <%= @dessert.user.name %>

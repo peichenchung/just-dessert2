@@ -15,6 +15,9 @@ class DessertsController < ApplicationController
     @dessert.user_id = current_user.id
 
     if @dessert.save
+      @dessert.origin_amount = @dessert.amount
+      @dessert.save
+      
       flash[:notice] = "成功開始一筆甜點集資"
       redirect_to root_path
     else
@@ -63,7 +66,7 @@ class DessertsController < ApplicationController
   def dessert_params
     params.require(:dessert).permit(
       :name, :price, :amount, :image, :description, :location,
-      :production_time, :excess_time, :pick_time, :user_id,
+      :excess_time, :pick_time, :user_id, :origin_amount,
       :category_id, :ig_image_url
     )
   end

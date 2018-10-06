@@ -1,39 +1,25 @@
-<div class="container2" >
-  <% @desserts.each do |dessert| %>
-    <div class="wrapper col-md-4">
+<% @desserts.each do |dessert| %>
+  <%= link_to dessert_path(dessert) do %>
+    <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
 
-      <%= link_to dessert_path(dessert) do %>
-
-        <figure class="image is-200x200 ">
-          <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
-
-          <% if !dessert.image? && dessert.ig_image_url? %>
-            <% n = dessert.ig_image_url.split('/')[4] %>
-            <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
-          <% end %>
-        </figure>
-
-      <% end %>
-
-      <div class="overlay">
-        <div class="content">
-          <%= link_to dessert_path(dessert) do %>
-
-            <%= dessert.name %><br>
-
-            <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-              集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
-            <% else %>
-              <strong><h4>集資已結束</h4></strong>
-            <% end %>
-
-          <% end %><!-- link_to dessert_path -->
-        </div><!-- content -->
-      </div><!-- overlay -->
-
-    </div><!-- wrapper -->
+    <% if !dessert.image? && dessert.ig_image_url? %>
+      <% n = dessert.ig_image_url.split('/')[4] %>
+      <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
+    <% end %>
   <% end %>
 
-  <%= paginate @desserts %>
-</div>
+  <%= link_to dessert_path(dessert) do %>
+    <%= dessert.name %><br>
+
+    <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+      集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
+    <% else %>
+      <strong><h4>集資已結束</h4></strong>
+    <% end %>
+  <% end %><!-- link_to dessert_path -->
+
+<% end %><!-- desserts.each -->
+
+<%= paginate @desserts %>
+
 

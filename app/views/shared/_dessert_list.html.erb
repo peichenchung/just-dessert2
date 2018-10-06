@@ -1,42 +1,25 @@
-<style>
-.smallpic{
-  width:20px;
-  height:20px;
-}
-</style>
-<div class="item-box col-md-12 " style= height=900px;>
-  <% @desserts.each do |dessert| %>
-    <div class="wrapper col-md-4">
+<% @desserts.each do |dessert| %>
 
-      <%= link_to dessert_path(dessert) do %>
+    <%= link_to dessert_path(dessert) do %>
+      <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
 
-        <%= image_tag dessert.image_url(:thumb) if dessert.image? %>
-
-        <% if !dessert.image? && dessert.ig_image_url? %>
-          <% n = dessert.ig_image_url.split('/')[4] %>
-          <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
-        <% end %>
-
+      <% if !dessert.image? && dessert.ig_image_url? %>
+        <% n = dessert.ig_image_url.split('/')[4] %>
+        <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
       <% end %>
+    <% end %>
 
-      <div class="overlay">
-        <div class="content">
-          <%= link_to dessert_path(dessert) do %>
+    <%= link_to dessert_path(dessert) do %>
+      <%= dessert.name %><br>
 
-            <%= dessert.name %><br>
+      <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+        集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
+      <% else %>
+        <strong><h4>集資已結束</h4></strong>
+      <% end %>
+    <% end %>
 
-            <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-              集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
-            <% else %>
-              <strong><h4>集資已結束</h4></strong>
-            <% end %>
+<% end %>
 
-          <% end %><!-- link_to dessert_path -->
-        </div><!-- content -->
-      </div><!-- overlay -->
+<%= paginate @desserts %>
 
-    </div><!-- wrapper -->
-  <% end %>
-
-  <%= paginate @desserts %>
-</div>

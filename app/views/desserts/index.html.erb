@@ -2,8 +2,6 @@
 <% @categories.each do |category| %>
   <%= link_to category.area, category_path(category) %>
 <% end %>
-<%= link_to '新募資', new_dessert_path %>
-
 
 <hr>
 <%= render partial: "shared/dessert_list" %>

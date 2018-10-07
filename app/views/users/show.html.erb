@@ -7,6 +7,7 @@
         <%= image_tag @user.avatar.url, width: 200, class: "img-responsive img-thumbnail" %>
       <% else %>
         <!-- 替代avatar -->
+        <%= image_tag ("avatar.png"), width: '200px' %>
       <% end %>
 
       <% if @user == current_user %>

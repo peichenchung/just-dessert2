@@ -1,36 +1,40 @@
-<hr>
+<div class="container">
+  <div class="row">
 
-<% if @order.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @order.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+    <% if @order.errors.any? %>
+      <h2>We have some errors here !</h2>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<h2>參與集資</h2>
-<br>
+    <h2>參與集資</h2>
+    <br>
 
-<%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
-<p>單價: $ <%= @dessert.price %> / each</p>
-<p>還有 <%= @dessert.amount %> 個集資成功</p>
+    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+    <p>單價: $ <%= @dessert.price %> / each</p>
+    <p>還有 <%= @dessert.amount %> 個集資成功</p>
 
-<br>
+    <br>
 
-<%= form_for [@dessert, @order] do |f| %>
-  <%= f.label :amount, '訂購數量' %>
-  <%= f.number_field :amount, options = {max: @dessert.amount, min: 1} %> *必填
-  <br>
-  <%= f.label :name, '訂購人姓名' %>
-  <%= f.text_field :name %> *必填
-  <br>
-  <%= f.label :phone, '訂購人電話' %>
-  <%= f.number_field :phone %> *必填
-  <br>
-  <%= f.label :message, '留言給賣家' %>
-  <%= f.text_area :message %>
-  <br>
-  <%= f.submit '確認訂單' %>
-  <%= link_to '取消', dessert_path(@dessert) %>
-<% end %>
+    <%= form_for [@dessert, @order] do |f| %>
+      <%= f.label :amount, '訂購數量' %>
+      <%= f.number_field :amount, options = {max: @dessert.amount, min: 1} %> *必填
+      <br>
+      <%= f.label :name, '訂購人姓名' %>
+      <%= f.text_field :name %> *必填
+      <br>
+      <%= f.label :phone, '訂購人電話' %>
+      <%= f.number_field :phone %> *必填
+      <br>
+      <%= f.label :message, '留言給賣家' %>
+      <%= f.text_area :message %>
+      <br>
+      <%= f.submit '確認訂單' %>
+      <%= link_to '取消', dessert_path(@dessert) %>
+    <% end %>
+
+  </div>
+</div>

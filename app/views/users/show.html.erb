@@ -1,55 +1,74 @@
-<% if @user == current_user %>
-  <%= link_to '編輯', edit_user_path %>
-<% end %>
+<div class="container">
+  <div class="row">
 
-<%= image_tag @user.avatar.url(:thumb) if @user.avatar? %>
-<h3><%= @user.name %></h3>
-<p><%= @user.email %></p>
-<p><%= simple_format @user.intro %></p>
-
-<% if @user == current_user %>
-  <h5>給買家的話：</h5>
-  <p><%= simple_format @user.contact_info %></p>
-<% end %>
-
-<hr>
-
-<h3>你贊助的甜點集資</h3>
-
-<% if @user == current_user %>
-  <% @orders.each do |order| %>
-    <%= link_to order_path(order) do %>
-      <%= image_tag order.dessert.image.url, width: '250px' if order.dessert.image? %>
-
-      <% if !order.dessert.image? && order.dessert.ig_image_url? %>
-        <% n = order.dessert.ig_image_url.split('/')[4] %>
-        <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
+    <section class="user-profile">
+      
+      <% if @user.avatar? %>
+        <%= image_tag @user.avatar.url, width: 200, class: "img-responsive img-thumbnail" %>
+      <% else %>
+        <!-- 替代avatar -->
       <% end %>
 
-      <h4><%= order.dessert.name %></h4>
+      <% if @user == current_user %>
+        <%= link_to '編輯', edit_user_path, class: "btn btn-default" %>
+      <% end %>
+
+      <h3><%= @user.name %></h3>
+      <p><%= @user.email %></p>
+      <p><%= simple_format @user.intro %></p>
+
+      <% if @user == current_user %>
+        <h5>給買家的話：</h5>
+        <p><%= simple_format @user.contact_info %></p>
+      <% end %>
+
+    </section>
+
+    <hr>
+
+    <h3>你贊助的甜點集資</h3>
+
+    <% if @user == current_user %>
+      <% @orders.each do |order| %>
+        <div class="col-md-3">
+          <%= link_to order_path(order) do %>
+            <%= image_tag order.dessert.image.url, width: '150px' if order.dessert.image? %>
+
+            <% if !order.dessert.image? && order.dessert.ig_image_url? %>
+              <% n = order.dessert.ig_image_url.split('/')[4] %>
+              <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '150px' %>
+            <% end %>
+
+            <h4><%= order.dessert.name %></h4>
+          </div>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
-<hr>
+    <hr>
 
-<h3>你發起的甜點集資</h3>
+    <h3>你發起的甜點集資</h3>
 
-<% if @user == current_user %>
-  <!-- show nothing -->
-<% else %>
-  <h3><%= @user.name %>發起的甜點集資</h3>
-<% end %>
-
-<% @desserts.each do |dessert| %>
-  <%= link_to dessert_path(dessert) do %>
-    <%= image_tag dessert.image_url, width: '250px' if dessert.image? %>
-
-    <% if !dessert.image? && dessert.ig_image_url? %>
-      <% n = dessert.ig_image_url.split('/')[4] %>
-      <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '250px' %>
+    <% if @user == current_user %>
+      <!-- show nothing -->
+    <% else %>
+      <h3><%= @user.name %>發起的甜點集資</h3>
     <% end %>
-    
-    <h4><%= dessert.name %></h4>
-  <% end %>
-<% end %>
+
+    <% @desserts.each do |dessert| %>
+      <div class="col-md-3">
+        <%= link_to dessert_path(dessert) do %>
+          <%= image_tag dessert.image_url, width: '150px' if dessert.image? %>
+
+          <% if !dessert.image? && dessert.ig_image_url? %>
+            <% n = dessert.ig_image_url.split('/')[4] %>
+            <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '150px' %>
+          <% end %>
+          
+          <h4><%= dessert.name %></h4>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

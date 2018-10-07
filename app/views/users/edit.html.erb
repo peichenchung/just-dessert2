@@ -1,21 +1,27 @@
-<%= form_for @user do |f| %>
-  <%= f.label :name, "暱稱" %>
-  <br>
-  <%= f.text_field :name %>
-  <br>
-  <%= f.label :avatar, "大頭照" %>
-  <%= f.file_field :avatar %>
-  <br>
-  <%= f.label :intro, "自我介紹" %>
-  <br>
-  <%= f.text_area :intro %>
-  <br>
-  <%= f.label :contact_info, "賣家提醒＆聯絡資訊" %>
-  <br>
-  <%= f.text_area :contact_info %>
-  <br>
-  *注意：發起集資的賣家必填，此資訊只有自己和買家看得到*
-  <br>
-  <%= f.submit '確認修改' %>
-  <%= link_to "取消", user_path(@user) %>
-<% end %>
+<div class="container">
+  <div class="row">
+
+    <%= form_for @user do |f| %>
+      <%= f.label :name, "暱稱" %>
+      <br>
+      <%= f.text_field :name %>
+      <br>
+      <%= f.label :avatar, "大頭照" %>
+      <%= f.file_field :avatar %>
+      <br>
+      <%= f.label :intro, "自我介紹" %>
+      <br>
+      <%= f.text_area :intro %>
+      <br>
+      <%= f.label :contact_info, "賣家提醒＆聯絡資訊" %>
+      <br>
+      <%= f.text_area :contact_info %>
+      <br>
+      *注意：發起集資的賣家必填，此資訊只有自己和買家看得到*
+      <br>
+      <%= f.submit '確認修改' %>
+      <%= link_to "取消", user_path(@user) %>
+    <% end %>
+
+  </div>
+</div>

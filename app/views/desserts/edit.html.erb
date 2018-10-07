@@ -1,41 +1,47 @@
-<% if @dessert.errors.any? %>
-  <h2>We have some errors here !</h2>
-  <ul>
-    <% @dessert.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class = "container">
+  <div class = "row">
+
+    <% if @dessert.errors.any? %>
+      <h2>We have some errors here !</h2>
+      <ul>
+        <% @dessert.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<%= form_for @dessert do |f| %>
-  
-  <p>
-    <%= f.label :name, 'Name' %>
-    <%= f.text_field :name %>
-  </p>
+    <%= form_for @dessert do |f| %>
+      
+      <p>
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name %>
+      </p>
 
-  <p>
-    <%= f.label :image, "Image" %>
-    <%= f.file_field :image %>
-  </p>
-  
-  <p>
-    或在此貼上你甜點照片的ig網址
-    <%= f.text_field :ig_image_url %>
-  </p>
-  
-  <p>
-    <%= f.label :description, 'Description' %>
-    <textarea class="textarea" placeholder="Textarea"></textarea>
-  </p>
+      <p>
+        <%= f.label :image, "Image" %>
+        <%= f.file_field :image %>
+      </p>
+      
+      <p>
+        或在此貼上你甜點照片的ig網址
+        <%= f.text_field :ig_image_url %>
+      </p>
+      
+      <p>
+        <%= f.label :description, 'Description' %>
+        <textarea class="textarea" placeholder="Textarea"></textarea>
+      </p>
 
-  <p>
-    <%= f.label :intro_image, "甜點介紹圖片" %>
-    <%= f.file_field :intro_image %>
-  </p>
-  
-  <%= f.submit %>
+      <p>
+        <%= f.label :intro_image, "甜點介紹圖片" %>
+        <%= f.file_field :intro_image %>
+      </p>
+      
+      <%= f.submit %>
 
-<% end %>
+    <% end %>
 
-<%= link_to '取消', dessert_path(@dessert) %>
+    <%= link_to '取消', dessert_path(@dessert) %>
+
+  </div>
+</div>

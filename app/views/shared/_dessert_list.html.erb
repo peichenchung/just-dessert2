@@ -1,41 +1,45 @@
-<% @desserts.each do |dessert| %>
-  <div class="col-lg-4">
+<div class="container">
 
-    <div class="storybox">
-      
-      <%= link_to dessert_path(dessert) do %>
-        <div class="dessert_image">
-          <%= image_tag dessert.image_url, width: '350px' if dessert.image? %>
+  <% @desserts.each do |dessert| %>
+    <div class="col-lg-4">
 
-          <% if !dessert.image? && dessert.ig_image_url? %>
-            <% n = dessert.ig_image_url.split('/')[4] %>
-            <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '350px' %>
-          <% end %>
-        </div><!-- dessert_image -->
-      <% end %>
-
-      <div class="overlay">
+      <div class="storybox">
+        
         <%= link_to dessert_path(dessert) do %>
-          <div class="storybody">
-          
-            <%= dessert.name %><br>
+          <div class="dessert_image">
+            <%= image_tag dessert.image_url, width: '350px' if dessert.image? %>
 
-            <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-              集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
-            <% else %>
-              <strong><h4>集資已結束</h4></strong>
+            <% if !dessert.image? && dessert.ig_image_url? %>
+              <% n = dessert.ig_image_url.split('/')[4] %>
+              <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '350px' %>
             <% end %>
-            
-            <p>已募資：
-            <%= dessert.origin_amount - dessert.amount %> / <%= dessert.origin_amount %> 份</p>
-
-          </div><!-- story-body -->
+          </div><!-- dessert_image -->
         <% end %>
-      </div><!-- overlay -->
-    </div><!-- story-box -->
 
-  </div><!-- col-lg-4 -->
-<% end %>
+        <div class="overlay">
+          <%= link_to dessert_path(dessert) do %>
+            <div class="storybody">
+            
+              <%= dessert.name %><br>
+
+              <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+                集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
+              <% else %>
+                <strong><h4>集資已結束</h4></strong>
+              <% end %>
+              
+              <p>已募資：
+              <%= dessert.origin_amount - dessert.amount %> / <%= dessert.origin_amount %> 份</p>
+
+            </div><!-- story-body -->
+          <% end %>
+        </div><!-- overlay -->
+      </div><!-- story-box -->
+
+    </div><!-- col-lg-4 -->
+  <% end %>
+
+</div>
 
 <%= paginate @desserts %>
 

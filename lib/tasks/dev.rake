@@ -39,14 +39,14 @@ namespace :dev do
       production_time = rand(1..5)
 
       Dessert.create!(name: FFaker::Name.first_name + "的手工甜點",
-        amount: rand(1..10),
+        amount: 10,
+        origin_amount: 10,
         location: location.sample,
         price: 150,
         category_id: Category.all.sample.id,
         description: FFaker::Lorem.paragraph,
         user_id: User.all.sample.id,
         image: file,
-        production_time: production_time.to_s + "天",
         excess_time: time_mounth,
         pick_time: time_mounth + production_time.day + 1.day 
       )

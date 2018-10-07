@@ -1,0 +1,40 @@
+// _dessert_list
+
+.storybox {
+  font-family: sans-serif;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.dessert_image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+}
+
+.storybody {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  font-size: 20px;
+  color: #444444;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.overlay {
+  opacity: 0;
+}
+
+.storybox:hover .dessert_image{
+  opacity: .5;
+}
+
+.storybox:hover .overlay{
+  opacity: 1
+}
+

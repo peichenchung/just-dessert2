@@ -1,14 +1,23 @@
-<%= link_to "全部甜點", root_path %>
-<% @categories.each do |category| %>
-  <%= link_to category.area, category_path(category) %>
-<% end %>
+<section class = "services">     
+  <div class = "container">
+    <div class = "row">
 
-<hr>
+      <%= link_to "全部甜點", root_path %>
+      <% @categories.each do |category| %>
+        <%= link_to category.area, category_path(category) %>
+      <% end %>
 
-<%= render partial: "shared/dessert" %>
+      <hr>
 
-<hr>
+      <%= render partial: "shared/dessert_list" %>
 
+    </div>
+  </div>
+</section>
+
+<!--------------------------------------------------------
+Google map 
+--------------------------------------------------------->
 <script type="text/javascript">
   function initMap() {
     var loaction;

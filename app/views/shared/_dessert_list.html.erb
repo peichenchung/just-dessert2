@@ -1,33 +1,37 @@
 <% @desserts.each do |dessert| %>
   <div class="col-lg-4">
 
-    <div class="storybox text-center">
+    <div class="storybox">
       
       <%= link_to dessert_path(dessert) do %>
-        <%= image_tag dessert.image_url, width: '350px' if dessert.image? %>
+        <div class="dessert_image">
+          <%= image_tag dessert.image_url, width: '350px' if dessert.image? %>
 
-        <% if !dessert.image? && dessert.ig_image_url? %>
-          <% n = dessert.ig_image_url.split('/')[4] %>
-          <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '350px' %>
-        <% end %>
+          <% if !dessert.image? && dessert.ig_image_url? %>
+            <% n = dessert.ig_image_url.split('/')[4] %>
+            <%= image_tag image_url("https://instagram.com/p/#{n}/media/?size=m"), width: '350px' %>
+          <% end %>
+        </div><!-- dessert_image -->
       <% end %>
 
-      <div class="story-body text-center">
-
+      <div class="overlay">
         <%= link_to dessert_path(dessert) do %>
-          <%= dessert.name %><br>
-        <% end %>
+          <div class="storybody">
+          
+            <%= dessert.name %><br>
 
-        <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
-          集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
-        <% else %>
-          <strong><h4>集資已結束</h4></strong>
-        <% end %>
-        
-        <p>已募資：
-        <%= dessert.origin_amount - dessert.amount %> / <%= dessert.origin_amount %> 份</p>
+            <% if dessert.amount != 0 && Time.now < dessert.excess_time %>
+              集資倒數 <%= distance_of_time_in_words(Time.now, dessert.excess_time) %>
+            <% else %>
+              <strong><h4>集資已結束</h4></strong>
+            <% end %>
+            
+            <p>已募資：
+            <%= dessert.origin_amount - dessert.amount %> / <%= dessert.origin_amount %> 份</p>
 
-      </div><!-- story-body -->
+          </div><!-- story-body -->
+        <% end %>
+      </div><!-- overlay -->
     </div><!-- story-box -->
 
   </div><!-- col-lg-4 -->

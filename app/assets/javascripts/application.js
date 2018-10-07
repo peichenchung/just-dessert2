@@ -17,8 +17,3 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require onmount
-//
-//= require base
-//= require bootstrap.min
-//= require jquery.min
-//= require new

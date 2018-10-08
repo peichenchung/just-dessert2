@@ -1,5 +1,6 @@
 <div class = "container">
   <div class = "row">
+    <div class="col-md-6">
 
     <% if @dessert.errors.any? %>
       <h2>We have some errors here !</h2>
@@ -9,39 +10,40 @@
         <% end %>
       </ul>
     <% end %>
-
+ 
     <%= form_for @dessert do |f| %>
-      
-      <p>
-        <%= f.label :name, 'Name' %>
-        <%= f.text_field :name %>
-      </p>
+      <form>  
+        <div class="form-group">
+          <%= f.label :name, '品名' %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
 
-      <p>
-        <%= f.label :image, "Image" %>
-        <%= f.file_field :image %>
-      </p>
-      
-      <p>
-        或在此貼上你甜點照片的ig網址
-        <%= f.text_field :ig_image_url %>
-      </p>
-      
-      <p>
-        <%= f.label :description, 'Description' %>
-        <textarea class="textarea" placeholder="Textarea"></textarea>
-      </p>
+        <div class="form-group">
+          <%= f.label :image, '甜點照' %>
+          <%= f.file_field :image %>
+        </div>
+        
+        <div class="form-group">
+          或在此貼上甜點照的ig網址
+          <%= f.text_field :ig_image_url, class: "form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.label :description, '甜點介紹' %>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
 
-      <p>
-        <%= f.label :intro_image, "甜點介紹圖片" %>
-        <%= f.file_field :intro_image %>
-      </p>
-      
-      <%= f.submit %>
-
+        <div class="form-group">
+          <%= f.label :intro_image, '甜點介紹圖片' %>
+          <%= f.file_field :intro_image %>
+        </div>
+        
+        <%= f.submit '更新', class: "btn btn-info" %>
+        <%= link_to '取消', dessert_path(@dessert), class: "btn btn-default" %>
+      </form>
     <% end %>
+    
 
-    <%= link_to '取消', dessert_path(@dessert) %>
-
+    </div>
   </div>
 </div>

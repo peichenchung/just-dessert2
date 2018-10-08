@@ -16,7 +16,7 @@
       </div>
     
       <div class = "col-md-12">
-        <div class = "dessert-edit pull-right">
+        <div class = "dessert-edit">
           <p>
             <% if current_user.id == @dessert.user.id %>
               <%= link_to '編輯', edit_dessert_path(@dessert), class: "btn btn-default" %>  

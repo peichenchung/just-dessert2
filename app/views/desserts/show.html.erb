@@ -138,37 +138,47 @@
     ---------------------------------------->
     <div class="container">
       <div class="row">
-        <div class="qa">
+        <div class="qa col-md-6">
           <h3>問與答</h3>
 
           <% @dessert.comments.each do |comment| %>
-            <h4><strong><%= comment.user.name %></strong></h4>
-            <p><%= simple_format comment.content %></p>
-            <p class="text-muted">
-              <em><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
-            </p>
-
+            <strong>
+              <%= link_to user_path(comment.user) do %>
+                <%= comment.user.name %>
+              <% end %>
+            </strong>
+            
             <% if current_user.admin? %>
-              <%= link_to "Delete", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"} %>
+              <%= link_to "刪除", dessert_comment_path(@dessert, comment), method: :delete, data: {confirm:"Are you sure?"}, class: "btn btn-danger pull-right" %>
             <% end %>
 
+            &emsp;
+            <em class="text-muted"><%= "about " + time_ago_in_words(comment.created_at) + " ago" %></em>
+
+            <p><%= simple_format comment.content %></p>
+
             <% comment.replies.each do |reply| %>
-                <h4><strong><%= @dessert.user.name %></strong></h4>
-                <p><%= simple_format reply.content %></p>
-                <p class="text-muted">
-                  <em><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
-                </p>
-                <% if current_user.admin? %>
-                  <%= link_to "Delete", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"確定要刪除嗎?"} %>
+              <hr>
+              <strong>
+                <%= link_to user_path(@dessert.user) do %>
+                  <%= @dessert.user.name %>
                 <% end %>
+              </strong>
+              <% if current_user.admin? %>
+                <%= link_to "刪除", dessert_comment_reply_path(@dessert, comment, reply), method: :delete, data: {confirm:"確定要刪除嗎?"}, class: "btn btn-danger pull-right"  %>
+              <% end %>
+              &emsp;
+              <em class="text-muted"><%= "about " + time_ago_in_words(reply.created_at) + " ago" %></em>
+              <p><%= simple_format reply.content %></p>
             <% end %>
 
             <% if current_user.id == @dessert.user.id %>
-              <%= link_to '立即贊助', new_dessert_order_path(@dessert) %>
               <%= form_for [@dessert, comment, @reply] do |f| %>
-                <%= f.text_area :content, placeholder: "回覆" %>
-                <%= f.submit %>
-                <%= f.button "Cancel", type: :reset %>
+                <br>
+                <%= f.text_area :content, placeholder: 'reply here', class: "form-control" %>
+                <br>
+                <%= f.submit '回覆', class: "btn btn-default" %>
+                <%= f.button 'Cancel', type: :reset, class: "btn btn-default" %>
               <% end %>
             <% end %>
             <hr>
@@ -176,9 +186,11 @@
 
           <% if current_user.id != @dessert.user.id %>
             <%= form_for [@dessert, @comment] do |f| %>
-              <%= f.text_area :content, placeholder: '留個言吧' %>
-              <%= f.submit '留言' %>
-              <%= f.button '取消', type: :reset %>
+              <br>
+              <%= f.text_area :content, placeholder: 'comment here', class: "form-control" %>
+              <br>
+              <%= f.submit '留言', class: "btn btn-default" %>
+              <%= f.button '取消', type: :reset, class: "btn btn-default" %>
             <% end %>
           <% end %>
       </div><!-- qa -->

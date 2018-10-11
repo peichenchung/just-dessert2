@@ -52,57 +52,82 @@
 
 <div class = "container">
   <div class = "row">
+    <div class="col-md-6">
 
-    <!-- 錯誤訊息 -->
-    <% if @dessert.errors.any? %>
-    <h3>We have some errors here !</h3>
-    <ul>
-      <% @dessert.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <!-- 錯誤訊息 -->
+      <% if @dessert.errors.any? %>
+      <h3>We have some errors here !</h3>
+      <ul>
+        <% @dessert.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
       <% end %>
-    </ul>
-    <% end %>
 
-    <!-- Create New Dessert Form -->
-    <%= form_for @dessert do |f| %>
+      <!-- Create New Dessert Form -->
+      <%= form_for @dessert do |f| %>
+        <form>
+          <div class="form-group">
+            <%= f.label :name, '甜點名稱' %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :image, "甜點照片" %>
+            <%= f.file_field :image %>
+          </div>
 
-      <p><%= f.label :name, '甜點名稱' %></p>
-      <p><%= f.text_field :name %></p>
+          <div class="form-group">
+            <%= f.label :image, "甜點照IG網址" %>
+            <%= f.text_field :ig_image_url, class: "form-control" %>
+          </div>
 
-      <p><%= f.label :image, "甜點照片" %></p>
-      <p><%= f.file_field :image %></p>
+          <div class="form-group">
+            <%= f.label :price, '單價' %>
+            <%= f.number_field :price, class: "form-control" %>
+          </div>
 
-      <p>或在此貼上甜點照片的ig網址</p>
-      <p><%= f.text_field :ig_image_url %></p>
+          <div class="form-group">
+            <%= f.label :amount, '販售數量' %>
+            <%= f.number_field :amount, class: "form-control" %>
+          </div>
 
-      <p><%= f.label :price, '單價' %></p>
-      <p><%= f.number_field :price %></p>
+          <div class="form-group">
+            <%= f.label :category, "甜點種類" %>
+            <%= f.collection_select :category_id, Category.all, :id, :area, {}, {} %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :location, "面交地點" %>
+            <%= f.text_field :location, class: "form-control" %>
+          </div>
 
-      <p><%= f.label :amount, '販售數量' %></p>
-      <p><%= f.number_field :amount %></p>
+          <div class="form-group">
+            <%= f.label :description, '甜點介紹' %>
+            <%= f.text_area :description, class: "form-control" %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :intro_image, "甜點介紹圖片" %>
+            <%= f.file_field :intro_image %>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :excess_time, '募資截止時間' %>
+            <%= f.datetime_select :excess_time, default: Time.now %>
+          </div>
 
-      <p><%= f.label :category, "甜點種類" %></p>
-      <p><%= f.collection_select :category_id, Category.all, :id, :area, {}, {} %></p>
+          <div class="form-group">
+            <%= f.label :pick_time, '面交日期時間' %>
+            <%= f.datetime_select :pick_time, default: Time.now %>
+          </div>
 
-      <p><%= f.label :location, "面交地點" %></p>
-      <p><%= f.text_field :location %></p>
+          <%= f.submit '建立', class: "btn btn-info" %>
+          <%= link_to '取消', desserts_path, class: "btn btn-default" %>
+        
+        </form>
+      <% end %>
 
-      <p><%= f.label :description, '甜點介紹' %></p>
-      <p><%= f.text_area :description %></p>
-
-      <p><%= f.label :intro_image, "甜點介紹圖片" %></p>
-      <p><%= f.file_field :intro_image %></p>
-
-      <p><%= f.label :excess_time, '募資截止時間' %></p>
-      <p><%= f.datetime_select :excess_time, default: Time.now %></p>
-
-      <p><%= f.label :pick_time, '面交日期時間' %></p>
-      <p><%= f.datetime_select :pick_time, default: Time.now %></p>
-
-      <%= f.submit "建立" %>
-      <%= link_to '取消', desserts_path %>
-
-    <% end %>
-
+    </div>
   </div>
 </div>

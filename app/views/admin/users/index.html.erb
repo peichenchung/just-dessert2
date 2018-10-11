@@ -60,17 +60,30 @@
 
     <h2>全站使用者</h2>
 
-    <ul>
-      <% @users.each do |user| %>
-      <li>
-        <%= image_tag user.avatar.url(:thumb) if user.avatar? %><br>
-        暱稱: <%= user.name %><br>
-        Email: <%= user.email %><br>
-        介紹: <%= user.intro %><br>
-        權限: <%= user.role %>
-      </li>
-      <% end %>
-    </ul>
+    <% @users.each do |user| %>
+      <table class="table table-bordered">
+        <tr>
+          <td>頭像</td>
+          <td><%= image_tag user.avatar.url(:thumb) if user.avatar? %></td>
+        </tr>
+        <tr>
+          <td>暱稱</td>
+          <td><%= user.name %></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= user.email %></td>
+        </tr>
+        <tr>
+          <td>介紹</td>
+          <td><%= simple_format user.intro %></td>
+        </tr>
+        <tr>
+          <td>權限</td>
+          <td><%= user.role %></td>
+        </tr>
+      </table>
+    <% end %>
 
   </div>
 </div>

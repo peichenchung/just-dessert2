@@ -131,35 +131,35 @@ $font-size:     14px;
   
   <form class="form">
     <div class="field">
-      <div class= "control">
-        <%= f.text_field :name, placeholder: 'Username', class: "input is-info", autofocus: true %>
+      <div class= "form-group control">
+        <%= f.text_field :name, placeholder: 'Username', class: "form-control input is-info", autofocus: true %>
       </div>
     </div>
 
     <div class="field">
-      <div class="control">
-        <%= f.email_field :email, placeholder: 'Email', class: "input is-info",autocomplete: "email" %>
+      <div class="form-group control">
+        <%= f.email_field :email, placeholder: 'Email', class: "form-control input is-info",autocomplete: "email" %>
       </div>
     </div>
 
     <div class="field">
-      <div class="control">
+      <div class="form-group control">
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
         <br />
-        <%= f.password_field :password, placeholder: 'Password', class: "input is-info",autocomplete: "new-password" %>
+        <%= f.password_field :password, placeholder: 'Password', class: "form-control input is-info",autocomplete: "new-password" %>
       </div>
     </div>
 
     <div class="field">
-      <div class="control">
-        <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: "input is-info",autocomplete: "new-password" %>
+      <div class="form-group control">
+        <%= f.password_field :password_confirmation, placeholder: 'Password confirmation', class: "form-control input is-info",autocomplete: "new-password" %>
       </div>
     </div>
 
-    <div class="actions">    
-      <%= f.submit "Sign up" %>
+    <div class="actions">
+      <%= f.submit "Sign up", class: "btn btn-primary" %>
     </div>
 
   </form>

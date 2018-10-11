@@ -1,3 +1,55 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #f7cae6 10%, #A2C7E5 90%);
+    height: 100vh
+  }
+  @keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+  }
+  @keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+     100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes move {
+    0% {
+        background-position: 0 0
+    }
+     50% {
+        background-position: 100% 0
+    }
+     100% {
+        background-position: 0 0
+    }
+  }
+</style>
+
 <div class="container">
   <div class="row">
 
@@ -13,7 +65,7 @@
         <div class="form-group">
           <%= f.text_field :area, placeholder: "Category Name",  class: "form-control" %>
         </div>
-        <%= f.submit class: "btn btn-primary" %>
+        <%= f.submit '新增', class: "btn btn-info" %>
         
         <% if @category.errors.any? %>
           <%= @category.errors.full_messages.to_sentence %>
@@ -25,11 +77,11 @@
 
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-striped table-bordered">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th>#</th>
-              <th>Category Name</th>
+              <th>分類名稱</th>
               <th></th>
             </tr>
           </thead>

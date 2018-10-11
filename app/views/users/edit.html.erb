@@ -1,27 +1,84 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #f7cae6 10%, #A2C7E5 90%);
+    height: 100vh
+  }
+  @keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+  }
+  @keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+     100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes move {
+    0% {
+        background-position: 0 0
+    }
+     50% {
+        background-position: 100% 0
+    }
+     100% {
+        background-position: 0 0
+    }
+  }
+</style>
+
 <div class="container">
   <div class="row">
+    <div class="col-md-6">
 
-    <%= form_for @user do |f| %>
-      <%= f.label :name, "暱稱" %>
-      <br>
-      <%= f.text_field :name %>
-      <br>
-      <%= f.label :avatar, "大頭照" %>
-      <%= f.file_field :avatar %>
-      <br>
-      <%= f.label :intro, "自我介紹" %>
-      <br>
-      <%= f.text_area :intro %>
-      <br>
-      <%= f.label :contact_info, "賣家提醒＆聯絡資訊" %>
-      <br>
-      <%= f.text_area :contact_info %>
-      <br>
-      *注意：發起集資的賣家必填，此資訊只有自己和買家看得到*
-      <br>
-      <%= f.submit '確認修改' %>
-      <%= link_to "取消", user_path(@user) %>
-    <% end %>
+      <%= form_for @user do |f| %>
+        <form>
+          <div class="form-group">
+            <%= f.label :name, "暱稱" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :avatar, "大頭照" %>
+            <%= f.file_field :avatar %>
+          </div>
+          <div class="form-group">
+            <%= f.label :intro, "自我介紹" %>
+            <%= f.text_area :intro, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :contact_info, "賣家提醒＆聯絡資訊" %>
+            *注意：發起集資的賣家必填，此資訊只有自己和買家看得到*
+            <%= f.text_area :contact_info, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit '確認修改', class: "btn btn-info" %>
+            <%= link_to "取消", user_path(@user), class: "btn btn-default" %>
+        </form>
+      <% end %>
 
+    </div>
   </div>
 </div>

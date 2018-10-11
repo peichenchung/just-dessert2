@@ -1,40 +1,101 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #f7cae6 10%, #A2C7E5 90%);
+    height: 100vh
+  }
+  @keyframes NO {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+   10%, 30%, 50%, 70%, 90% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+   20%, 40%, 60%, 80% {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+  }
+  @keyframes arrive {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+    }
+     100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes move {
+    0% {
+        background-position: 0 0
+    }
+     50% {
+        background-position: 100% 0
+    }
+     100% {
+        background-position: 0 0
+    }
+  }
+</style>
+
 <div class="container">
   <div class="row">
+    <div class="col-md-6">
 
-    <% if @order.errors.any? %>
-      <h2>We have some errors here !</h2>
-      <ul>
-        <% @order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    <% end %>
+      <% if @order.errors.any? %>
+        <h2>We have some errors here !</h2>
+        <ul>
+          <% @order.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
-    <h2>參與集資</h2>
-    <br>
-
-    <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
-    <p>單價: $ <%= @dessert.price %> / each</p>
-    <p>還有 <%= @dessert.amount %> 個集資成功</p>
-
-    <br>
-
-    <%= form_for [@dessert, @order] do |f| %>
-      <%= f.label :amount, '訂購數量' %>
-      <%= f.number_field :amount, options = {max: @dessert.amount, min: 1} %> *必填
+      <h2>參與集資</h2>
       <br>
-      <%= f.label :name, '訂購人姓名' %>
-      <%= f.text_field :name %> *必填
-      <br>
-      <%= f.label :phone, '訂購人電話' %>
-      <%= f.number_field :phone %> *必填
-      <br>
-      <%= f.label :message, '留言給賣家' %>
-      <%= f.text_area :message %>
-      <br>
-      <%= f.submit '確認訂單' %>
-      <%= link_to '取消', dessert_path(@dessert) %>
-    <% end %>
 
+      <%= image_tag @dessert.image_url(:thumb) if @dessert.image? %>
+      <p>單價: $ <%= @dessert.price %></p>
+      <p>還有 <%= @dessert.amount %> 個集資成功</p>
+
+      <br>
+      
+      <%= form_for [@dessert, @order] do |f| %>
+        <form>
+          <div class="form-group">
+            <%= f.label :amount, '訂購數量' %>
+            <%= f.number_field :amount, options = {max: @dessert.amount, min: 1} %>
+          </div>
+          <div class="form-group">
+            <%= f.label :name, '訂購人姓名' %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :phone, '訂購人電話' %>
+            <%= f.number_field :phone, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :message, '留言給賣家' %>
+            <%= f.text_area :message, class: "form-control" %>
+          </div>
+          
+          <%= f.submit '確認訂單', class: "btn btn-info" %>
+          <%= link_to '取消', dessert_path(@dessert), class: "btn btn-default" %>
+        </form>
+      <% end %>
+
+    </div>
   </div>
 </div>

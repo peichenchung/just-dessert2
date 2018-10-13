@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_06_084115) do
+ActiveRecord::Schema.define(version: 2018_10_13_105219) do
 
   create_table "categories", force: :cascade do |t|
     t.string "area"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_084115) do
     t.integer "order_price"
     t.string "pick_location"
     t.string "shipping_status", default: "未完成"
-    t.string "payment_status"
+    t.string "payment_status", default: "not_paid"
     t.integer "sn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

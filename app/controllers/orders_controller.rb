@@ -60,6 +60,41 @@ class OrdersController < ApplicationController
         order_id: @order.id,
         amount: @order.order_price
       )
+
+      # get params string
+      spgateway_data = {
+        MerchantID: "MS35081680",
+        Version: 1.4,
+        RespondType: "JSON",
+        TimeStamp: Time.now.to_i,
+        MerchantOrderNo: "#{@payment.id}JD",
+        Amt: @order.order_price,
+        ItemDesc: @order.name,
+        Email: @order.user.email,
+        LoginType: 0
+      }.to_query
+
+      # AES encrypt
+      hash_key = "zkn80MmVP0h9sC4V3eyN54W0QxFUYNxP"
+      hash_iv = "du0Zeee6uaFZGZuL"
+
+      cipher = OpenSSL::Cipher::AES256.new(:CBC)
+      cipher.encrypt
+      cipher.key = hash_key
+      cipher.iv  = hash_iv
+      encrypted = cipher.update(spgateway_data) + cipher.final
+      aes = encrypted.unpack('H*').first    # binary 轉 hex
+
+      # SHA256
+      str = "HashKey=#{hash_key}&#{aes}&HashIV=#{hash_iv}"
+      sha = Digest::SHA256.hexdigest(str).upcase
+
+      # set form instance variable
+      @merchant_id = "MS35081680"
+      @trade_info = aes
+      @trade_sha = sha
+      @version = "1.4"
+
       render layout: false
     end
   end

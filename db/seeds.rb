@@ -7,7 +7,10 @@ User.create(
   email: "admin@example.com",
   avatar: file,
   password: "12345678",
-  role: "admin"
+  role: "admin",
+  intro: "吃甜甜網站管理員",
+  contact_info:
+  "您好： 感謝您購買我的商品 若集資成功 請依約定的時間地點準時面交 這是我的聯絡電話：0912123456"
 )
 
 # default categories

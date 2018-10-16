@@ -35,7 +35,7 @@ namespace :dev do
         "板橋捷運站",
         "內湖捷運站"
       ]
-      time_mounth = FFaker::Time.between(Time.now, Time.now + 1.months)
+      time_month = FFaker::Time.between(Time.now, Time.now + 1.months)
       production_time = rand(1..5)
 
       Dessert.create!(name: FFaker::Name.first_name + "的手工甜點",
@@ -47,8 +47,8 @@ namespace :dev do
         description: FFaker::Lorem.paragraph,
         user_id: User.all.sample.id,
         image: file,
-        excess_time: time_mounth,
-        pick_time: time_mounth + production_time.day + 1.day
+        excess_time: time_month,
+        pick_time: time_month + production_time.day + 1.day
       )
     end
     puts "have created #{Dessert.count} fake desserts"

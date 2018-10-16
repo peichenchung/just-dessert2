@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   
   resources :categories, only: :show
   resources :users, only: [:show, :edit, :update]
-  resources :orders
+  resources :orders do
+    post :checkout_spgateway, on: :member
+  end
   root "desserts#index"
 
   namespace :admin do

@@ -48,7 +48,6 @@ class SpgatewayController < ApplicationController
       flash[:alert] = "Something wrong!!!"
     end
 
-    # 動作完成，導回訂單索引頁
     redirect_to user_path(current_user)
   end
 

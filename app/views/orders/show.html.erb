@@ -70,6 +70,13 @@
       <p>訂單金額：<%= @order.order_price %></p>
       <p>面交時間：<%= time_tag @order.dessert.pick_time %></p>
       <p>面交地點：<%= @order.pick_location %></p>
+      <p>付款狀態：
+        <% if @order.payment_status == "not_paid" %>
+          尚未付款
+        <% else %>
+          已付款
+        <% end %>
+      </p>
       
       <% if @order.payment_status == "not_paid" %>
         <%= link_to "Pay Now", checkout_spgateway_order_path(@order), method: :post, class: "btn btn-success" %>

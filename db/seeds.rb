@@ -10,13 +10,14 @@ User.create(
 Category.destroy_all
 
 category_list = [
-  { area: "北部"},
-  { area: "中部"},
-  { area: "南部"}
+  { area: "蛋糕"},
+  { area: "塔派"},
+  { area: "馬卡龍"}
 ]
 
 category_list.each do |category|
   Category.create( area: category[:area])
 end
+
 puts "Category created!"
 puts "Default admin created!"

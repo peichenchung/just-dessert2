@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
+  post "spgateway/return"
+
   resources :desserts do
     resources :orders
     resources :comments, only: [:create, :destroy] do

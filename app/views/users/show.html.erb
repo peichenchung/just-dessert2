@@ -93,7 +93,7 @@
         <% end %>
 
         <% @desserts.each do |dessert| %>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <%= link_to dessert_path(dessert) do %>
               <%= image_tag dessert.image_url, width: '150px' if dessert.image? %>
 
@@ -113,7 +113,7 @@
           <h3>你贊助的甜點集資</h3>
 
           <% @orders.each do |order| %>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <%= link_to order_path(order) do %>
                 <%= image_tag order.dessert.image.url, width: '150px' if order.dessert.image? %>
 

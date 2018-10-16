@@ -1,7 +1,7 @@
 namespace :dev do
   # rails dev:fake_user
   task fake_user: :environment do
-    User.destroy_all
+    
 
     18.times do |i|
       name = FFaker::Name::first_name
@@ -48,7 +48,7 @@ namespace :dev do
         user_id: User.all.sample.id,
         image: file,
         excess_time: time_mounth,
-        pick_time: time_mounth + production_time.day + 1.day 
+        pick_time: time_mounth + production_time.day + 1.day
       )
     end
     puts "have created #{Dessert.count} fake desserts"

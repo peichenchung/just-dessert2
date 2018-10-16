@@ -63,24 +63,24 @@
     <% @users.each do |user| %>
       <table class="table table-bordered">
         <tr>
-          <td>頭像</td>
-          <td><%= image_tag user.avatar.url(:thumb) if user.avatar? %></td>
+          <td class="col-md-2">頭像</td>
+          <td class="col-md-10"><%= image_tag user.avatar.url(:thumb) if user.avatar? %></td>
         </tr>
         <tr>
-          <td>暱稱</td>
-          <td><%= user.name %></td>
+          <td class="col-md-2">暱稱</td>
+          <td class="col-md-10"><%= user.name %></td>
         </tr>
         <tr>
-          <td>Email</td>
-          <td><%= user.email %></td>
+          <td class="col-md-2">Email</td>
+          <td class="col-md-10"><%= user.email %></td>
         </tr>
         <tr>
-          <td>介紹</td>
-          <td><%= simple_format user.intro %></td>
+          <td class="col-md-2">介紹</td>
+          <td class="col-md-10"><%= simple_format user.intro %></td>
         </tr>
         <tr>
-          <td>權限</td>
-          <td><%= user.role %></td>
+          <td class="col-md-2">權限</td>
+          <td class="col-md-10"><%= user.role %></td>
         </tr>
       </table>
     <% end %>

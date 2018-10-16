@@ -49,6 +49,21 @@ class OrdersController < ApplicationController
     redirect_to dessert_orders_path(@dessert)
   end
 
+  def checkout_spgateway
+    @order = current_user.orders.find(params[:id])
+    if @order.payment_status != "not_paid"
+      flash[:alert] = "Order has been paid."
+      redirect_to orders_path
+    else
+      @payment = Payment.create!(
+        sn: Time.now.to_i,
+        order_id: @order.id,
+        amount: @order.order_price
+      )
+      render layout: false
+    end
+  end
+
   private
 
   def order_params

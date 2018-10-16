@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
         MerchantOrderNo: "#{@payment.id}JD",
         Amt: @order.order_price,
         ItemDesc: @order.name,
-        ReturnURL: "https://just-dessert2.herokuapp.com/spgateway/return/",
+        ReturnURL: spgateway_return_url,
         Email: @order.user.email,
         LoginType: 0
       }.to_query

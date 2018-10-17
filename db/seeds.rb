@@ -7,7 +7,7 @@ avatar9 = File.open("#{Rails.root}/app/assets/images/avatar9.jpg")
 User.create(
   name: "admin",
   email: "admin@example.com",
-  avatar: avatar1,
+  #avatar: avatar1,
   password: "12345678",
   role: "admin",
   intro: "吃甜甜網站管理員",
@@ -20,7 +20,7 @@ User.create(
 User.create(
   name: "gudetama",
   email: "gudetama@example.com",
-  avatar: avatar17,
+  #avatar: avatar17,
   password: "12345678",
   role: "general",
   intro: "蛋黃界的甜點大師",
@@ -31,12 +31,12 @@ User.create(
 User.create(
   name: "bear",
   email: "bear@example.com",
-  avatar: avatar9,
+  #avatar: avatar9,
   password: "12345678",
   role: "general",
   intro: "熱愛做甜點的大熊",
   contact_info:
-  "您好： 感謝您購買我的商品 若集資成功 請依約定的時間地點準時面交 這是我的聯絡電話：0905345678"
+  "您好： 感謝您購買我的商品 若集資成功 請依約定的時間地點準時面交 這是我的聯絡電話：0988567567"
 )
 
 # default categories
@@ -74,7 +74,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.first.id,
   ig_image_url: "https://www.instagram.com/p/BnYMRswHt16/?utm_source=ig_web_button_share_sheet",
-  intro_image: file1,
+  #intro_image: file1,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )
@@ -90,7 +90,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.first.id,
   ig_image_url: "https://www.instagram.com/p/Beg_ns0Fxdh/?utm_source=ig_web_button_share_sheet",
-  intro_image: file2,
+  #intro_image: file2,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )
@@ -105,7 +105,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.second.id,
   ig_image_url: "https://www.instagram.com/p/BojVCdUA6Hy/?utm_source=ig_web_button_share_sheet",
-  intro_image: file5,
+  #intro_image: file5,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )
@@ -120,7 +120,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.second.id,
   ig_image_url: "https://www.instagram.com/p/BKu7sF_BnOw/?utm_source=ig_web_button_share_sheet",
-  intro_image: file4,
+  #intro_image: file4,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )
@@ -135,7 +135,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.third.id,
   ig_image_url: "https://www.instagram.com/p/BoT_h0hHQcp/?utm_source=ig_web_button_share_sheet",
-  intro_image: file3,
+  #intro_image: file3,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )
@@ -150,7 +150,7 @@ Dessert.create!(
   description: FFaker::Lorem.paragraph,
   user_id: User.third.id,
   ig_image_url: "https://www.instagram.com/p/BmlUhKCHmVP/?utm_source=ig_web_button_share_sheet",
-  intro_image: file3,
+  #intro_image: file3,
   excess_time: time_month,
   pick_time: time_month + 1.day
 )

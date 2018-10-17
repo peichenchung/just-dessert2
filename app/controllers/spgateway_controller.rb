@@ -26,7 +26,7 @@ class SpgatewayController < ApplicationController
       if plain[-1] != '}'
         plain = plain[0, plain.index(plain[-1])]
       end
-      data = JSON.parse(plain)
+      data = JSON.parse(plain), quirks_mode: true
     end
 
     # 根據參數的 MerchantOrderNo，查出 payment 實例

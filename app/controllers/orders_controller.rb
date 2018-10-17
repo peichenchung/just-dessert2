@@ -67,7 +67,7 @@ class OrdersController < ApplicationController
         Version: 1.4,
         RespondType: "JSON",
         TimeStamp: Time.now.to_i,
-        MerchantOrderNo: "#{@payment.id}JD",
+        MerchantOrderNo: "#{Time.now.to_i}",
         Amt: @order.order_price,
         ItemDesc: @order.name,
         ReturnURL: spgateway_return_url,

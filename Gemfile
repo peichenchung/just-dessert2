@@ -39,6 +39,8 @@ gem 'rmagick'    , '~> 2.15' # 使用 rmagick 作縮放圖片功能
 gem 'bulma-rails', "~> 0.7.1"
 gem 'font-awesome-rails'
 gem 'fog-aws'
+gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-v1'
 
 #gem "browserify-rails"
 

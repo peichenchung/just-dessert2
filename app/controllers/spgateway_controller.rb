@@ -26,6 +26,9 @@ class SpgatewayController < ApplicationController
       if plain[-1] != '}'
         plain = plain[0, plain.index(plain[-1])]
       end
+      if plain[-1] != '}' && plain[-2] != '}'
+        plain = plain + '"}}'
+      end
       data = JSON.parse(plain)
     end
 

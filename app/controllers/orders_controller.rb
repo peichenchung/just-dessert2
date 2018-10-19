@@ -62,18 +62,19 @@ class OrdersController < ApplicationController
       )
 
       # get params string
-      spgateway_data = {
-        MerchantID: "MS35081680",
-        Version: 1.4,
-        RespondType: "JSON",
-        TimeStamp: Time.now.to_i,
-        MerchantOrderNo: "#{Time.now.to_i}",
-        Amt: @order.order_price,
-        ItemDesc: @order.name,
-        ReturnURL: spgateway_return_url,
-        Email: @order.user.email,
-        LoginType: 0
-      }.to_query
+      #spgateway_data = {
+      #  MerchantID: "MS35081680",
+      #  Version: 1.4,
+      #  RespondType: "JSON",
+      #  TimeStamp: Time.now.to_i,
+      #  MerchantOrderNo: "#{Time.now.to_i}",
+      #  Amt: @order.order_price,
+      #  ItemDesc: @order.name,
+      #  ReturnURL: spgateway_return_url,
+      #  Email: @order.user.email,
+      #  LoginType: 0
+      #}.to_query
+      spgateway_data = Spgateway.new(@payment).generate_form_data(spgateway_return_url)
 
       # AES encrypt
       hash_key = "zkn80MmVP0h9sC4V3eyN54W0QxFUYNxP"

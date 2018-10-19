@@ -77,25 +77,30 @@ class OrdersController < ApplicationController
       spgateway_data = Spgateway.new(@payment).generate_form_data(spgateway_return_url)
 
       # AES encrypt
-      hash_key = "zkn80MmVP0h9sC4V3eyN54W0QxFUYNxP"
-      hash_iv = "du0Zeee6uaFZGZuL"
+      #hash_key = "zkn80MmVP0h9sC4V3eyN54W0QxFUYNxP"
+      #hash_iv = "du0Zeee6uaFZGZuL"
 
-      cipher = OpenSSL::Cipher::AES256.new(:CBC)
-      cipher.encrypt
-      cipher.key = hash_key
-      cipher.iv  = hash_iv
-      encrypted = cipher.update(spgateway_data) + cipher.final
-      aes = encrypted.unpack('H*').first    # binary 轉 hex
+      #cipher = OpenSSL::Cipher::AES256.new(:CBC)
+      #cipher.encrypt
+      #cipher.key = hash_key
+      #cipher.iv  = hash_iv
+      #encrypted = cipher.update(spgateway_data) + cipher.final
+      #aes = encrypted.unpack('H*').first    # binary 轉 hex
 
       # SHA256
-      str = "HashKey=#{hash_key}&#{aes}&HashIV=#{hash_iv}"
-      sha = Digest::SHA256.hexdigest(str).upcase
+      #str = "HashKey=#{hash_key}&#{aes}&HashIV=#{hash_iv}"
+      #sha = Digest::SHA256.hexdigest(str).upcase
 
       # set form instance variable
-      @merchant_id = "MS35081680"
-      @trade_info = aes
-      @trade_sha = sha
-      @version = "1.4"
+      #@merchant_id = "MS35081680"
+      #@trade_info = aes
+      #@trade_sha = sha
+      #@version = "1.4"
+
+      @merchant_id = spgateway_data[:MerchantID]
+      @trade_info = spgateway_data[:TradeInfo]
+      @trade_sha = spgateway_data[:TradeSha]
+      @version = spgateway_data[:Version]
 
       render layout: false
     end

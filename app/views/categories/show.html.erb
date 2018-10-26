@@ -55,10 +55,14 @@
     <h3 class="text-center">歡迎來到Just Dessert 吃甜甜</h3>
     <h3 class="text-center">在這裡你會找到許多集資中的隱藏版個人創作甜點</h3>
 
-    <%= link_to "全部甜點", root_path, class: "btn btn-info"  %>
+    <%= link_to "全部甜點", root_path, class: "btn btn-warning" %>
 
     <% @categories.each do |category| %>
-      <%= link_to category.area, category_path(category), class: "btn btn-warning"  %>
+      <% if category == @category %>
+        <%= link_to category.area, category_path(category), class: "btn btn-info" %>
+      <% else %>
+        <%= link_to category.area, category_path(category), class: "btn btn-warning" %>
+      <% end %>
     <% end %>
 
     <hr>
